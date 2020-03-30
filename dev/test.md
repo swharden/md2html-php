@@ -36,7 +36,7 @@ This should be <b>bold just fine</b> no issue.
 * Ignore this \*\*bold\*\*
 * Ignore this \*italic\*
 * Ignore this \_italic\_
-* Ignore this \~strikeout\~
+* Ignore this \~~strikeout\~~
 * Ignore this \`code\`
 * Ignore this [link]\(http://www.google.com)
 

@@ -31,6 +31,8 @@ function replaceSpecialChars($line)
 function formatEmphasis($line, $mdSymbol, $htmlElement)
 {
     $line = " $line ";
+    $line = str_replace(" $mdSymbol ", " %%%ignore[$mdSymbol]ignore%%% ", $line);
+    $line = str_replace("\\$mdSymbol", "%%%ignore[$mdSymbol]ignore%%%", $line);
     $line = str_replace(">$mdSymbol", "><$htmlElement>", $line);
     $line = str_replace("$mdSymbol<", "</$htmlElement><", $line);
     $line = str_replace(" $mdSymbol", " <$htmlElement>", $line);
@@ -50,6 +52,8 @@ function getFormattedHtml($line)
         $line = formatEmphasis($line, "*", "i");
         $line = formatEmphasis($line, "~~", "strike");
     }
+    $line = str_replace("%%%ignore[", "", $line);
+    $line = str_replace("]ignore%%%", "", $line);
 
     // format links
     while (strrpos($line, "](")) {
