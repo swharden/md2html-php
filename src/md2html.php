@@ -1,5 +1,7 @@
 <?
-/* md2html - a minimal markdown to HML converter by Scott W Harden */
+/* md2html - A simple markdown-to-HTML converter for PHP by Scott Harden
+   Project page: https://github.com/swharden/md2html-php
+*/
 
 function sanitizeLinkUrl($str)
 {
@@ -12,12 +14,10 @@ function sanitizeLinkUrl($str)
 function getImageHtml($line)
 {
     $url = substr($line, 4, strlen($line) - 5);
-
     if (strstr($url, "youtube.com/") !== false) {
         $allows = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
         return "<iframe width='560' height='315' src='$url' frameborder='0' allow='$allows' allowfullscreen></iframe>";
     }
-
     return "<a href='$url'><img src='$url'></img></a>\n\n";
 }
 
@@ -33,27 +33,8 @@ function getBulletHtml($line, $bulletLevel = 1)
     return "<div>$line</div>";
 }
 
-function getParagraphHtml($line)
-{
-    $line = getFormattedHtml($line);
-    return "<p>$line</p>\n\n";
-}
-
-function formatNextLink($line)
-{
-    // non-destructively attempt to convert the first URL
-    $parts = explode("](", $line);
-    $title = substr($parts[0], strrpos($parts[0], "[") + 1);
-    $url = substr($parts[1], 0, strpos($parts[1], ")"));
-    $mdLink = "[$title]($url)";
-    return str_replace($mdLink, "<a href='$url'>$title</a>", $line);
-}
-
 function formatEmphasis($line, $mdSymbol, $htmlElement)
 {
-    // TODO: backslash escapes for characters listed on:
-    // https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf
-
     $line = " " . $line;
     while (true) {
         $parts = explode(" " . $mdSymbol, $line, 2);
@@ -72,10 +53,15 @@ function getFormattedHtml($line)
     $line = formatEmphasis($line, "*", "i");
     $line = formatEmphasis($line, "~~", "strike");
 
-    while (strrpos($line, "]("))
-        $line = formatNextLink($line);
+    // format links
+    while (strrpos($line, "](")) {
+        $parts = explode("](", $line);
+        $title = substr($parts[0], strrpos($parts[0], "[") + 1);
+        $url = substr($parts[1], 0, strpos($parts[1], ")"));
+        $mdLink = "[$title]($url)";
+        $line = str_replace($mdLink, "<a href='$url'>$title</a>", $line);
+    }
 
-    // TODO: replace links somehow
     return trim($line);
 }
 
@@ -194,7 +180,8 @@ function md2html($markdownText)
         }
 
         // if all special cases fail, render it as a paragraph
-        $html .= getParagraphHtml($line);
+        $line = getFormattedHtml($line);
+        $html .= "<p>$line</p>\n\n";
     }
 
     return $html;
