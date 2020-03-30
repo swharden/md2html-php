@@ -21,23 +21,21 @@ function getImageHtml($line)
     return "<a href='$url'><img src='$url'></img></a>\n\n";
 }
 
-function formatEmphasis($line, $mdSymbol, $htmlElement)
-{
-    $line = " " . $line . " ";
-    while (true) {
-        $parts = explode(" " . $mdSymbol, $line, 2);
-        if (count($parts) == 1)
-            break;
-        $line = $parts[0] . " <$htmlElement> " . str_replace($mdSymbol, "</$htmlElement>", $parts[1]);
-    }
-    return trim($line);
-}
-
 function replaceSpecialChars($line)
 {
     $line = str_replace("<", "&lt;", $line);
     $line = str_replace(">", "&gt;", $line);
     return $line;
+}
+
+function formatEmphasis($line, $mdSymbol, $htmlElement)
+{
+    $line = " $line ";
+    $line = str_replace(">$mdSymbol", "><$htmlElement>", $line);
+    $line = str_replace("$mdSymbol<", "</$htmlElement><", $line);
+    $line = str_replace(" $mdSymbol", " <$htmlElement>", $line);
+    $line = str_replace("$mdSymbol ", "</$htmlElement> ", $line);
+    return trim($line);
 }
 
 function getFormattedHtml($line)
@@ -57,7 +55,7 @@ function getFormattedHtml($line)
 
     // format links
     while (strrpos($line, "](")) {
-        $parts = explode("](", $line);
+        $parts = explode("](", $line . " ");
         $title = substr($parts[0], strrpos($parts[0], "[") + 1);
         $url = substr($parts[1], 0, strrpos(substr($parts[1], 0, strpos($parts[1], " ")), ")"));
         $mdLink = "[$title]($url)";
