@@ -11,26 +11,25 @@ function sanitizeLinkUrl($str)
 
 function getImageHtml($line)
 {
-    $imageUrl = substr($line, 4, strlen($line) - 5);
-    $imageUrl = str_replace("../graphics/", "graphics/", $imageUrl);
-    return "<a href='$imageUrl'><img src='$imageUrl'></img></a>\n\n";
+    $url = substr($line, 4, strlen($line) - 5);
+
+    if (strstr($url, "youtube.com/") !== false) {
+        $allows = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+        return "<iframe width='560' height='315' src='$url' frameborder='0' allow='$allows' allowfullscreen></iframe>";
+    }
+
+    return "<a href='$url'><img src='$url'></img></a>\n\n";
 }
 
 function getBulletHtml($line, $bulletLevel = 1)
 {
     if (substr($line, 0, 6) === "    * ")
-        $line = "&nbsp;&nbsp;&nbsp;&nbsp;" . "&#9642;" . substr($line, 6);
+        $line = "&nbsp;&nbsp;&nbsp;&nbsp;" . "&#9642; " . substr($line, 6);
     if (substr($line, 0, 4) === "  * ")
-        $line = "&nbsp;&nbsp;" . "&#9702;" . substr($line, 4);
+        $line = "&nbsp;&nbsp;" . "&#9702; " . substr($line, 4);
     if (substr($line, 0, 2) === "* ")
-        $line = "" . "&bull;" . substr($line, 2);
+        $line = "" . "&bull; " . substr($line, 2);
     return "<div>$line</div>";
-
-    //$line = str_replace("  * ", "&bull");
-    //$line = str_replace("  * ", "&bull");
-    //$line = trim(substr($line, $bulletLevel));
-    //$line = getFormattedHtml($line);
-    //return "<li>$line</li>\n\n";
 }
 
 function getParagraphHtml($line)
@@ -49,29 +48,27 @@ function formatNextLink($line)
     return str_replace($mdLink, "<a href='$url'>$title</a>", $line);
 }
 
-function getFormattedHtml($line)
+function formatEmphasis($line, $mdSymbol, $htmlElement)
 {
-    // add strategic spaces so nested format elements don't get confused
-    $line = " " . $line . " ";
-    $line = str_replace(" * ", "&nbsp;*&nbsp;", $line);
-
     // TODO: backslash escapes for characters listed on:
     // https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf
 
-    $line = str_replace(" **", " <b> ", $line);
-    $line = str_replace("** ", " </b> ", $line);
+    $line = " " . $line;
+    while (true) {
+        $parts = explode(" " . $mdSymbol, $line, 2);
+        if (count($parts) == 1)
+            return trim($line);
+        $line = $parts[0] . " <$htmlElement>" . str_replace($mdSymbol, "</$htmlElement>", $parts[1]);
+    }
+}
 
-    $line = str_replace(" *", " <i>", $line);
-    $line = str_replace("* ", " </i> ", $line);
-
-    $line = str_replace(" _", " <i> ", $line);
-    $line = str_replace("_ ", " </i> ", $line);
-
-    $line = str_replace(" ~~", " <strikeout> ", $line);
-    $line = str_replace("~~ ", " </strikeout> ", $line);
-
-    $line = str_replace(" `", " <code style='background-color: magenta;'> ", $line);
-    $line = str_replace("` ", " </code> ", $line);
+function getFormattedHtml($line)
+{
+    $line = formatEmphasis($line, "_", "i");
+    $line = formatEmphasis($line, "`", "code");
+    $line = formatEmphasis($line, "***", "em");
+    $line = formatEmphasis($line, "**", "b");
+    $line = formatEmphasis($line, "*", "i");
 
     while (strrpos($line, "]("))
         $line = formatNextLink($line);
@@ -90,6 +87,7 @@ function isTableLine($line)
 
 function md2html($markdownText)
 {
+    $html = "\n<script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>\n";
     $markdownText = str_replace("\r", "", $markdownText);
     $lines = explode("\n", $markdownText);
     for ($i = 0; $i < count($lines); $i++) {
@@ -106,7 +104,7 @@ function md2html($markdownText)
                 $line = trim(substr($line, $headingLevel));
                 $url = sanitizeLinkUrl($line);
                 $line = getFormattedHtml($line);
-                $html .= "<h$headingLevel id='$url'><a href='#$url'>$line</a></h$headingLevel>\n\n";
+                $html .= "<h$headingLevel id='$url'><a  style='color: inherit;' href='#$url'>$line</a></h$headingLevel>\n\n";
                 $headerLine = true;
                 break;
             }
@@ -178,15 +176,15 @@ function md2html($markdownText)
         }
 
         // code block
-        // TODO: prettyprint
         if (substr($line, 0, 3) === "```") {
-            $html .= "<pre style='background-color: lightblue;'>";
-            $html .= str_replace("```", "", $line);
+            $language = trim(str_replace("```", "", $line));
+            $html .= "<pre class='prettyprint $language' id='prettyprint'>";
+            $i += 1;
             while ($i < count($lines)) {
-                $i += 1;
-                $html .= $lines[$i];
-                if (substr($line, 0, 3) === "```")
+                if (substr($lines[$i], 0, 3) === "```")
                     break;
+                $html .= "\n" . $lines[$i];
+                $i += 1;
             }
             $html .= "</pre>";
             continue;
