@@ -59,7 +59,7 @@ function getFormattedHtml($line)
     while (strrpos($line, "](")) {
         $parts = explode("](", $line);
         $title = substr($parts[0], strrpos($parts[0], "[") + 1);
-        $url = substr($parts[1], 0, strpos($parts[1], ")"));
+        $url = substr($parts[1], 0, strrpos(substr($parts[1], 0, strpos($parts[1], " ")), ")"));
         $mdLink = "[$title]($url)";
         $line = str_replace($mdLink, "<a href='$url'>$title</a>", $line);
     }
