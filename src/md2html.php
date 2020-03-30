@@ -171,6 +171,7 @@ function md2html($markdownText)
         // code block
         if (substr($line, 0, 3) === "```") {
             $language = trim(str_replace("```", "", $line));
+            $language = ($language) ? "lang-$language" : "prettyprinted";
             $html .= "<pre class='prettyprint $language' id='prettyprint'>";
             $i += 1;
             while ($i < count($lines)) {
