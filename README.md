@@ -11,6 +11,23 @@
 ### Example
 Copy this repository to your web server and request [/demo/demo.php](/demo/demo.php)
  
+### Installation
+
+The easiest way to get md2html is to download it with a script. If you want to be fancy, have your web server automatically run this script periodically.
+
+```batch
+:: download md2html into the current directory
+powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php -OutFile md2html.php"
+powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css -OutFile md2html.css"
+```
+
+```bash
+#!/bin/bash
+# download md2html into the current directory
+wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php;
+wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css;
+```
+
 ### Resources
 * [Parsedown](https://github.com/erusev/parsedown) is a similar project that is more performant and has more features, but is a lot more complex and intimidating to modify.
 * [GitHub Markdown Guide](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
