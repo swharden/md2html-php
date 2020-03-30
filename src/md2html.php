@@ -29,6 +29,7 @@ function getBulletHtml($line, $bulletLevel = 1)
         $line = "&nbsp;&nbsp;" . "&#9702; " . substr($line, 4);
     if (substr($line, 0, 2) === "* ")
         $line = "" . "&bull; " . substr($line, 2);
+    $line = getFormattedHtml($line);
     return "<div>$line</div>";
 }
 
