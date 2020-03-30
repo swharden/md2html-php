@@ -12,6 +12,30 @@ body {
     line-height: 150%;
 }
 
+a {
+    text-decoration: none;
+    color: #0366d6;
+}
+
+a:hover {
+    text-decoration: underline;
+    opacity: 1 !important;
+}
+
+.anchorLink {
+    position: relative;
+    left: -.5em;
+    color: inherit;
+    opacity: 0;
+    text-decoration: none !important;
+}
+
+.headerText {
+    left: -.5em;
+    display: inline;
+    position: relative;
+}
+
 .content {
     max-width: 900px;
     margin: auto;
@@ -102,42 +126,6 @@ hr {
     border: 3px solid #f6f8fa;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-a {
-    text-decoration: none;
-    color: #0366d6;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 li {
     margin-left: 15px;
 }
@@ -218,6 +206,6 @@ img {
     margin: 2em 1em 2em 1em;
 }
 
-.thumbnail{
+.thumbnail {
     width: 200px;
 }

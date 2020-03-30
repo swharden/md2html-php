@@ -4,7 +4,7 @@
 function sanitizeLinkUrl($str)
 {
     // TODO: improve sanitization - lowercase, strip special
-    $str = trim($str);
+    $str = strtolower(trim($str));
     $str = str_replace(" ", "-", $str);
     return $str;
 }
@@ -99,19 +99,20 @@ function md2html($markdownText)
             continue;
 
         // headers
-        $headerLine = false;
+        $lineIsHeader = false;
         for ($headingLevel = 1; $headingLevel <= 6; $headingLevel++) {
             $lineStart = str_repeat("#", $headingLevel) . " ";
             if (substr($line, 0, strlen($lineStart)) === $lineStart) {
                 $line = trim(substr($line, $headingLevel));
                 $url = sanitizeLinkUrl($line);
                 $line = getFormattedHtml($line);
-                $html .= "<h$headingLevel id='$url'><a  style='color: inherit;' href='#$url'>$line</a></h$headingLevel>\n\n";
-                $headerLine = true;
+                $line = "<a class='anchorLink' href='#$url'>&para;</a><div class='headerText'>$line</div>";
+                $html .= "<h$headingLevel id='$url'>$line</h$headingLevel>\n\n";
+                $lineIsHeader = true;
                 break;
             }
         }
-        if ($headerLine)
+        if ($lineIsHeader)
             continue;
 
         // horizontal break
