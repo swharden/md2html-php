@@ -17,4 +17,4 @@ This markdown file contains complex markdown examples used for testing.
 
 ## Formatting in headers
 
-#### this should display **bold** text and [links](http://www.google.com) too.
+#### this should display ~~strike~~ and _italic_ text and [links](http://www.google.com) too.
