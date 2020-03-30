@@ -6,11 +6,13 @@
 </head>
 
 <body>
-    <div class="content">&nbsp;
-        <?php
-        require("../src/md2html.php");
-        includeMarkdown("test.md");
-        ?>
+    <div class="content">
+        <article>
+            <?php
+            require("../src/md2html.php");
+            includeMarkdown("test.md");
+            ?>
+        </article>
     </div>
 </body>
 

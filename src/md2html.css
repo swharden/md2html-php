@@ -44,13 +44,6 @@ a:hover {
     box-shadow: 0px 0px 50px rgba(0, 0, 0, .1);
 }
 
-footer {
-    font-size: 12;
-    margin-top: 50px;
-    padding-top: .3em;
-    color: #dfe2e5;
-}
-
 h1 {
     margin-top: 24px;
     margin-bottom: 16px;
@@ -126,8 +119,8 @@ hr {
     border: 3px solid #f6f8fa;
 }
 
-li {
-    margin-left: 15px;
+article {
+    padding: 0px 30px 0px 30px;
 }
 
 table {
@@ -146,32 +139,6 @@ td {
     padding: 10px;
 }
 
-.titlebar {
-    padding: 10px 30px 10px 30px;
-    background: #f6f8fa;
-    border-top: 1px solid #dfe2e5;
-    border-bottom: 1px solid #dfe2e5;
-}
-
-.titlebarButton {
-    display: inline;
-    padding-right: 1.5em;
-}
-
-.titlebarButton a {
-    color: black;
-}
-
-article {
-    padding: 0px 30px 0px 30px;
-}
-
-.plot {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
 blockquote {
     margin: 1em;
     background: #f6f8fa;
@@ -179,33 +146,6 @@ blockquote {
     border-left: 5px solid #dfe2e5;
 }
 
-.description {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 img {
     max-width: 100%;
-}
-
-.codeblock {
-    margin: 1em 0em 1em 0em;
-}
-
-.description2 {
-    font-size: 70%;
-    color: #ccc;
-    font-family: consolas, monospace, sans-serif;
-}
-
-.indent {
-    margin-left: 1em;
-}
-
-.padded {
-    margin: 2em 1em 2em 1em;
-}
-
-.thumbnail {
-    width: 200px;
 }

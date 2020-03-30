@@ -75,7 +75,9 @@ function isTableLine($line)
 
 function md2html($markdownText)
 {
-    $html = "\n<script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>\n";
+    $html = "<div>&nbsp;</div>"; // improves rendering if first line is a header
+    $prettyprintJsURL = "https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js";
+    $html .= "\n<script src='$prettyprintJsURL'></script>\n";
     $markdownText = str_replace("\r", "", $markdownText);
     $lines = explode("\n", $markdownText);
     for ($i = 0; $i < count($lines); $i++) {

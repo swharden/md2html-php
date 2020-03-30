@@ -7,25 +7,33 @@
 * Automatic anchor links for headings
 * Syntax highlighting with automatic language detection
 * Styled to look like GitHub using an external CSS file
+* Dynamically include one file in another using `![](file2.md)`
 
-### Example
+### Demo
 Copy this repository to your web server and request [/demo/demo.php](/demo/demo.php)
  
-### Installation
+### Download / Install
 
-The easiest way to get md2html is to download it with a script. If you want to be fancy, have your web server automatically run this script periodically.
+To install md2html just copy these files to your web server:
 
-```batch
-:: download md2html into the current directory
-powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php -OutFile md2html.php"
-powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css -OutFile md2html.css"
-```
+* [md2html.php](http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php)
+* [md2html.css](http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css)
 
+You can automate download of these files using a shell script. If you want to be fancy, have your web server do this periodically.
+
+##### Linux/MacOS
 ```bash
 #!/bin/bash
 # download md2html into the current directory
 wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php;
 wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css;
+```
+
+##### Windows
+```batch
+:: download md2html into the current directory
+powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php -OutFile md2html.php"
+powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css -OutFile md2html.css"
 ```
 
 ### Resources
