@@ -38,9 +38,10 @@ function formatEmphasis($line, $mdSymbol, $htmlElement)
     return trim($line);
 }
 
-function getFormattedHtml($line)
+function getFormattedHtml($line, $stripHTML = true)
 {
-    $line = replaceSpecialChars($line);
+    if ($stripHTML)
+        $line = replaceSpecialChars($line);
 
     $lineBefore = "";
     while ($line != $lineBefore) {
@@ -191,8 +192,7 @@ function md2html($markdownText)
             continue;
         }
 
-        // if all special cases fail, render as a paragraph
-        $line = getFormattedHtml($line);
+        $line = getFormattedHtml($line, false);
         $html .= "<p>$line</p>\n\n";
     }
 
