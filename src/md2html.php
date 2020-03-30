@@ -21,37 +21,30 @@ function getImageHtml($line)
     return "<a href='$url'><img src='$url'></img></a>\n\n";
 }
 
-function getBulletHtml($line, $bulletLevel = 1)
-{
-    if (substr($line, 0, 6) === "    * ")
-        $line = "&nbsp;&nbsp;&nbsp;&nbsp;" . "&#9642; " . substr($line, 6);
-    if (substr($line, 0, 4) === "  * ")
-        $line = "&nbsp;&nbsp;" . "&#9702; " . substr($line, 4);
-    if (substr($line, 0, 2) === "* ")
-        $line = "" . "&bull; " . substr($line, 2);
-    $line = getFormattedHtml($line);
-    return "<div>$line</div>";
-}
-
 function formatEmphasis($line, $mdSymbol, $htmlElement)
 {
-    $line = " " . $line;
+    $line = " " . $line . " ";
     while (true) {
         $parts = explode(" " . $mdSymbol, $line, 2);
         if (count($parts) == 1)
-            return trim($line);
-        $line = $parts[0] . " <$htmlElement>" . str_replace($mdSymbol, "</$htmlElement>", $parts[1]);
+            break;
+        $line = $parts[0] . " <$htmlElement> " . str_replace($mdSymbol, "</$htmlElement>", $parts[1]);
     }
+    return trim($line);
 }
 
 function getFormattedHtml($line)
 {
-    $line = formatEmphasis($line, "_", "i");
-    $line = formatEmphasis($line, "`", "code");
-    $line = formatEmphasis($line, "***", "em");
-    $line = formatEmphasis($line, "**", "b");
-    $line = formatEmphasis($line, "*", "i");
-    $line = formatEmphasis($line, "~~", "strike");
+    $lineBefore = "";
+    while ($line != $lineBefore) {
+        $lineBefore = $line;
+        $line = formatEmphasis($line, "_", "i");
+        $line = formatEmphasis($line, "`", "code");
+        $line = formatEmphasis($line, "***", "em");
+        $line = formatEmphasis($line, "**", "b");
+        $line = formatEmphasis($line, "*", "i");
+        $line = formatEmphasis($line, "~~", "strike");
+    }
 
     // format links
     while (strrpos($line, "](")) {
@@ -75,10 +68,16 @@ function isTableLine($line)
 
 function md2html($markdownText)
 {
+    $bulletSymbols = array("&bull;", "&#9702;", "&#8259;");
+    for ($j = 0; $j < 3; $j++)
+        $bulletSymbols = array_merge($bulletSymbols, $bulletSymbols);
+
     $prettyprintJsURL = "https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js";
     $html .= "\n<script src='$prettyprintJsURL'></script>\n";
     $markdownText = str_replace("\r", "", $markdownText);
     $lines = explode("\n", $markdownText);
+
+    // iterate through each line of the markdown file
     for ($i = 0; $i < count($lines); $i++) {
         $line = trim($lines[$i]);
 
@@ -117,7 +116,11 @@ function md2html($markdownText)
 
         // bullet
         if (substr($line, 0, 2) === "* ") {
-            $html .= getBulletHtml($lines[$i]);
+            $line = $lines[$i];
+            for ($j = count($bulletSymbols); $j >= 0; $j -= 2)
+                if (substr($line, 0, $j + 2) === str_repeat(" ", $j) . "* ")
+                    $line = str_repeat("&nbsp;", $j) . $bulletSymbols[$j / 2] . " " . getFormattedHtml(substr($line, $j + 2));
+            $html .= "<div>$line</div>";
             continue;
         }
 
@@ -180,7 +183,7 @@ function md2html($markdownText)
             continue;
         }
 
-        // if all special cases fail, render it as a paragraph
+        // if all special cases fail, render as a paragraph
         $line = getFormattedHtml($line);
         $html .= "<p>$line</p>\n\n";
     }
