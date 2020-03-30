@@ -2,6 +2,10 @@
 
 This markdown file contains complex markdown examples used for testing.
 
+## Nested formatters
+* **`D`** is the diffusion coefficient 
+* **`µ`** (mu) is [ionic mobility](https://en.wikipedia.org/wiki/Electrical_mobility) value
+
 ## Backslash ignore character
 
 * Ignore this \*\*bold\*\*
