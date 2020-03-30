@@ -13,9 +13,23 @@ Text can be displayed using _italics_, *italics*, **bold**, ***emphasis***, or a
 
 > blockquotes work as you expect
 
+```
+simple text block
+(without syntax highlighting)
+```
+
+## Code with Syntax Highlighting
+
 ```python
 import pyabf
 print("hello, world")
+```
+
+```php
+<?php
+require("../src/md2html.php");
+includeMarkdown("demo.md");
+?>
 ```
 
 ## Horizontal Line Break
