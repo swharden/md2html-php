@@ -39,7 +39,7 @@ a:hover {
 .content {
     max-width: 900px;
     margin: auto;
-    padding: 0 2em 0 2em;
+    padding: 0 2em 2em 2em;
     background: white;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, .1);
 }

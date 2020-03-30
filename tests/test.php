@@ -2,7 +2,7 @@
 
 <head>
     <title>md2html.php displaying demo.md</title>
-    <link rel="stylesheet" type="text/css" href="../src/style.css">
+    <link rel="stylesheet" type="text/css" href="../src/md2html.css">
 </head>
 
 <body>
