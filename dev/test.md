@@ -2,6 +2,10 @@
 
 This markdown file contains complex markdown examples used for testing.
 
+## Links with `)` in their URL
+
+**The [Einstein relation](https://en.wikipedia.org/wiki/Einstein_relation_(kinetic_theory))** defines diffusion as **`D = Âµ * k * T`** where...
+
 ## Nested formatters
 * **`D`** is the diffusion coefficient 
 * **`µ`** (mu) is [ionic mobility](https://en.wikipedia.org/wiki/Electrical_mobility) value
