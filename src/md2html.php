@@ -70,6 +70,7 @@ function getFormattedHtml($line)
     $line = formatEmphasis($line, "***", "em");
     $line = formatEmphasis($line, "**", "b");
     $line = formatEmphasis($line, "*", "i");
+    $line = formatEmphasis($line, "~~", "strike");
 
     while (strrpos($line, "]("))
         $line = formatNextLink($line);
