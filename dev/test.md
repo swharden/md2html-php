@@ -40,7 +40,7 @@ This markdown file contains complex markdown examples used for testing.
 
 ## Including HTML inside code blocks
 
-```
+```html
 <!-- can you see this? -->
 <br id="or this?">
 ```

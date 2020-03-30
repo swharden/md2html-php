@@ -33,8 +33,17 @@ function formatEmphasis($line, $mdSymbol, $htmlElement)
     return trim($line);
 }
 
+function replaceSpecialChars($line)
+{
+    $line = str_replace("<", "&lt;", $line);
+    $line = str_replace(">", "&gt;", $line);
+    return $line;
+}
+
 function getFormattedHtml($line)
 {
+    $line = replaceSpecialChars($line);
+
     $lineBefore = "";
     while ($line != $lineBefore) {
         $lineBefore = $line;
@@ -177,7 +186,7 @@ function md2html($markdownText)
             while ($i < count($lines)) {
                 if (substr($lines[$i], 0, 3) === "```")
                     break;
-                $html .= "\n" . $lines[$i];
+                $html .= "\n" . replaceSpecialChars($lines[$i]);
                 $i += 1;
             }
             $html .= "</pre>";
