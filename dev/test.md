@@ -6,6 +6,21 @@ This markdown file contains complex markdown examples used for testing.
 * **`D`** is the diffusion coefficient 
 * **`µ`** (mu) is [ionic mobility](https://en.wikipedia.org/wiki/Electrical_mobility) value
 
+## Nested Lists
+
+* level 1
+  * level 2
+    * level 3
+      * level 4
+        * level 5
+          * level 6
+          * level 6
+        * level 5
+      * level 4
+    * level 3
+  * level 2
+* level 1
+
 ## Backslash ignore character
 
 * Ignore this \*\*bold\*\*
