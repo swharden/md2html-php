@@ -2,6 +2,12 @@
 
 This markdown file contains complex markdown examples used for testing.
 
+## Allow HTML in paragraphs
+
+This should be <b>bold just fine</b> no issue.
+
+<p align="center">V<sub>cell</sub> = V<sub>measured</sub> - LJP</p>
+
 ## Links with `)` in their URL
 
 **The [Einstein relation](https://en.wikipedia.org/wiki/Einstein_relation_(kinetic_theory))** defines diffusion as **`D = Âµ * k * T`** where...
