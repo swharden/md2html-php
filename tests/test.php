@@ -9,7 +9,7 @@
     <div class="content">&nbsp;
         <?php
         require("../src/md2html.php");
-        includeMarkdown("demo.md");
+        includeMarkdown("test.md");
         ?>
     </div>
 </body>

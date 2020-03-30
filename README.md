@@ -9,7 +9,7 @@
 * Styled to look like GitHub using an external CSS file
 
 ### Example
-Copy the files from [/demo](demo) to your web server and request [demo.php](/demo/demo.php)
+Copy this repository to your web server and request [/demo/demo.php](/demo/demo.php)
  
 ### Resources
 * [Parsedown](https://github.com/erusev/parsedown) is a similar project that is more performant and has more features, but is a lot more complex and intimidating to modify.
