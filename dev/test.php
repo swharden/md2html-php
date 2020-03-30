@@ -31,7 +31,7 @@
     <article>
         <?php
         require("../src/md2html.php");
-        includeMarkdown("demo.md");
+        includeMarkdown("test.md");
         ?>
     </article>
 </body>
