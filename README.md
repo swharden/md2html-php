@@ -18,19 +18,16 @@ To install md2html just copy these files to your web server:
 * [md2html.php](http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php)
 * [md2html.css](http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css)
 
-You can automate download of these files using a shell script. If you want to be fancy, have your web server do this periodically.
+...or download them remotely using console commands:
 
 ##### Linux/MacOS
 ```bash
-#!/bin/bash
-# download md2html into the current directory
 wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php;
 wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css;
 ```
 
 ##### Windows
 ```batch
-:: download md2html into the current directory
 powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php -OutFile md2html.php"
 powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css -OutFile md2html.css"
 ```
