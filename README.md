@@ -2,7 +2,6 @@
 **[md2html.php](src/md2html.php) is a simple PHP script that converts markdown to HTML.** There are several similar converters available online, but this project aims to be simpler and easier to customize than the rest. 
 
 ### Features
-* Full support for tables
 * Support for embedded YouTube videos
 * Automatic anchor links for headings
 * Syntax highlighting with automatic language detection
