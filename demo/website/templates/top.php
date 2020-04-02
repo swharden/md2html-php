@@ -36,3 +36,5 @@
 			<div class='titlebarButton'><a href='./demo.md'>Demo (source)</a></div>
 			<div class='titlebarButton'><a href='./theory.php'>Theory (php)</a></div>
 		</div>
+
+		<div style='padding: 1px 2em 1em 2em;'>
