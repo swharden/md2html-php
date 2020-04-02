@@ -14,45 +14,46 @@
 ```html
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="path/to/md2html.css">
+    <link rel="stylesheet" type="text/css" href="md2html.css">
 </head>
 <body>
 	<?php
-        require("path/to/md2html.php");
+        require("md2html.php");
         includeMarkdown("demo.md");
 	?>
 </body>
 </html>
 ```
 
-### Markdown Webpage Server
+### Automatic Conversion using .md.html URLs
 
-The demo in [/demo/website](/demo/website) shows how to create a multi-page website built from markdown pages. 
+An advanced demo in [/demo/website](/demo/website) shows how to create a customizable multi-page website built from markdown pages. Requests for `yourFile.md` return Markdown, but requests for `yourFile.md.html` return HTML-formatted content wrapped in a custom web page template.
 
-A custom `.htaccess` tells Apache to direct requests for files like `demo.md.html` to `index.php`, which automatically finds the source markdown file `./pages/demo.md`, translates it to HTML, and serves the HTML wrapped in a customizable page template in the `./templates` folder.
+### Download
 
-### Download / Install
-
-To install md2html just copy these files to your web server:
+To download md2html, simply copy these files to your web server:
 
 * [md2html.php](http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php)
 * [md2html.css](http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css)
 
-...or download them remotely using console commands:
+Using the Linux console:
 
-##### Linux/MacOS
 ```bash
 wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php;
 wget http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css;
 ```
 
-##### Windows
+Using the Windows command prompt:
+
 ```batch
 powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.php -OutFile md2html.php"
 powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden/md2html-php/master/src/md2html.css -OutFile md2html.css"
 ```
 
+### What makes md2html so simple?
+Code for this project is greatly simplified by making a few assumptions about the format of your markdown document, taking a few shortcuts, and intentionally not supporting obscure Markdown edge cases. This project favors simplicity and and easy hackability over strict adherence to the full Markdown standard. A side effect of this simplicity is improved speed, with md2html outperforming parsedown by over ten fold in simple anecdotal tests.
+
 ### Resources
-* [Parsedown](https://github.com/erusev/parsedown) is a similar project that is more performant and has more features, but is a lot more complex and intimidating to modify.
+* [Parsedown](https://github.com/erusev/parsedown) is a similar project that more fully supports the Markdown standard, with a much more complex and intimidating code base.
 * [GitHub Markdown Guide](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
 * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) by Adam P
