@@ -71,7 +71,14 @@ function getFormattedHtml($line)
     while (strrpos($line, "](")) {
         $parts = explode("](", $line . " ");
         $title = substr($parts[0], strrpos($parts[0], "[") + 1);
-        $url = substr($parts[1], 0, strrpos(substr($parts[1], 0, strpos($parts[1], " ")), ")"));
+        $nextSpaceIndex = strpos($parts[1], " ");
+        $urlToNextSpace = substr($parts[1], 0, $nextSpaceIndex);
+        $lastEndParenIndex = strrpos($urlToNextSpace, ")");
+        $url = substr($parts[1], 0, $lastEndParenIndex);
+        $urlEndsWithEndParen = (substr($url, -1, 1) == ")");
+        $urlContainsOpenParen = (strpos($url, "(") !== false);
+        if ($urlEndsWithEndParen && !$urlContainsOpenParen)
+            $url = substr($url, 0, -1); // accommodate (wrapped [sites](url))
         $mdLink = "[$title]($url)";
         $line = str_replace($mdLink, "<a href='$url'>$title</a>", $line);
     }
