@@ -37,7 +37,6 @@
 
 error_reporting(-1);
 $startTime = microtime(true);
-require 'scripts/md2html.php';
 $configs = include('templates/md2html.siteConfig.php');
 $fileName = str_replace(dirname($_SERVER['PHP_SELF']) . "/", '', $_SERVER['REQUEST_URI']);
 $fileName = ($fileName) ? $fileName : $configs['markdownIndex'] . ".html";

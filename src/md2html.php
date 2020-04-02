@@ -13,11 +13,23 @@ function sanitizeLinkUrl($str)
 
 function getImageHtml($line)
 {
+    // this function replaces ![](url) with a custom element
     $url = substr($line, 4, strlen($line) - 5);
-    if (strstr($url, "youtube.com/") !== false) {
+
+    if ((substr($url, -4) === ".php")) {
+        return include("pages/" . $url);
+    }
+
+    if ((substr($url, -3) === ".md")) {
+        $html = md2html(file_get_contents("pages/" . $url));
+        return $html;
+    }
+
+    if (strstr(strtolower($url), "youtube.com/") !== false) {
         $allows = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
         return "<iframe width='560' height='315' src='$url' frameborder='0' allow='$allows' allowfullscreen></iframe>";
     }
+
     return "<a href='$url'><img src='$url'></img></a>\n\n";
 }
 
@@ -81,6 +93,7 @@ function md2html($markdownText)
     for ($j = 0; $j < 3; $j++)
         $bulletSymbols = array_merge($bulletSymbols, $bulletSymbols);
 
+    $html = "";
     $prettyprintJsURL = "https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js";
     $html .= "\n<script src='$prettyprintJsURL'></script>\n";
     $markdownText = str_replace("\r", "", $markdownText);

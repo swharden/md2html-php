@@ -3,7 +3,7 @@
 <head>
 	<title><?php echo $headerTitle ?></title>
 	<link rel="stylesheet" type="text/css" href="templates/style.css">
-	<link rel="stylesheet" type="text/css" href="scripts/md2html.css">
+	<link rel="stylesheet" type="text/css" href="../../src/md2html.css">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src='https://www.googletagmanager.com/gtag/js?id=UA-560719-1'></script>

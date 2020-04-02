@@ -1,5 +1,8 @@
 <?php
 
+// customize your path to md2html
+require '../../src/md2html.php';
+
 $configs = array();
 
 // title that appears in the browser tab, bookmarks, and on Google

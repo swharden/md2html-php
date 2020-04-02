@@ -1,16 +1,36 @@
 # Markdown-to-HTML Converter for PHP
-**[md2html.php](src/md2html.php) is a simple PHP script that converts markdown to HTML.** There are several similar converters available online, but this project aims to be simpler and easier to customize than the rest. 
+**[md2html.php](src/md2html.php) is a simple PHP script that converts markdown to HTML.** There are several markdown converters on the internet, but this one aims to be simpler and easier to modify than the rest.
 
 ### Features
-* Support for embedded YouTube videos
 * Automatic anchor links for headings
-* Syntax highlighting with automatic language detection
-* Styled to look like GitHub using an external CSS file
-* Dynamically include one file in another using `![](file2.md)`
+* Syntax highlighting of code blocks using [prettyprint](https://github.com/google/code-prettify)
+* Styling achieved with an external CSS file (styled to resemble GitHub)
+* Embed YouTube videos using `![](YouTubeURL)`
+* Dynamically include a PHP files using `![](file2.php)`
+* Dynamically include a markdown files using `![](file2.md)`
 
-### Demo
-Copy this repository to your web server and request [/demo/demo.php](/demo/demo.php)
- 
+### Quickstart
+
+```html
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="path/to/md2html.css">
+</head>
+<body>
+	<?php
+        require("path/to/md2html.php");
+        includeMarkdown("demo.md");
+	?>
+</body>
+</html>
+```
+
+### Markdown Webpage Server
+
+The demo in [/demo/website](/demo/website) shows how to create a multi-page website built from markdown pages. 
+
+A custom `.htaccess` tells Apache to direct requests for files like `demo.md.html` to `index.php`, which automatically finds the source markdown file `./pages/demo.md`, translates it to HTML, and serves the HTML wrapped in a customizable page template in the `./templates` folder.
+
 ### Download / Install
 
 To install md2html just copy these files to your web server:
