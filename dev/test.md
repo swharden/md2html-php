@@ -2,6 +2,13 @@
 
 This markdown file contains complex markdown examples used for testing.
 
+> TODO: use actual unit tests, not that visual inspection stuff.
+
+## Links nested in ()
+
+* test [a](#testA) and [b](#testB) and [c](#testC) and [d](#testD) work
+* test ([a](#testA)) and [b](#testB) and ([c](#testC)) and [d](#testD) work
+
 ## Allow HTML in paragraphs
 
 This should be <b>bold just fine</b> no issue.

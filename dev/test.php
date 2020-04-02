@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>md2html.php DEMO</title>
+    <title>md2html tests</title>
     <link rel="stylesheet" type="text/css" href="../src/md2html.css">
     <style>
         body {
@@ -14,6 +14,8 @@
         }
 
         article {
+            background-color: white;
+            padding: 2em;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
