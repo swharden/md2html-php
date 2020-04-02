@@ -11,6 +11,10 @@ Github lookalike style by Scott Harden
     line-height: 150%;
 }
 
+.md2html p {
+    margin-bottom: 2em;
+}
+
 .md2html a {
     text-decoration: none;
     color: #0366d6;
