@@ -1,0 +1,60 @@
+/*
+MAIN COLORS:
+#003366 - blue background
+#f6f8fa - gray background
+#dfe2e5 - light gray trim
+*/
+
+body {
+    background-color: #4a5c6d;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+    font-size: 16;
+    line-height: 150%;
+    margin: 0px;
+}
+
+article {
+    background-color: white;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    border-bottom: 1px solid #dfe2e5;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, .8);
+}
+
+.titlebar {
+    padding: 10px 30px 10px 30px;
+    background: #f6f8fa;
+    border-top: 1px solid #dfe2e5;
+    border-bottom: 1px solid #dfe2e5;
+}
+
+.titlebar a {
+    text-decoration: none;
+}
+
+.titlebar a:hover {
+    text-decoration: underline;
+}
+
+.titlebarButton {
+    display: inline;
+    padding-right: 1.5em;
+}
+
+.titlebarButton a {
+    color: black;
+}
+
+.description {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.description2 {
+    font-size: 70%;
+    color: #ccc;
+    font-family: consolas, monospace, sans-serif;
+}
