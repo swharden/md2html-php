@@ -6,8 +6,8 @@
 * Syntax highlighting of code blocks using [prettyprint](https://github.com/google/code-prettify)
 * Styling achieved with an external CSS file (styled to resemble GitHub)
 * Embed YouTube videos using `![](YouTubeURL)`
-* Dynamically include a PHP files using `![](file2.php)`
-* Dynamically include a markdown files using `![](file2.md)`
+* Dynamically include PHP files using `![](file2.php)`
+* Dynamically include markdown files using `![](file2.md)`
 
 ### Quickstart
 
