@@ -8,6 +8,9 @@ function sanitizeLinkUrl($str)
     // TODO: improve sanitization - lowercase, strip special
     $str = strtolower(trim($str));
     $str = str_replace(" ", "-", $str);
+    $str = str_replace("/", "-", $str);
+    while(strpos($str, "--") !== false)
+        $str = str_replace("--", "-", $str);
     return $str;
 }
 
