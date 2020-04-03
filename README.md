@@ -11,7 +11,7 @@
 
 ### Quickstart
 
-```html
+```php
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="md2html.css">
