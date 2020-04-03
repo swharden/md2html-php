@@ -106,7 +106,7 @@ function md2html($markdownText)
     $html .= "\n<script src='$prettyprintJsURL'></script>\n";
     $markdownText = str_replace("\r", "", $markdownText);
     $lines = explode("\n", $markdownText);
-    $toc = "";
+    $toc = ""; // blank disables TOC by default
 
     // iterate through each line of the markdown file
     for ($i = 0; $i < count($lines); $i++) {
@@ -117,6 +117,7 @@ function md2html($markdownText)
 
         if ($line == "![](TOC)") {
             $html .= "%%%TOC%%%";
+            $toc .= "<!--TOC-->"; // no longer blank, so TOC is active
             continue;
         }
 
@@ -127,7 +128,7 @@ function md2html($markdownText)
             if (substr($line, 0, strlen($lineStart)) === $lineStart) {
                 $line = trim(substr($line, $headingLevel));
                 $url = sanitizeLinkUrl($line);
-                $toc .= "\n<li><a href='#$url'>$line</a></li>\n";
+                $toc .= ($toc) ? "\n<li><a href='#$url'>$line</a></li>\n" : "";
                 $line = getFormattedHtml($line);
                 $line = "<a class='anchorLink' href='#$url'>&para;</a><div class='headerText'>$line</div>";
                 $html .= "<h$headingLevel id='$url'>$line</h$headingLevel>\n\n";
