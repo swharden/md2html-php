@@ -106,6 +106,7 @@ function md2html($markdownText)
     $html .= "\n<script src='$prettyprintJsURL'></script>\n";
     $markdownText = str_replace("\r", "", $markdownText);
     $lines = explode("\n", $markdownText);
+    $toc = "";
 
     // iterate through each line of the markdown file
     for ($i = 0; $i < count($lines); $i++) {
@@ -114,6 +115,11 @@ function md2html($markdownText)
         if ($line == "" || substr($line, 0, 4) === "<!--")
             continue;
 
+        if ($line == "![](TOC)") {
+            $html .= "%%%TOC%%%";
+            continue;
+        }
+
         // headers
         $lineIsHeader = false;
         for ($headingLevel = 1; $headingLevel <= 6; $headingLevel++) {
@@ -121,6 +127,7 @@ function md2html($markdownText)
             if (substr($line, 0, strlen($lineStart)) === $lineStart) {
                 $line = trim(substr($line, $headingLevel));
                 $url = sanitizeLinkUrl($line);
+                $toc .= "\n<li><a href='#$url'>$line</a></li>\n";
                 $line = getFormattedHtml($line);
                 $line = "<a class='anchorLink' href='#$url'>&para;</a><div class='headerText'>$line</div>";
                 $html .= "<h$headingLevel id='$url'>$line</h$headingLevel>\n\n";
@@ -216,6 +223,8 @@ function md2html($markdownText)
 
         $html .= "<p>" . getFormattedHtml($line) . "</p>\n\n";
     }
+
+    $html = str_replace("%%%TOC%%%", $toc, $html);
 
     return "\n<div class='md2html'>\n$html\n</div>\n";
 }

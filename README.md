@@ -5,6 +5,7 @@
 * Automatic anchor links for headings
 * Syntax highlighting of code blocks using [prettyprint](https://github.com/google/code-prettify)
 * Styling achieved with an external CSS file (styled to resemble GitHub)
+* Add a table of contents using `![](TOC)`
 * Embed YouTube videos using `![](YouTubeURL)`
 * Dynamically include PHP files using `![](file2.php)`
 * Dynamically include markdown files using `![](file2.md)`
@@ -51,7 +52,7 @@ powershell -Command "Invoke-WebRequest http://raw.githubusercontent.com/swharden
 ```
 
 ### What makes md2html so simple?
-Code for this project is greatly simplified by making a few assumptions about the format of your markdown document, taking a few shortcuts, and intentionally not supporting obscure Markdown edge cases. This project favors simplicity and and easy hackability over strict adherence to the full Markdown standard. A side effect of this simplicity is improved speed, with md2html outperforming parsedown by over ten fold in simple anecdotal tests.
+Code for this project is greatly simplified by making a few assumptions about the format of your markdown document, taking a few shortcuts, and intentionally not supporting obscure Markdown edge cases. This project favors simplicity and and easy hackability over strict adherence to the full Markdown standard. A side effect of this simplicity is improved speed, with md2html outperforming parsedown by over five fold in simple anecdotal tests.
 
 ### Resources
 * [Parsedown](https://github.com/erusev/parsedown) is a similar project that more fully supports the Markdown standard, with a much more complex and intimidating code base.

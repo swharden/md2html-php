@@ -4,6 +4,10 @@ This markdown file contains complex markdown examples used for testing.
 
 > TODO: use actual unit tests, not that visual inspection stuff.
 
+## Table of Contents
+
+![](TOC)
+
 ## Links nested in ()
 
 * test [a](#testA) and [b](#testB) and [c](#testC) and [d](#testD) work
@@ -37,6 +41,13 @@ This should be <b>bold just fine</b> no issue.
     * level 3
   * level 2
 * level 1
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
 
 ## Backslash ignore character
 
