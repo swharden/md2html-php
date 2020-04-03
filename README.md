@@ -17,10 +17,10 @@
     <link rel="stylesheet" type="text/css" href="md2html.css">
 </head>
 <body>
-	<?php
-        require("md2html.php");
-        includeMarkdown("demo.md");
-	?>
+<?php
+    require("md2html.php");
+    includeMarkdown("demo.md");
+?>
 </body>
 </html>
 ```
