@@ -36,50 +36,46 @@
 */
 
 error_reporting(-1);
-$startTime = microtime(true);
+$startTime = microtime(true); // start a benchmark timer that bot.php will read
 $configs = include('templates/md2html.siteConfig.php');
-$fileName = str_replace(dirname($_SERVER['PHP_SELF']) . "/", '', $_SERVER['REQUEST_URI']);
-$fileName = ($fileName) ? $fileName : $configs['markdownIndex'] . ".html";
-$filePath = __DIR__ . "/pages/$fileName";
 
-$isValidPhp = ((substr($filePath, -4) === ".php") && (file_exists($filePath)));
-$isValidMdSource = ((substr($filePath, -3) === ".md") && (file_exists($filePath)));
-$isValidMdHtml = ((substr($filePath, -8) === ".md.html") && (file_exists(substr($filePath, 0, -5))));
-$filePath = ($isValidMdHtml) ? substr($filePath, 0, -5) : $filePath;
+$filePath = __DIR__ . str_replace(dirname($_SERVER['PHP_SELF']), '', $_SERVER['REQUEST_URI']);
 
+// use an index filename if none is given
+if (substr($filePath, -1, 1) == "/")
+    $filePath .= $configs['markdownIndex'] . ".html";
+
+// only serve files ending in .md.html
+// TODO: can mod_rewrite do this automatically?
+if (substr($filePath, -8) !== ".md.html")
+    return http_response_code(404);
+
+// chop-off the .html and confirm the file exists
+$filePath = substr($filePath, 0, -5);
+if (!file_exists($filePath))
+    return http_response_code(404);
+
+// if the first line is a comment it will define header and pages titles
 $headerTitle = $configs['defaultHeaderTitle'];
 $pageTitle =  $configs['defaultPageTitle'];
-if ($isValidMdHtml || $isValidPhp) {
-    // if the first line is a comment, it can define the header and pages titles
-    $firstLine = trim(fgets(fopen($filePath, 'r')));
-    if (substr($firstLine, 0, 4) === "<!--") {
-        $firstLine = str_replace("<!--", "", $firstLine);
-        $firstLine = str_replace("-->", "", $firstLine);
-        $parts = explode(",", $firstLine);
-        if (count($parts) == 2) {
-            $headerTitle .= " - " . trim($parts[0]);
-            $pageTitle .= " " . trim($parts[1]);
-        }
+$firstLine = trim(fgets(fopen($filePath, 'r')));
+if (substr($firstLine, 0, 4) === "<!--") {
+    $firstLine = str_replace("<!--", "", $firstLine);
+    $firstLine = str_replace("-->", "", $firstLine);
+    $parts = explode(",", $firstLine);
+    if (count($parts) == 2) {
+        $headerTitle .= " - " . trim($parts[0]);
+        $pageTitle .= " " . trim($parts[1]);
     }
 }
 
-if ($isValidMdSource) {
-    header('Content-type: text/plain');
-    echo file_get_contents($filePath);
-} else if ($isValidPhp) {
-    require __DIR__ . '/templates/top.php';
-    require $filePath;
-    require __DIR__ . '/templates/bot.php';
-} else if ($isValidMdHtml) {
-    require __DIR__ . '/templates/top.php';
-    $markdown = file_get_contents($filePath);
-    foreach ($configs['replaceInMarkdown'] as $search => $replace)
-        $markdown = str_replace($search, $replace, $markdown);
-    $html = md2html($markdown);
-    foreach ($configs['replaceInHtml'] as $search => $replace)
-        $html = str_replace($search, $replace, $html);
-    echo $html;
-    require __DIR__ . '/templates/bot.php';
-} else {
-    http_response_code(404);
-}
+// serve the content
+require __DIR__ . '/templates/top.php';
+$markdown = file_get_contents($filePath);
+foreach ($configs['replaceInMarkdown'] as $search => $replace)
+    $markdown = str_replace($search, $replace, $markdown);
+$html = md2html($markdown);
+foreach ($configs['replaceInHtml'] as $search => $replace)
+    $html = str_replace($search, $replace, $html);
+echo $html;
+require __DIR__ . '/templates/bot.php';

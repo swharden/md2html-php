@@ -2,8 +2,8 @@
 
 <head>
 	<title><?php echo $headerTitle ?></title>
-	<link rel="stylesheet" type="text/css" href="templates/style.css">
-	<link rel="stylesheet" type="text/css" href="../../src/md2html.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['PHP_SELF']) ?>/templates/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['PHP_SELF']) ?>/../../src/md2html.css">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src='https://www.googletagmanager.com/gtag/js?id=UA-560719-1'></script>
@@ -31,10 +31,9 @@
 		</div>
 
 		<div class='titlebar'>
-			<div class='titlebarButton'><a href='./'>Home</a></div>
-			<div class='titlebarButton'><a href='./demo.md.html'>Demo (HTML)</a></div>
-			<div class='titlebarButton'><a href='./demo.md'>Demo (source)</a></div>
-			<div class='titlebarButton'><a href='./theory.php'>Theory (php)</a></div>
+			<div class='titlebarButton'><a href='<?php echo dirname($_SERVER['PHP_SELF']) ?>/'>Home</a></div>
+			<div class='titlebarButton'><a href='<?php echo dirname($_SERVER['PHP_SELF']) ?>/demo.md.html'>Demo</a></div>
+			<div class='titlebarButton'><a href='<?php echo dirname($_SERVER['PHP_SELF']) ?>/folder1/folder2/readme.md.html'>Nested</a></div>
 		</div>
 
 		<div style='padding: 1px 2em 1em 2em;'>

@@ -17,11 +17,11 @@ function getImageHtml($line)
     $url = substr($line, 4, strlen($line) - 5);
 
     if ((substr($url, -4) === ".php")) {
-        return include("pages/" . $url);
+        return include($url);
     }
 
     if ((substr($url, -3) === ".md")) {
-        $html = md2html(file_get_contents("pages/" . $url));
+        $html = md2html(file_get_contents($url));
         return $html;
     }
 

@@ -2,7 +2,7 @@
 
 # Markdown to HTML Demo
 
-Most of this page is text I copied from another project. It does a great job of demonstrating all the markdown can do!
+Most of this page is text I copied from another project. It does a great job of demonstrating what markdown can do!
 
 ![](../graphics/elephant.jpg)
 

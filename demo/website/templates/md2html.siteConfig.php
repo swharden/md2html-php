@@ -12,7 +12,7 @@ $configs['defaultHeaderTitle'] = 'Demo Website';
 $configs['defaultPageTitle'] = 'Cool Website';
 
 // default filename for index markdown file
-$configs['markdownIndex'] = 'index.md';
+$configs['markdownIndex'] = 'readme.md';
 
 // custom search/replace in either the HTML output or markdown file
 $configs['replaceInMarkdown'] = array(

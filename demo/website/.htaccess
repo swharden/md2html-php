@@ -1,12 +1,11 @@
 Options +Indexes
 IndexOptions +FancyIndexing
 
+# route file requests to index.php
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php [QSA,L]
 
-<Files ~ "views">  
-Order Allow,Deny
-Deny from All
-</Files>
+# serve .md files as text
+AddType text/plain md
