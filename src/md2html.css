@@ -12,7 +12,7 @@ Github lookalike style by Scott Harden
 }
 
 .md2html p {
-    margin-bottom: 2em;
+    /*margin-bottom: 2em;*/
 }
 
 .md2html a {
@@ -116,6 +116,7 @@ Github lookalike style by Scott Harden
 
 .md2html table {
     border-collapse: collapse;
+    margin: 2em;
 }
 
 .md2html th {
