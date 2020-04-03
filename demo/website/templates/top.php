@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['PHP_SELF']) ?>/templates/style.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['PHP_SELF']) ?>/../../src/md2html.css">
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics - CHANGE THIS CODE FOR YOUR OWN WEBSITE! -->
 	<script async src='https://www.googletagmanager.com/gtag/js?id=UA-560719-1'></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -16,12 +16,16 @@
 		gtag('js', new Date());
 		gtag('config', 'UA-560719-1');
 	</script>
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
 <body>
 
 	<article>
 		<div style='margin-bottom: 20px;'>
+			<div style="float: right; margin: 1em;">
+				<a class="github-button" href="https://github.com/swharden/md2html-php" data-size="large" data-show-count="true" aria-label="Star on GitHub" data-text="Star on GitHub"></a>
+			</div>
 			<div class="pageTitle" style="padding: 30px; font-size: 250%; font-weight: 600;">
 				<?php echo $pageTitle; ?>
 			</div>
