@@ -45,10 +45,9 @@ $filePath = __DIR__ . str_replace(dirname($_SERVER['PHP_SELF']), '', $_SERVER['R
 if (substr($filePath, -1, 1) == "/")
     $filePath .= $configs['markdownIndex'] . ".html";
 
-// only serve files ending in .md.html
-// TODO: can mod_rewrite do this automatically?
+// if the path has no extension add .md.html to let this appear as a folder
 if (substr($filePath, -8) !== ".md.html")
-    return http_response_code(404);
+    $filePath .= ".md.html";
 
 // chop-off the .html and confirm the file exists
 $filePath = substr($filePath, 0, -5);
