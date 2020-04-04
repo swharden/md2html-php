@@ -37,7 +37,7 @@ body {
 }
 
 #headerBlock .subtitle {
-    /*line-height: 2em;*/
+    line-height: 1.5em;
 }
 
 #headerMenu {
@@ -75,17 +75,7 @@ article {
     z-index: 1;
     position: relative;
     padding: 1em;
-}
-
-article::before {
-    content: "";
-    position: absolute;
-    display: block;
-    top: -3px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-top: 3px solid rgba(255, 255, 255, .5);
+    border-top: 3px solid rgba(0, 0, 0, .2);
 }
 
 footer {
