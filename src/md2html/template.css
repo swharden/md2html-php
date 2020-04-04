@@ -66,17 +66,21 @@ body {
 @media only screen and (max-width: 500px) {
     /* make the menu easier to hit if using mobile */
     #headerMenu {
-        margin-bottom: 3em;
+        margin-bottom: 1em;
+        text-align: right;
     }
     #headerMenu .menuButton {
         line-height: 250%;
-        font-size: 1.5em;
         background-color: rgba(0, 0, 0, .2);
-        margin: 2em;
+        padding: .5em 0em .5em 0em;
+        text-decoration: none;
+        color: #F6F4F8;
     }
     #githubButtonWrapper {
         visibility: collapse;
-        width: 0px;
+        clear: both;
+        float: none;
+        display: none;
     }
     #headerBlock {
         padding: 1em;
