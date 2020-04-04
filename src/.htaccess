@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# serve Markdown files as plain text
+AddType text/plain .md
+
 # if the request is a file that exists, serve it
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^(.+) - [PT,L]
