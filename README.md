@@ -4,7 +4,7 @@
 
 ### How it Works
 
-When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `md2html-server.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it between `top.php` and `bot.php` page templates.
+When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `md2html-server.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it in the `<article>` section of the `template.php` script.
 
 ### Features
 
@@ -20,4 +20,4 @@ Wile [Parsedown](https://github.com/erusev/parsedown) provides the majority of M
 
 * Copy the `/src` folder to your webserver and it will begin working immediately
 * Add your own markdown files and request them with the `.md.html` extension
-* Modify the page template by editing files in `/templates`
+* Modify the page template by editing in `/md2html/template.php`
