@@ -17,12 +17,13 @@
                 <a class='menuButton' href='<?php echo $siteRoot; ?>/'>Home</a>
                 <a class='menuButton' href='<?php echo $siteRoot; ?>/demo.md.html'>Demo</a>
                 <a class='menuButton' href='<?php echo $siteRoot; ?>/folder'>Folder</a>
+                <a class='menuButton' href='https://github.com/swharden/md2html-php'>GitHub</a>
             </div>
             <div style="float: right; margin-top: 2.2em;">
-                <a class="github-button" href="https://github.com/swharden/scottplot" data-size="large" data-show-count="true" aria-label="Star on GitHub" data-text="Star on GitHub"></a>
+                <a class="github-button" href="https://github.com/swharden/md2html-php" data-size="large" data-show-count="true" aria-label="Star on GitHub" data-text="Star on GitHub"></a>
             </div>
-            <div class='title'>LJPcalc</div>
-            <div class='subtitle'>Liquid Junction Potential Calculator</div>
+            <div class='title'>md2html-PHP</div>
+            <div class='subtitle'>A simple markdown-to-HTML converter using .md.html requests</div>
         </div>
         <div id="pageUnderArticle"></div>
     </div>
