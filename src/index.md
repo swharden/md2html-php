@@ -4,9 +4,12 @@
 
 ### How it Works
 
-When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `index.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it between `top.php` and `bot.php` page templates.
+When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `md2html-server.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it between `top.php` and `bot.php` page templates.
 
 ### Features
+
+Wile [Parsedown](https://github.com/erusev/parsedown) provides the majority of Markdown-to-HTML conversion, md2html steps in to provide a few advanced features including:
+
 * Automatic anchor links for headings
 * Syntax highlighting using [prettyprint](https://github.com/google/code-prettify)
 * Styled to resemble GitHub using a [CSS file](templates/style.css)
