@@ -24,6 +24,22 @@
     font-weight: 600;
 }
 
+#md2html .anchorLink {
+    position: relative;
+    left: -.5em;
+    color: black;
+    opacity: 0;
+}
+
+#md2html .anchorLink a:active {
+    opacity: 1 !important;
+}
+
+#md2html .anchorText {
+    position: relative;
+    left: -.5em;
+}
+
 #md2html h1 {
     margin-top: 24px;
     margin-bottom: 16px;

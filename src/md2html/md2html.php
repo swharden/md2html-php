@@ -72,7 +72,9 @@ class md2html
                 $headerLevel = substr($line, 2, 1);
                 $headerLabel = substr($line, 4, strlen($line) - 9);
                 $url = $this->sanitizeLinkUrl($headerLabel);
-                $lines[$i] = str_replace("<h$headerLevel>", "<h$headerLevel id='$url'>", $line);
+                $anchor = "<a class='anchorLink' href='#$url'>&para;</a>";
+                $headerLabel = "<span class='anchorText'>$headerLabel</span>";
+                $lines[$i] = "<h$headerLevel id='$url'>$anchor$headerLabel</h$headerLevel>";
             }
         }
         $bodyHtml = implode("\n", $lines);
