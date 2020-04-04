@@ -68,7 +68,7 @@ class md2html
 
             // table of contents
             if ($url == "TOC")
-                $lines[$i] = $this->getTOC($lines);
+                $lines[$i] = "<!-- md2html-TOC -->";
 
             // dynamic inclusion of PHP file
             if (substr($url, -4, 4) == ".php") {
@@ -91,8 +91,11 @@ class md2html
 
         // apply special formatting to the HTML
         $lines = explode("\n", $bodyHtml);
+        $toc = "";
         for ($i = 0; $i < count($lines); $i++) {
             $line = $lines[$i];
+            if ($line == "<!-- md2html-TOC -->")
+                $toc = $line;
 
             // add anchors to headers
             $isHeaderLine = (substr($line, 0, 2) == "<h" && substr($line, 3, 1) == ">");
@@ -103,13 +106,15 @@ class md2html
                 $anchor = "<a class='anchorLink' href='#$url'>&para;</a>";
                 $text = "<span class='anchorText'>$headerLabel</span>";
                 $lines[$i] = "<h$headerLevel id='$url'>$anchor$text</h$headerLevel>";
+                $shift = ($headerLevel * .5) . "em";
+                if ($toc)
+                    $toc .= "<li style='position: relative; left: $shift;'><a href='#$url'>$headerLabel</a></li>\n";
                 if ($this->title == "")
                     $this->title = $headerLabel;
             }
         }
         $bodyHtml = implode("\n", $lines);
-
-        // syntax highlighting
+        $bodyHtml = str_replace("<!-- md2html-TOC -->", $toc, $bodyHtml);
         $bodyHtml = str_replace("<pre><code class", "<pre class='prettyprint'><code class", $bodyHtml);
         $bodyHtml = str_replace("<pre><code>", "<pre class='prettyprint'><code class='nocode'>", $bodyHtml);
 
