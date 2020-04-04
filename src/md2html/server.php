@@ -8,7 +8,7 @@ $reqFile = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'];
 if (substr($reqFile, -1) == "/")
     $reqFile .= "index.md.html";
 if (substr($reqFile, -8) != ".md.html")
-    return http_response_code(500);
+    $reqFile .= ".md.html";
 
 // ensure the file exists
 $filePath = substr($reqFile, 0, -5);
