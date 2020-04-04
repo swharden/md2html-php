@@ -1,2 +1,8 @@
+Options +Indexes
+IndexOptions +FancyIndexing
+
+# route file requests to index.php
 RewriteEngine On
-RewriteRule \.(md.html)$ md2html-server.php [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [L]
