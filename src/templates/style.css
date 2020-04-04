@@ -36,7 +36,9 @@ body {
     line-height: 1em;
 }
 
-#headerBlock .subtitle {}
+#headerBlock .subtitle {
+    /*line-height: 2em;*/
+}
 
 #headerMenu {
     /*background-color: rgba(255,255, 255, .5);*/
