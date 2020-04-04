@@ -99,6 +99,8 @@ public void test(){
 correct:
 ```python
 print("test")
+
+# this should NOT appear in the table of contents
 ```
 
 incorrect:
