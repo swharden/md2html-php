@@ -2,7 +2,9 @@
 
 <footer>
     <div id="footerBlock">
-        This page was converted from
+        This page
+        <!--<a href='<?php echo basename($reqFile); ?>'><?php echo basename($reqFile); ?></a>-->
+        was converted from
         <a href='<?php echo basename($filePath); ?>'><?php echo basename($filePath); ?></a>
         to HTML by
         <a href='https://github.com/swharden/md2html-php'>md2html</a>
