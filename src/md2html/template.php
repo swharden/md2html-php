@@ -6,6 +6,7 @@
     <title><?php echo ($md2html->title) ? $md2html->title : "md2html-php - " . basename($filePath); ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $siteRoot; ?>/md2html/template.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $siteRoot; ?>/md2html/md2html.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
