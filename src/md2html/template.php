@@ -21,11 +21,11 @@
                 <div class='menuButton'><a href='<?php echo $siteRoot; ?>/folder'>Folder</a></div>
                 <div class='menuButton'><a href='https://github.com/swharden/md2html-php'>GitHub</a></div>
             </div>
+            <div class='title'><a href='<?php echo $siteRoot; ?>'>md2html-PHP</a></div>
+            <div class='subtitle'>A simple markdown-to-HTML converter using .md.html requests</div>
             <div id="githubButtonWrapper">
                 <a class="github-button" href="https://github.com/swharden/md2html-php" data-size="large" data-show-count="true" aria-label="Star on GitHub" data-text="Star on GitHub"></a>
             </div>
-            <div class='title'><a href='<?php echo $siteRoot; ?>'>md2html-PHP</a></div>
-            <div class='subtitle'>A simple markdown-to-HTML converter using .md.html requests</div>
         </div>
         <div id="pageUnderArticle"></div>
     </div>
