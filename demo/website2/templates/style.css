@@ -1,0 +1,98 @@
+body {
+    background-color: #F6F4F8;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+    font-size: 16;
+    line-height: 150%;
+    margin: 0px;
+}
+
+#pageAboveArticle {
+    background-color: rgb(31, 61, 75);
+}
+
+#pageUnderArticle {
+    /* a colored block to sit beneath the top of the article */
+    background-color: rgb(31, 61, 75);
+    height: 20rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+#headerBlock {
+    color: white;
+    margin: auto;
+    padding-bottom: 1em;
+    max-width: 900px;
+    margin: auto;
+}
+
+#headerBlock .title {
+    font-size: 3em;
+    line-height: 1em;
+}
+
+#headerBlock .subtitle {}
+
+#headerMenu {
+    /*background-color: rgba(255,255, 255, .5);*/
+    color: #F6F4F8;
+    max-width: 900px;
+    text-align: right;
+    position: relative;
+    top: .5em;
+    right: -1em;
+}
+
+#headerMenu a {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #F6F4F8;
+    padding: .5em 1em .5em 1em;
+}
+
+#headerMenu a:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#headerMenu a:active {
+    background-color: rgba(0, 0, 0, .2);
+}
+
+article {
+    background-color: white;
+    margin: auto;
+    max-width: 900px;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .05);
+    z-index: 1;
+    position: relative;
+    padding: 1em;
+}
+
+article::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -3px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 3px solid rgba(255, 255, 255, .5);
+}
+
+footer {
+    margin-top: 5em;
+    color: #F6F4F8;
+    background-color: #2a2a2a;
+}
+
+#footerBlock {
+    padding: 1em;
+    margin: auto;
+    text-align: center;
+}
+
+#footerBlock a {
+    color: #F6F4F8;
+}

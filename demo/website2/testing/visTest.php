@@ -2,11 +2,9 @@
 
 <head>
     <style>
-        body {
-        }
+        body {}
 
         article {
-            background-color: white;
             margin: auto;
             max-width: 900px;
         }
@@ -93,12 +91,24 @@
             line-height: 150%;
             overflow-x: auto;
         }
-        
+
+        #header{
+            margin: auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
     </style>
     <script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>
 </head>
 
 <body>
+
+    <div id="header">
+        <div style='font-size: 3em;'>LJPcalc</div>
+        <div style='font-st'>Liquid Junction Potential Calculator</div>
+    </div>
+
     <article>
         <?php
         include('md2html.php');

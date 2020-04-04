@@ -1,10 +1,16 @@
 # md2html Tests
 
-This markdown file contains complex markdown examples used for testing.
+This markdown file contains several examples of advanced features
 
-> TODO: use actual unit tests, not that visual inspection stuff.
+> ⚠️ **WARNING:** This project is early in development
+
+## Images
+
+![](https://www.gstatic.com/webp/gallery/4.jpg)
 
 ## Table of Contents
+
+Only headings below the table of contents are included in the list.
 
 ![](TOC)
 
