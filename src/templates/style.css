@@ -36,6 +36,15 @@ body {
     line-height: 1em;
 }
 
+#headerBlock .title a {
+    text-decoration: none;
+    color: #F6F4F8;
+}
+
+#headerBlock .title a:hover {
+    text-decoration: underline;
+}
+
 #headerBlock .subtitle {
     line-height: 1.5em;
 }
