@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule \.(md.html)$ md2html-server.php [L]
