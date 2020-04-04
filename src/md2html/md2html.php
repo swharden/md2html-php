@@ -80,6 +80,10 @@ class md2html
             }
         }
 
+        // if first line is a HTML comment make it the title
+        if (substr($lines[0], 0, 4) == "<!--")
+            $this->title = trim(substr($lines[0], 4, -4));
+
         // convert the markdown to HTML using Parsedown
         require "Parsedown.php";
         $Parsedown = new Parsedown();
