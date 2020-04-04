@@ -16,12 +16,12 @@
     <div id="pageAboveArticle">
         <div id="headerBlock">
             <div id="headerMenu">
-                <a class='menuButton' href='<?php echo $siteRoot; ?>/'>Home</a>
-                <a class='menuButton' href='<?php echo $siteRoot; ?>/demo.md.html'>Demo</a>
-                <a class='menuButton' href='<?php echo $siteRoot; ?>/folder'>Folder</a>
-                <a class='menuButton' href='https://github.com/swharden/md2html-php'>GitHub</a>
+                <div class='menuButton'><a href='<?php echo $siteRoot; ?>/'>Home</a></div>
+                <div class='menuButton'><a href='<?php echo $siteRoot; ?>/demo.md.html'>Demo</a></div>
+                <div class='menuButton'><a href='<?php echo $siteRoot; ?>/folder'>Folder</a></div>
+                <div class='menuButton'><a href='https://github.com/swharden/md2html-php'>GitHub</a></div>
             </div>
-            <div style="float: right; margin-top: 2.2em;">
+            <div id="githubButtonWrapper">
                 <a class="github-button" href="https://github.com/swharden/md2html-php" data-size="large" data-show-count="true" aria-label="Star on GitHub" data-text="Star on GitHub"></a>
             </div>
             <div class='title'><a href='<?php echo $siteRoot; ?>'>md2html-PHP</a></div>

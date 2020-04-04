@@ -25,10 +25,6 @@ body {
     padding-bottom: 1.5em;
     max-width: 900px;
     margin: auto;
-    /*
-    position: relative;
-    left: -1em;
-    */
 }
 
 #headerBlock .title {
@@ -46,27 +42,55 @@ body {
 }
 
 #headerBlock .subtitle {
+    opacity: .5;
     line-height: 1.5em;
 }
 
 #headerMenu {
-    /*background-color: rgba(255,255, 255, .5);*/
     color: #F6F4F8;
-    max-width: 900px;
+    width: 100%;
     text-align: right;
-    position: relative;
-    top: .5em;
-    right: -1em;
+    font-size: 1.4em;
+    padding-top: .5em;
 }
 
-#headerMenu a {
-    font-size: 1.2em;
+#headerMenu .menuButton {
+    display: inline;
+}
+
+#githubButtonWrapper {
+    float: right;
+    margin-top: 2.2em;
+}
+
+@media only screen and (max-width: 500px) {
+    /* make the menu easier to hit if using mobile */
+    #headerMenu {
+        margin-bottom: 3em;
+    }
+    #headerMenu .menuButton {
+        line-height: 250%;
+        font-size: 1.5em;
+        background-color: rgba(0, 0, 0, .2);
+        margin: 2em;
+    }
+    #githubButtonWrapper {
+        visibility: collapse;
+        width: 0px;
+    }
+    #headerBlock {
+        padding: 1em;
+    }
+}
+
+#headerMenu .menuButton a {
+    /*font-size: 1.2em;*/
     text-decoration: none;
     color: #F6F4F8;
     padding: .5em 1em .5em 1em;
 }
 
-#headerMenu a:hover {
+#headerMenu .menuButton a:hover {
     color: white;
     background-color: rgba(0, 0, 0, .5);
 }
