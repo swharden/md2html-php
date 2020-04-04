@@ -72,14 +72,16 @@ body {
     #headerMenu .menuButton {
         line-height: 250%;
         background-color: rgba(0, 0, 0, .2);
-        padding: .5em 0em .5em 0em;
+        padding: .5em;
         text-decoration: none;
         color: #F6F4F8;
     }
     #githubButtonWrapper {
-        visibility: collapse;
+        visibility: hidden;
         clear: both;
-        float: none;
+        float: left;
+        margin: 0;
+        width: 0%;
         display: none;
     }
     #headerBlock {
