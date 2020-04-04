@@ -24,7 +24,6 @@
     font-weight: 600;
 }
 
-
 #md2html h1 {
     margin-top: 24px;
     margin-bottom: 16px;
@@ -70,6 +69,22 @@
     font-size: .85em;
     font-weight: 600;
     color: #6a737d;
+}
+
+#md2html code {
+    background-color: #F6F4F8;
+    padding: .2em .4em;
+    font-size: 85%;
+}
+
+#md2html pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 100%;
+}
+
+#md2html p {
+    line-height: 1.5;
 }
 
 .prettyprint {
