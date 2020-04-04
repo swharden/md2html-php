@@ -1,6 +1,10 @@
 # Markdown-to-HTML Converter for PHP
 **[md2html.php](src/md2html.php) is a simple PHP script that converts markdown to HTML.** There are several markdown converters on the internet, but this one aims to be simpler and easier to modify than the rest.
 
+> ⚠️ **WARNING:** This project is being actively developed and is changing rapidly. \
+\
+My goal is for this project to become a folder that I can copy as needed to create themed websites from collections of markdown files.
+
 ### Features
 * Automatic anchor links for headings
 * Syntax highlighting of code blocks using [prettyprint](https://github.com/google/code-prettify)
