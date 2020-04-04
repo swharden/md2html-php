@@ -30,6 +30,7 @@ body {
 #headerBlock .title {
     font-size: 3em;
     line-height: 1em;
+    margin-top: 1em;
 }
 
 #headerBlock .title a {
@@ -60,7 +61,8 @@ body {
 
 #githubButtonWrapper {
     float: right;
-    margin-top: 2.2em;
+    position: relative;
+    top: -20px;
 }
 
 @media only screen and (max-width: 500px) {
