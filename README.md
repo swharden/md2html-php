@@ -2,9 +2,13 @@
 
 **The md2html-php project makes it easy to create a small website from a collection of Markdown files.** There are several similar projects on the internet, but this one aims to be simpler and easier to modify than the rest.
 
+### Websites using md2html:
+* pyABF - https://swharden.com/pyabf
+* ScottPlot - https://swharden.com/scottplot
+
 ### How it Works
 
-When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `md2html/server.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it in the `<article>` section of the `md2html/template.php` script.
+When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `md2html/server.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it in the `<article>` section of the `md2html/template.php` page.
 
 ### Features
 
@@ -17,7 +21,7 @@ Wile [Parsedown](https://github.com/erusev/parsedown) provides the majority of M
 * Add a table of contents using `![](TOC)`
 * Embed YouTube videos using `![](YouTubeURL)`
 * Define HTML title by making `<!--this-->` your first line
-* Otherwise the title is the first heading
+* Otherwise the title is the first heading in the markdown file
 
 ### Installation
 
