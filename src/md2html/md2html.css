@@ -26,7 +26,6 @@
 
 #md2html .anchorLink {
     position: relative;
-    left: -.5em;
     color: black;
     opacity: 0;
 }
@@ -37,7 +36,6 @@
 
 #md2html .anchorText {
     position: relative;
-    left: -.5em;
 }
 
 #md2html h1 {
@@ -47,6 +45,7 @@
     font-weight: 600;
     padding-bottom: .3em;
     border-bottom: 1px solid #eaecef;
+    text-indent: -.5em;
 }
 
 #md2html h2 {
@@ -56,6 +55,7 @@
     font-weight: 600;
     padding-bottom: .3em;
     border-bottom: 1px solid #eaecef;
+    text-indent: -.5em;
 }
 
 #md2html h3 {
@@ -63,6 +63,7 @@
     margin-bottom: 16px;
     font-size: 1.25em;
     font-weight: 600;
+    text-indent: -.5em;
 }
 
 #md2html h4 {
@@ -70,6 +71,7 @@
     margin-bottom: 16px;
     font-size: 1em;
     font-weight: 600;
+    text-indent: -.5em;
 }
 
 #md2html h5 {
@@ -77,6 +79,7 @@
     margin-bottom: 16px;
     font-size: .875em;
     font-weight: 600;
+    text-indent: -.5em;
 }
 
 #md2html h6 {
@@ -85,6 +88,7 @@
     font-size: .85em;
     font-weight: 600;
     color: #6a737d;
+    text-indent: -.5em;
 }
 
 #md2html code {
