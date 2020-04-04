@@ -3,7 +3,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="<?php echo $siteRoot; ?>/templates/style.css">
+    <title><?php echo (isset($headerTitle) && $headerTitle) ? "$headerTitle - md2html-php" : "md2html-php"; ?></title>
+    <link rel="stylesheet" type="text/css" href="<?php echo $siteRoot; ?>/md2html/template.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $siteRoot; ?>/md2html/md2html.css">
     <script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -29,3 +30,25 @@
     </div>
 
     <article>
+
+    <?php echo $md2html->html; ?>
+
+    </article>
+
+    <footer>
+        <div id="footerBlock">
+            This page
+            <!--<a href='<?php echo basename($reqFile); ?>'><?php echo basename($reqFile); ?></a>-->
+            was converted from
+            <a href='<?php echo basename($filePath); ?>'><?php echo basename($filePath); ?></a>
+            to HTML by
+            <a href='https://github.com/swharden/md2html-php'>md2html</a>
+            <!-- <?php echo $md2html->version; ?> -->
+            in
+            <?php echo number_format($md2html->benchmarkMsec, 2); ?>
+            milliseconds.
+        </div>
+    </footer>
+</body>
+
+</html>

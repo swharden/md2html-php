@@ -5,6 +5,18 @@ class md2html
 {
     public $version = '1.1.0';
     public $conversionTimeMsec = 0;
+    public $title = "";
+    public $html = "";
+    public $markdown = "";
+    public $benchmarkMsec = 0;
+
+    function __construct($filePath)
+    {
+        $benchmarkStartTime = microtime(true);
+        $this->markdown = file_get_contents($filePath);
+        $this->html = $this->convert($this->markdown);
+        $this->benchmarkMsec = (microtime(true) - $benchmarkStartTime) * 1000;
+    }
 
     // create a browser-friendly anchor URL
     private function sanitizeLinkUrl($url)
@@ -39,17 +51,8 @@ class md2html
         return $toc;
     }
 
-    public function fromFile($filePath)
+    private function convert($markdown)
     {
-        $markdown = file_get_contents($filePath);
-        return $this->fromMarkdown($markdown);
-    }
-
-    public function fromMarkdown($markdown)
-    {
-        require "Parsedown.php";
-        $Parsedown = new Parsedown();
-
         // apply special editing to the markdown
         $lines = explode("\n", $markdown);
         for ($i = 0; $i < count($lines); $i++) {
@@ -58,7 +61,9 @@ class md2html
             }
         }
 
-        // convert the markdown to HTML
+        // convert the markdown to HTML using Parsedown
+        require "Parsedown.php";
+        $Parsedown = new Parsedown();
         $bodyHtml = $Parsedown->text(implode("\n", $lines));
 
         // apply special formatting to the HTML
@@ -73,8 +78,10 @@ class md2html
                 $headerLabel = substr($line, 4, strlen($line) - 9);
                 $url = $this->sanitizeLinkUrl($headerLabel);
                 $anchor = "<a class='anchorLink' href='#$url'>&para;</a>";
-                $headerLabel = "<span class='anchorText'>$headerLabel</span>";
-                $lines[$i] = "<h$headerLevel id='$url'>$anchor$headerLabel</h$headerLevel>";
+                $text = "<span class='anchorText'>$headerLabel</span>";
+                $lines[$i] = "<h$headerLevel id='$url'>$anchor$text</h$headerLevel>";
+                if (($headerLevel == "1") && ($this->title == ""))
+                    $this->title = $headerLabel;
             }
         }
         $bodyHtml = implode("\n", $lines);
