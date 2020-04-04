@@ -4,6 +4,10 @@ This markdown file contains several examples of advanced features
 
 > ⚠️ **WARNING:** This project is early in development
 
+## Dynamically Include PHP Content
+
+![](demo.php)
+
 ## Images
 
 ![](https://www.gstatic.com/webp/gallery/4.jpg)

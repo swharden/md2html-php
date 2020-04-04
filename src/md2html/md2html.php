@@ -51,13 +51,32 @@ class md2html
         return $toc;
     }
 
+    private function debug($message)
+    {
+        echo "<div style='background-color: yellow;'><code>$message</code></div>";
+    }
+
     private function convert($markdown)
     {
         // apply special editing to the markdown
         $lines = explode("\n", $markdown);
         for ($i = 0; $i < count($lines); $i++) {
-            if (trim($lines[$i]) == "![](TOC)") {
+            $line = trim($lines[$i]);
+            if ((substr($line, 0, 4) != "![](") || (substr($line, -1, 1) != ")"))
+                continue;
+            $url = substr($line, 4, strlen($line) - 5);
+
+            // table of contents
+            if ($url == "TOC")
                 $lines[$i] = $this->getTOC($lines);
+
+            // dynamic inclusion of PHP file
+            if (substr($url, -4, 4) == ".php") {
+                $phpPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . $url;
+                if (file_exists($phpPath))
+                    $lines[$i] = include($phpPath);
+                else
+                    $lines[$i] = "> ⚠️ **md2html error:** PHP script not found `$phpPath`";
             }
         }
 

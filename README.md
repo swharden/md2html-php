@@ -13,9 +13,11 @@ Wile [Parsedown](https://github.com/erusev/parsedown) provides the majority of M
 * Automatic anchor links for headings
 * Syntax highlighting using [prettyprint](https://github.com/google/code-prettify)
 * Styled to resemble GitHub using a [CSS file](templates/style.css)
+* Dynamically include a PHP script using `![](file.php)`
 * Add a table of contents using `![](TOC)`
 * Embed YouTube videos using `![](YouTubeURL)`
-* The first heading becomes the HTML `<title>`
+* Define HTML title by making `<!--this-->` your first line
+* Otherwise the title is the first heading
 
 ### Installation
 
