@@ -6,7 +6,7 @@ error_reporting(-1);
 $reqFile = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'];
 //echo "<div style='background-color: yellow;'>$reqFile</div>";
 if (substr($reqFile, -1) == "/")
-    $reqFile .= "index.md.html";
+    $reqFile .= "readme.md.html";
 if (substr($reqFile, -8) != ".md.html")
     $reqFile .= ".md.html";
 
