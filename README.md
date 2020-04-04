@@ -4,7 +4,7 @@
 
 ### How it Works
 
-When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `md2html-server.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it in the `<article>` section of the `template.php` script.
+When a request like `page.md.html` comes in, `.htaccess` tells Apache to route the request to `md2html/server.php` which reads the markdown from `page.md`, converts it to HTML using [Parsedown](https://github.com/erusev/parsedown), then serves it in the `<article>` section of the `md2html/template.php` script.
 
 ### Features
 

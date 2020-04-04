@@ -7,11 +7,11 @@ RewriteRule ^(.+) - [PT,L]
 # if the request is a directory with index.md, use md2html
 RewriteCond %{REQUEST_FILENAME} -d 
 RewriteCond %{REQUEST_FILENAME}/index.md -f
-RewriteRule ^(.*)$ md2html-server.php  [L]
+RewriteRule ^(.*)$ md2html/server.php  [L]
 
 # if the request is a directory without index.md, display the directory index
 RewriteCond %{REQUEST_FILENAME} -d 
 RewriteRule ^(.+) - [PT,L]
 
 # all other requests get routed to md2html
-RewriteRule ^(.*)$ md2html-server.php  [L]
+RewriteRule ^(.*)$ md2html/server.php  [L]
