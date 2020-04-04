@@ -18,7 +18,7 @@
                 <a class='menuButton' href='<?php echo $siteRoot; ?>/demo.md.html'>Demo</a>
                 <a class='menuButton' href='<?php echo $siteRoot; ?>/folder'>Folder</a>
             </div>
-            <div style="float: right; margin-top: 2em;">
+            <div style="float: right; margin-top: 2.2em;">
                 <a class="github-button" href="https://github.com/swharden/scottplot" data-size="large" data-show-count="true" aria-label="Star on GitHub" data-text="Star on GitHub"></a>
             </div>
             <div class='title'>LJPcalc</div>

@@ -22,9 +22,13 @@ body {
 #headerBlock {
     color: white;
     margin: auto;
-    padding-bottom: 1em;
+    padding-bottom: 1.5em;
     max-width: 900px;
     margin: auto;
+    /*
+    position: relative;
+    left: -1em;
+    */
 }
 
 #headerBlock .title {
