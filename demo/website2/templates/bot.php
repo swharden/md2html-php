@@ -2,7 +2,14 @@
 
 <footer>
     <div id="footerBlock">
-        This page was generated from <a href=''>somePage.md</a> using <a href=''>md2html</a>
+        This page was converted from
+        <a href='<?php echo basename($filePath); ?>'><?php echo basename($filePath); ?></a>
+        to HTML by
+        <a href='https://github.com/swharden/md2html-php'>md2html</a>
+        <!-- <?php echo $md2html->version; ?> -->
+        in
+        <?php echo number_format((microtime(true) - $benchmarkStartTime) * 1000, 2); ?>
+        milliseconds.
     </div>
 </footer>
 </body>

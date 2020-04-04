@@ -1,7 +1,9 @@
 <?
 // this script responds to .md.html requests by serving the .md as HTML
 error_reporting(-1);
+$benchmarkStartTime = microtime(true);
 require "md2html/md2html.php";
+$md2html = new md2html();
 
 // this file should only get requests ending in .md.html
 $reqFile = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'];
@@ -17,13 +19,5 @@ if (!file_exists($filePath))
 
 // serve it
 include("templates/top.php");
-
-/*
-$relUrl = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', __DIR__));
-echo "<div style='background-color: yellow;'><code>" . __DIR__  . "</code></div>";
-echo "<div style='background-color: yellow;'><code>" . $_SERVER['DOCUMENT_ROOT']  . "</code></div>";
-echo "<div style='background-color: yellow;'><code>" . $relPath  . "</code></div>";
-*/
-
-md2html($filePath);
+echo $md2html->fromFile($filePath);
 include("templates/bot.php");

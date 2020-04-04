@@ -84,16 +84,20 @@ article::before {
 
 footer {
     margin-top: 5em;
-    color: #F6F4F8;
     background-color: #2a2a2a;
+    color: #999;
+}
+
+footer a {
+    color: #999;
+}
+
+footer a:hover {
+    color: white;
 }
 
 #footerBlock {
     padding: 1em;
     margin: auto;
     text-align: center;
-}
-
-#footerBlock a {
-    color: #F6F4F8;
 }
