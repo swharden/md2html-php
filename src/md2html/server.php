@@ -16,6 +16,7 @@ if (!file_exists($filePath))
     return http_response_code(404);
 
 // convert markdown to HTML and serve the result with the template
-require "md2html.php";
+chdir("../");
+require "md2html/md2html.php";
 $md2html = new md2html($filePath);
-include("template.php");
+include("md2html/template.php");
