@@ -80,7 +80,7 @@ class md2html
                 $anchor = "<a class='anchorLink' href='#$url'>&para;</a>";
                 $text = "<span class='anchorText'>$headerLabel</span>";
                 $lines[$i] = "<h$headerLevel id='$url'>$anchor$text</h$headerLevel>";
-                if (($headerLevel == "1") && ($this->title == ""))
+                if ($this->title == "")
                     $this->title = $headerLabel;
             }
         }

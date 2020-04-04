@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title><?php echo (isset($headerTitle) && $headerTitle) ? "$headerTitle - md2html-php" : "md2html-php"; ?></title>
+    <title><?php echo ($md2html->title) ? "$md2html->title - md2html-php" : "md2html-php"; ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $siteRoot; ?>/md2html/template.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $siteRoot; ?>/md2html/md2html.css">
     <script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>

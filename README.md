@@ -15,6 +15,7 @@ Wile [Parsedown](https://github.com/erusev/parsedown) provides the majority of M
 * Styled to resemble GitHub using a [CSS file](templates/style.css)
 * Add a table of contents using `![](TOC)`
 * Embed YouTube videos using `![](YouTubeURL)`
+* The first heading becomes the HTML `<title>`
 
 ### Installation
 
