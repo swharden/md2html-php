@@ -2,9 +2,9 @@
 
 **The md2html-php project makes it easy to create a small website from a collection of Markdown files.** There are several similar projects on the internet, but this one aims to be simpler and easier to modify than the rest.
 
-### Websites using md2html:
-* pyABF - https://swharden.com/pyabf
-* ScottPlot - https://swharden.com/scottplot
+### Example Websites
+* [pyABF](https://swharden.com/pyabf)
+* [ScottPlot](https://swharden.com/scottplot)
 
 ### How it Works
 
@@ -17,6 +17,7 @@ Wile [Parsedown](https://github.com/erusev/parsedown) provides the majority of M
 * Automatic anchor links for headings
 * Syntax highlighting using [prettyprint](https://github.com/google/code-prettify)
 * Styled to resemble GitHub using a [CSS file](templates/style.css)
+* Include one markdown file in another with `![](file.md)`
 * Dynamically include a PHP script using `![](file.php)`
 * Add a table of contents using `![](TOC)`
 * Embed YouTube videos using `![](YouTubeURL)`

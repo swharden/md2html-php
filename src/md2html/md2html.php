@@ -72,11 +72,20 @@ class md2html
 
             // dynamic inclusion of PHP file
             if (substr($url, -4, 4) == ".php") {
-                $phpPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . $url;
-                if (file_exists($phpPath))
-                    $lines[$i] = include($phpPath);
+                $includePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . $url;
+                if (file_exists($includePath))
+                    $lines[$i] = include($includePath);
                 else
-                    $lines[$i] = "> ⚠️ **md2html error:** PHP script not found `$phpPath`";
+                    $lines[$i] = "> ⚠️ **md2html error:** PHP script not found `$includePath`";
+            }
+
+            // dynamic inclusion of a Markdown file
+            if (substr($url, -3, 3) == ".md") {
+                $includePath = dirname(__DIR__) . DIRECTORY_SEPARATOR . $url;
+                if (file_exists($includePath))
+                    $lines[$i] = file_get_contents($includePath);
+                else
+                    $lines[$i] = "> ⚠️ **md2html error:** MD file not found `$includePath`";
             }
         }
 
