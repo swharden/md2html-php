@@ -21,7 +21,8 @@
 }
 
 #md2html em {
-    font-weight: 600;
+    /*font-weight: 600;*/
+    font-style: italic;
 }
 
 #md2html .anchorLink {
