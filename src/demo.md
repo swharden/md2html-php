@@ -8,6 +8,10 @@ This markdown file contains several examples of advanced features
 
 ![](demo.php)
 
+## Emoji
+
+:floppy_disk: This is a :warning: warning!
+
 ## Images
 
 ![](https://www.gstatic.com/webp/gallery/4.jpg)

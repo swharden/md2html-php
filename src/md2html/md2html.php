@@ -122,10 +122,16 @@ class md2html
                     $this->title = $headerLabel;
             }
         }
+
+        // special search/replace after HTML has been assembled
         $bodyHtml = implode("\n", $lines);
         $bodyHtml = str_replace("<!-- md2html-TOC -->", $toc, $bodyHtml);
         $bodyHtml = str_replace("<pre><code class", "<pre class='prettyprint'><code class", $bodyHtml);
         $bodyHtml = str_replace("<pre><code>", "<pre class='prettyprint'><code class='nocode'>", $bodyHtml);
+
+        // special emoji
+        $bodyHtml = str_replace(":warning:", json_decode('"\u26a0\ufe0f"'), $bodyHtml);
+        $bodyHtml = str_replace(":floppy_disk:", json_decode('"\ud83d\udcbe"'), $bodyHtml);
 
         // serve the content in a special div
         $bodyHtml = "\n<div id='md2html'>\n$bodyHtml\n</div>\n";
