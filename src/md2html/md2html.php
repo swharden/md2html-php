@@ -93,9 +93,14 @@ class md2html
                 $anchor = "<a class='anchorLink' href='#$url'>&para;</a>";
                 $text = "<span class='anchorText'>$headerLabel</span>";
                 $lines[$i] = "<h$headerLevel id='$url'>$anchor$text</h$headerLevel>";
-                $shift = ($headerLevel * .5) . "em";
-                if ($toc)
-                    $toc .= "<li style='position: relative; left: $shift;'><a href='#$url'>$headerLabel</a></li>\n";
+                if ($toc) {
+                    $shift = (($headerLevel) * .5) . "em";
+                    if (($headerLevel == '1') || ($headerLevel == '2')) {
+                        $toc .= "<div style='position: relative; left: $shift; margin-top: 1em;'><strong><a href='#$url'>$headerLabel</a></strong></div>";
+                    } else {
+                        $toc .= "<div style='position: relative; left: $shift;'><a href='#$url'>$headerLabel</a></div>\n";
+                    }
+                }
                 if ($this->title == "")
                     $this->title = $headerLabel;
             }
