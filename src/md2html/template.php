@@ -13,7 +13,7 @@
 
 <body>
 
-    <div id="pageAboveArticle">
+    <div id="pageAboveArticle" style="background-color: #1f3d4b;"> <!-- CUSTOMIZE THIS BACKGROUND COLOR -->
         <div id="headerBlock">
             <div id="headerMenu">
                 <div class='menuButton'><a href='<?php echo $siteRoot; ?>/'>Home</a></div>
@@ -27,7 +27,7 @@
                 <a class="github-button" href="https://github.com/swharden/md2html-php" data-size="large" data-show-count="true" aria-label="Star on GitHub" data-text="Star on GitHub"></a>
             </div>
         </div>
-        <div id="pageUnderArticle"></div>
+        <div id="pageUnderArticle" style="background-color: #1f3d4b;"></div> <!-- CUSTOMIZE THIS BACKGROUND COLOR -->
     </div>
 
     <article>

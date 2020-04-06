@@ -7,12 +7,11 @@ body {
 }
 
 #pageAboveArticle {
-    background-color: rgb(31, 61, 75);
+    background-color: #eeeeee; /* customize this in HTML */
 }
 
 #pageUnderArticle {
-    /* a colored block to sit beneath the top of the article */
-    background-color: rgb(31, 61, 75);
+    background-color: #eeeeee; /* customize this in HTML */
     height: 20rem;
     position: absolute;
     left: 0;
