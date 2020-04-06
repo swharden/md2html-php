@@ -29,28 +29,6 @@ class md2html
         return trim($valid, '-');
     }
 
-    // return a markdown table of contents (TOC) made from headings
-    private function getTOC($markdownLines)
-    {
-        $toc = "";
-        foreach ($markdownLines as $line) {
-            if (trim($line) == "![](TOC)")
-                $toc .= "<!-- TOC -->\n";
-            if ($toc && substr($line, 0, 1) == "#") {
-                for ($headingLevel = 1; $headingLevel <= 6; $headingLevel++) {
-                    $lineStart = str_repeat("#", $headingLevel) . " ";
-                    $lineIsHeader = substr($line, 0, strlen($lineStart)) === $lineStart;
-                    if ($lineIsHeader) {
-                        $line = trim(substr($line, $headingLevel));
-                        $url = $this->sanitizeLinkUrl($line);
-                        $toc .= "* [$line](#$url) \n";
-                    }
-                }
-            }
-        }
-        return $toc;
-    }
-
     private function debug($message)
     {
         echo "<div style='background-color: yellow;'><code>$message</code></div>";
