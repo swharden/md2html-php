@@ -5,6 +5,7 @@
 ### Example Websites
 * [pyABF](https://swharden.com/pyabf)
 * [ScottPlot](https://swharden.com/scottplot)
+* [LJPcalc](https://swharden.com/LJPcalc/)
 
 ### How it Works
 
