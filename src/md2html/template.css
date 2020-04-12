@@ -6,16 +6,19 @@ body {
     margin: 0px;
 }
 
-#pageAboveArticle {
-    background-color: #eeeeee; /* customize this in HTML */
+#backsplash {
+    background-color: magenta;
+    height: 500px;
+    width: 100%;
+
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
 }
 
-#pageUnderArticle {
-    background-color: #eeeeee; /* customize this in HTML */
-    height: 20rem;
-    position: absolute;
-    left: 0;
-    right: 0;
+#pageAboveArticle {
+    
 }
 
 #headerBlock {
