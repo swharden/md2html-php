@@ -6,6 +6,7 @@
 * [pyABF](https://swharden.com/pyabf)
 * [ScottPlot](https://swharden.com/scottplot)
 * [LJPcalc](https://swharden.com/LJPcalc/)
+* [C# Data Visualization](http://swharden.com/CsharpDataVis/)
 
 ### How it Works
 
