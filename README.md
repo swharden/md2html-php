@@ -29,5 +29,6 @@ While [Parsedown](https://github.com/erusev/parsedown) provides the majority of 
 ### Installation
 
 * Copy the `/src` folder to your webserver and it will begin working immediately
+* If not, ensure `mod_rewrite` is enabled in Apache's `httpd.conf` file
 * Add your own markdown files and request them with the `.md.html` extension
 * Modify the page template by editing in `/md2html/template.php`
