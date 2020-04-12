@@ -14,7 +14,7 @@ When a request like `page.md.html` comes in, `.htaccess` tells Apache to route t
 
 ### Features
 
-Wile [Parsedown](https://github.com/erusev/parsedown) provides the majority of Markdown-to-HTML conversion, md2html steps in to provide a few advanced features including:
+While [Parsedown](https://github.com/erusev/parsedown) provides the majority of Markdown-to-HTML conversion, md2html steps in to provide a few advanced features including:
 
 * Automatic anchor links for headings
 * Syntax highlighting using [prettyprint](https://github.com/google/code-prettify)
