@@ -29,11 +29,6 @@ class md2html
         return trim($valid, '-');
     }
 
-    private function debug($message)
-    {
-        echo "<div style='background-color: yellow;'><code>$message</code></div>";
-    }
-
     private function convert($markdown)
     {
         // apply special editing to the markdown
@@ -64,6 +59,15 @@ class md2html
                     $lines[$i] = file_get_contents($includePath);
                 else
                     $lines[$i] = "> ⚠️ **md2html error:** MD file not found `$includePath`";
+            }
+
+            // youtube video
+            if (strpos($url, "https://www.youtube.com/embed/") === 0) {
+                $lines[$i] = '<iframe width="854" height="480" ' .
+                    "src='$url' " .
+                    'frameborder="0" allow="accelerometer; autoplay; ' .
+                    'encrypted-media; gyroscope; picture-in-picture" ' .
+                    'allowfullscreen></iframe>';
             }
         }
 
