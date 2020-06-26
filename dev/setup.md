@@ -15,15 +15,16 @@
 ### Install PHP
 Download [64-bit thread-safe PHP](http://windows.php.net/download) and extract it to `C:\php\`. 
 
-Edit `C:\Apache24\conf\httpd.conf` and add these lines at the bottom:
+Edit `C:\Apache24\conf\httpd.conf` and add these lines at the bottom. You may have to change the DLL filename:
   
 ```
-# add path to PHP module DLL file (you may have to change this filename)
 LoadModule php7_module "C:/php/php7apache2_4.dll"
 AddHandler application/x-httpd-php .php
 PHPIniDir "C:/php"
+```
 
-# add PHP as a directory index page
+Also modify the directory index section to add index.php:
+```
 <IfModule dir_module>
     DirectoryIndex index.html
     DirectoryIndex index.php
