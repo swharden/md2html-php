@@ -30,3 +30,7 @@ Also modify the directory index section to add index.php:
     DirectoryIndex index.php
 </IfModule>
 ```
+
+Also uncomment the line for `rewrite_module`
+
+Also enable .htaccess `AllowOverride All`
