@@ -1,7 +1,10 @@
 RewriteEngine On
 
 # serve Markdown files as plain text
-AddType text/plain .md
+#AddType text/plain md
+
+# force Markdown files to be downloaded
+AddType application/octet-stream md
 
 # if the request is a file that exists, serve it
 RewriteCond %{REQUEST_FILENAME} -f
@@ -16,5 +19,5 @@ RewriteRule ^(.*)$ md2html/server.php  [L]
 RewriteCond %{REQUEST_FILENAME} -d 
 RewriteRule ^(.+) - [PT,L]
 
-# all other requests get routed to md2html
+# all other requests get routed to md2html's server.php
 RewriteRule ^(.*)$ md2html/server.php  [L]
