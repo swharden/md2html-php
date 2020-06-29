@@ -14,7 +14,16 @@ This markdown file contains several examples of advanced features
 
 ## Images
 
+![](https://www.gstatic.com/webp/gallery/4.jpg){center:65%}
+
+![](https://www.gstatic.com/webp/gallery/4.jpg){center:200px}
+
+![](https://www.gstatic.com/webp/gallery/4.jpg){left:25%}
+
+![](https://www.gstatic.com/webp/gallery/4.jpg){right:45%}
+
 ![](https://www.gstatic.com/webp/gallery/4.jpg)
+
 
 ## Table of Contents
 

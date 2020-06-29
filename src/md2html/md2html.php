@@ -35,8 +35,14 @@ class md2html
         $lines = explode("\n", $markdown);
         for ($i = 0; $i < count($lines); $i++) {
             $line = trim($lines[$i]);
-            if ((substr($line, 0, 4) != "![](") || (substr($line, -1, 1) != ")"))
+
+            $startsWithMagic = (substr($line, 0, 4) == "![](");
+            $endsWithMagic = (substr($line, -1, 1) == ")");
+            $endsWithTweak = (substr($line, -1, 1) == "}");
+            $isSpecialLine = $startsWithMagic && ($endsWithMagic || $endsWithTweak);
+            if ($isSpecialLine == false)
                 continue;
+
             $url = substr($line, 4, strlen($line) - 5);
 
             // table of contents
@@ -68,6 +74,43 @@ class md2html
                     'frameborder="0" allow="accelerometer; autoplay; ' .
                     'encrypted-media; gyroscope; picture-in-picture" ' .
                     'allowfullscreen></iframe>';
+            }
+
+            // special tweaks for images
+            $isImage =
+                stripos($line, ".png") ||
+                stripos($line, ".bmp") ||
+                stripos($line, ".gif") ||
+                stripos($line, ".jpg") ||
+                stripos($line, ".jpeg");
+            if ($isImage) {
+                if (strstr($line, '{')) {
+
+                    $tweaks = explode('{', $line)[1];
+
+                    if (!strpos($tweaks, ':'))
+                        $tweaks = str_replace('}', ':100%}', $tweaks);
+                    $alignment = trim(explode(':', $tweaks)[0], '{');
+                    $width = trim(explode(':', $tweaks)[1], '}');
+
+                    // cut off tweak codes
+                    $line = explode('{', $line)[0];
+
+                    // wrap image in a link to itself
+                    $url = substr($line, 4, strlen($line) - 5);
+                    $line = "[$line]($url)";
+
+                    // write the mix of HTML and Markdown
+                    if ($alignment == 'center')
+                        $lines[$i] = "<div style='text-align: center; margin: auto; max-width: $width;'>\n\n$line\n\n</div>";
+                    else if ($alignment == 'left')
+                        $lines[$i] = "<div style='margin-right: auto; max-width: $width;'>\n\n$line\n\n</div>";
+                    else if ($alignment == 'right')
+                        $lines[$i] = "<div style='margin-left: auto; max-width: $width;'>\n\n$line\n\n</div>";
+                } else {
+                    // wrap image in a link to itself
+                    $lines[$i] = "[$line]($url)";
+                }
             }
         }
 
