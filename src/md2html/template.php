@@ -42,7 +42,7 @@ $config = parse_ini_file("config.ini", true);
                     foreach ($config['buttons']['menu'] as $button) {
                         $buttonParts = explode(';', $button, 2);
                         $buttonLabel = $buttonParts[0];
-                        $buttonUrl = $siteRoot . $buttonParts[1];
+                        $buttonUrl = (strpos($buttonParts[1], ":")) ? $buttonParts[1] : $siteRoow . $buttonParts[1];
                         echo "<div class='menuButton'><a href='$buttonUrl'>$buttonLabel</a></div>";
                     }
                     ?>
