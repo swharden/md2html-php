@@ -6,6 +6,8 @@
 * [pyABF](https://swharden.com/pyabf)
 * [ScottPlot](https://swharden.com/scottplot)
 * [LJPcalc](https://swharden.com/LJPcalc/)
+* [AbfConvert](https://swharden.com/software/AbfConvert/)
+* [FSKview](https://swharden.com/software/FSKview/)
 * [C# Data Visualization](http://swharden.com/CsharpDataVis/)
 
 ### How it Works
