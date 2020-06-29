@@ -62,7 +62,7 @@ $config = parse_ini_file("config.ini", true);
         <footer>
             <div id="footerBlock">
                 
-                <?php echo $config['template']['footerMessage']; ?>
+                <?php echo $config['template']['footerMessage']; ?> (<a href="sitemap.xml">sitemap.xml<a>)
                 <br>
                 Source for this page
                 (<a href='<?php echo basename($filePath); ?>.html?source'><?php echo basename($filePath); ?></a>)
