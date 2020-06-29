@@ -2,6 +2,12 @@
 // this script responds to .md.html requests by serving the .md as HTML
 error_reporting(-1);
 
+// generate a sitemap if we are asked for one appropriate
+if (basename($_SERVER["REQUEST_URI"]) == "sitemap.xml"){
+    include("sitemap.php");
+    die;
+}
+
 // this file should only get requests ending in .md.html
 $reqFile = $_SERVER['DOCUMENT_ROOT'] . strtok($_SERVER["REQUEST_URI"], '?');
 $reqPath = strtok($_SERVER["REQUEST_URI"], '?');
