@@ -1,1 +1,0 @@
-This text is in `demo-include.md`
