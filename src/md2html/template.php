@@ -61,10 +61,17 @@ $config = parse_ini_file("config.ini", true);
 
         <footer>
             <div id="footerBlock">
-                This page was converted from
-                <a href='<?php echo basename($filePath); ?>.html?source'><?php echo basename($filePath); ?></a>
-                to HTML by <a href='https://github.com/swharden/md2html-php'>md2html</a>
-                in <?php echo number_format($md2html->benchmarkMsec, 2); ?> milliseconds.
+                
+                <?php echo $config['template']['footerMessage']; ?>
+                <br>
+                Source for this page
+                (<a href='<?php echo basename($filePath); ?>.html?source'><?php echo basename($filePath); ?></a>)
+                was last edited on <?php echo date("F d, Y", filemtime($filePath)); ?>
+                <br>
+                Markdown to HTML conversion by 
+                <a href='https://github.com/swharden/md2html-php'>md2html</a>
+                took
+                <?php echo number_format($md2html->benchmarkMsec, 2); ?> milliseconds
             </div>
         </footer>
 
