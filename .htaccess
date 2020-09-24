@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# if the request is a folder with a markdown index, serve it
+RewriteCond %{REQUEST_FILENAME} -d 
+RewriteCond %{REQUEST_FILENAME}/index.md -f
+RewriteRule ^(.*)$ md2html/route.php [L]
