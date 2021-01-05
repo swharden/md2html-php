@@ -1,0 +1,213 @@
+<html>
+
+<head>
+  <link href="{{resourcesUrl}}bootstrap.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{resourcesUrl}}favicon.ico" />
+  <script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>
+  <title>{{headerTitle}}</title>
+  <meta name="description" content="{{metaDescription}}">
+  <style>
+    a {
+      text-decoration: none;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: inherit;
+      color: white;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    blockquote {
+      background-color: #f6f8fa;
+      border-left: 5px solid #dfe2e5;
+      padding: 1em;
+    }
+
+    table {
+      margin: 2em;
+    }
+
+    td {
+      border: 1px solid #dfe2e5;
+      padding: .4em;
+    }
+
+    th {
+      background-color: #f6f8fa;
+      border: 1px solid #dfe2e5;
+      font-weight: 600;
+      padding: .4em;
+    }
+
+    h1 {
+      font-size: 2em;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: 0.2em;
+    }
+
+    h1 a {
+      color: black;
+      text-decoration: none;
+    }
+
+    h1 a:hover {
+      color: black;
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: 0.2em;
+    }
+
+    h2 a {
+      color: black;
+      text-decoration: none;
+    }
+
+    h2 a:hover {
+      color: black;
+      text-decoration: underline;
+    }
+
+    h3 {
+      font-size: 1.3em;
+      padding-bottom: 0.2em;
+    }
+
+    h3 a {
+      color: black;
+      text-decoration: none;
+    }
+
+    h3 a:hover {
+      color: black;
+      text-decoration: underline;
+    }
+
+    .center {
+      margin: auto;
+      text-align: center;
+    }
+
+    .menuButton {
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: none !important;
+    }
+
+    .menuButton:hover {
+      background-color: #00000033;
+      border-color: transparent;
+    }
+
+    .markdownImage {
+      max-width: 100%;
+    }
+
+    .prettyprint {
+      margin-top: 2em;
+      margin-bottom: 2em;
+      padding: 1em;
+      background: #f8f8f8;
+      border-radius: 5px;
+      border: 1px solid #ddd !important;
+      font-size: 14px;
+      line-height: 150%;
+      overflow-x: auto;
+    }
+  </style>
+
+  <!-- Ads -->
+  {{ads}}
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-560719-1'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', '{{analyticsID}}');
+  </script>
+
+</head>
+
+<body class="bg-light">
+  <div class="h-50 w-100" style="position: absolute; background-color: #00523f"></div>
+
+  <div class="container mx-auto text-light" style="position: relative">
+    <nav class="text-end p-2">
+      <a class="btn btn-lg menuButton ms-2 text-light" href="/pyabf" role="button">pyABF</a>
+      <a class="btn btn-lg menuButton ms-2 text-light" href="/ljpcalc" role="button">LJPcalc</a>
+      <a class="btn btn-lg menuButton ms-2 text-light" href="/csdv" role="button">C# Data</a>
+
+      <div class="dropdown d-inline-block">
+        <a class="btn btn-lg menuButton ms-2 text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          More
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="/pyabf">pyABF</a></li>
+          <li><a class="dropdown-item" href="/ljpcalc">LJPcalc</a></li>
+          <li><a class="dropdown-item" href="/csdv">C# Data</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="row my-3">
+      <div class="m-2">
+        <div class="display-3 fw-normal" style="line-height: 100%;">
+          <a href="/" style="color: inherit;">
+            {{pageTitle}}
+          </a>
+        </div>
+        <div class="fs-6" style="opacity: 50%;">
+          {{pageSubtitle}}
+        </div>
+      </div>
+    </header>
+
+    <article class="row border-top border-2" style="min-height: 80%;">
+      <div class="bg-white text-dark border shadow p-3">{{article}}</div>
+    </article>
+  </div>
+
+  <!-- extra space -->
+  <div class="invisible m-5">&nbsp</div>
+
+  <footer class="bg-dark text-muted p-3 text-center">
+    <div>Accessed on {{date}} at {{time}} UTC</div>
+    <div>
+      <a href='https://github.com/swharden/md2html-php'>md2html</a> generated this page from
+      <a data-bs-toggle="collapse" href="#collapseSource" role="button" aria-expanded="false"
+        aria-controls="collapseSource">markdown source</a> in {{elapsedMsec}} milliseconds.
+    </div>
+
+    <div class="collapse m-5" id="collapseSource">
+      <div class="card card-body text-start">
+        <code>{{articleSource}}</code>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{resourcesUrl}}/bootstrap.js"></script>
+</body>
+
+</html>
