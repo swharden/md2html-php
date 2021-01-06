@@ -8,7 +8,15 @@
 * Styled to resemble GitHub using Bootstrap
 * Add a table of contents using `![](TOC)`
 * Embed YouTube videos using `![](YouTubeURL)`
-* page URLs are clear folder paths (not filenames)
+* Template HTML file is easy to customize
+* Folders with `index.md` are served dynamically
+* Page URLs are simple folder paths (never filenames)
+
+### Example Websites
+* https://swharden.com (custom version)
+* https://swharden.com/pyabf
+* https://swharden.com/CsharpDataVis (old version)
+* https://swharden.com/software/LJPcalc
 
 ## Developer Notes
 
