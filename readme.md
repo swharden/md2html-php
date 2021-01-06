@@ -10,16 +10,6 @@
 * Embed YouTube videos using `![](YouTubeURL)`
 * page URLs are clear folder paths (not filenames)
 
-### Title and Meta
-
-> **⚠️ Warning:** This feature is under active development
-
-```
-TODO: Markdown headers are coming...
-      These will let the user define page titles
-      and customize things like ad display page-by-page.
-```
-
 ## Developer Notes
 
 ### Installation
@@ -33,6 +23,21 @@ TODO: Markdown headers are coming...
 This repository has a ready-to-run demo site. 
 
 Run `docker-compose up -d` and go to http://localhost:8081
+
+### Markdown Header
+
+Markdown files can have an optional header containing _front matter_ to customize what `{{mustache}}` text is replaced with in the template. Default replacements are defined in `settings.php`, and any values defined in the header override those defined in the settings file.
+
+```
+---
+title: this text becomes the title element in the header
+description: this text becomes header metadata for search engines to display
+---
+
+# My Markdown Article
+
+The rest of the ***Markdown*** text goes here...
+```
 
 ### Routing Requests
 
