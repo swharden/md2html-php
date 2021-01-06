@@ -1,3 +1,8 @@
+---
+title: pyABF
+description: pyABF is a pure-python reader for files in the Axon Binary Format (ABF)
+---
+
 # pyABF
 
 **pyABF is a Python package which simplifies the process of reading electrophysiology data from Axon Binary Format (ABF) files.** It was created with the goal of providing a Pythonic API to access the content of ABF files which is so intuitive to use (with a predictive IDE) that documentation is largely unnecessary. Flip through the [quickstart tutorial](tutorial) and you'll be analyzing and graphing ABFs in minutes!

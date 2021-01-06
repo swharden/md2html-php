@@ -4,8 +4,8 @@
   <link href="{{resourcesUrl}}bootstrap.css" rel="stylesheet" />
   <link rel="shortcut icon" href="{{resourcesUrl}}favicon.ico" />
   <script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>
-  <title>{{headerTitle}}</title>
-  <meta name="description" content="{{metaDescription}}">
+  <title>{{title}}</title>
+  <meta name='description' content='{{description}}' />
   <style>
     a {
       text-decoration: none;
@@ -132,16 +132,13 @@
   </style>
 
   <!-- Ads -->
-  {{ads}}
+  {{adsHtml}}
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src='https://www.googletagmanager.com/gtag/js?id=UA-560719-1'></script>
+  <script async src='https://www.googletagmanager.com/gtag/js?id={{analyticsID}}'></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', '{{analyticsID}}');
   </script>
@@ -175,11 +172,11 @@
       <div class="m-2">
         <div class="display-3 fw-normal" style="line-height: 100%;">
           <a href="/" style="color: inherit;">
-            {{pageTitle}}
+            md2html
           </a>
         </div>
         <div class="fs-6" style="opacity: 50%;">
-          {{pageSubtitle}}
+          Dynamic Markdown to HTML conversion with PHP
         </div>
       </div>
     </header>

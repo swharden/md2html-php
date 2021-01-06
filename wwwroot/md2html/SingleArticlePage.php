@@ -23,86 +23,78 @@ class SingleArticlePage
      * it is a good idea to rename this to "Page" and make it abstract, then let other page types inherit from it.
      */
 
-    public string $headerTitle;
-    public string $pageTitle;
-    public string $pageSubtitle;
-    public string $metaDescription;
-
     private string $templateHtml;
     private string $articleHtml;
     private string $articleSourceHtml;
     private float $timeStart;
-    private bool $showAds;
-    private string $adsCode;
-    private string $analyticsID;
     private string $resourcesUrl;
-    private string $sourceUrl;
+    private array $replacements;
 
     function __construct(string $markdownFilePath)
     {
         error_reporting(E_ALL);
-
         if (!file_exists($markdownFilePath))
             throw new Exception("Markdown file does not exist: " . $markdownFilePath);
 
-        $this->resourcesUrl = "http://" . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "", __DIR__) . "/resources" . "/";
-        $this->sourceUrl = basename($markdownFilePath);
-
         $this->timeStart = microtime(true);
+        $this->replacements = include('settings.php');
+        $this->resourcesUrl = "http://" . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "", __DIR__) . "/resources" . "/";
         $this->templateHtml = file_get_contents('template.html');
-
+        $mdSource = file_get_contents($markdownFilePath);
+        $this->articleSourceHtml = str_replace("\n", "<br>", htmlspecialchars($mdSource));
+        $mdLines = $this->processFrontMatter($mdSource);
+        $mdLines = $this->updateSpecialCodes($mdLines);
 
         require('Parsedown.php');
         $Parsedown = new Parsedown();
-        $mdSource = file_get_contents($markdownFilePath);
-        $this->articleSourceHtml = str_replace("\n", "<br>", htmlspecialchars($mdSource));
-        $mdLines = explode("\n", $mdSource);
-
-        // features that act on the markdown act here:
-        $mdLines = $this->updateSpecialCodes($mdLines);
-
-        // features that act on the HTML act here:
         $html = $Parsedown->text(implode("\n", $mdLines));
         $html = $this->addAnchorsToHeadingsAndUpdateTOC($html);
         $html = $this->prettyPrintCodeBlocks($html);
-
         $this->articleHtml = $html;
-
-        $this->settings = include('settings.php');
-        $this->headerTitle = $this->settings["defaultTitle"];
-        $this->pageTitle = $this->settings["defaultTitle"];
-        $this->pageSubtitle = $this->settings["defaultSubtitle"];
-        $this->metaDescription = $this->settings["defaultSubtitle"];
-        $this->showAds = $this->settings["defaultShowAds"];
-        $this->adsCode = $this->settings["adsCode"];
-        $this->analyticsID = $this->settings["analyticsID"];
     }
 
     public function getHtml(): string
     {
         $html = $this->templateHtml;
-        $html = str_replace('{{article}}', $this->articleHtml, $html);
-        $html = str_replace('{{headerTitle}}', $this->headerTitle, $html);
-        $html = str_replace('{{pageTitle}}', $this->pageTitle, $html);
-        $html = str_replace('{{pageSubtitle}}', $this->pageSubtitle, $html);
-        $html = str_replace('{{metaDescription}}', $this->metaDescription, $html);
-        $html = str_replace('{{analyticsID}}', $this->analyticsID, $html);
-        $html = str_replace('{{ads}}', $this->showAds ? $this->adsCode : "", $html);
+
+        foreach ($this->replacements as $key => $value)
+            $html = str_replace($key, $value, $html);
+
         $html = str_replace('{{resourcesUrl}}', $this->resourcesUrl, $html);
-        $html = str_replace('{{sourceUrl}}', $this->sourceUrl, $html);
         $html = str_replace('{{date}}', gmdate("F jS, Y", date("Z")), $html);
         $html = str_replace('{{time}}', gmdate("H:i:s", time()), $html);
         $html = str_replace('{{articleSource}}', $this->articleSourceHtml, $html);
-
-        $elapsedMsec = round((microtime(true) - $this->timeStart) * 1000, 3);
-        $html = str_replace('{{elapsedMsec}}', $elapsedMsec, $html);
-
+        $html = str_replace('{{article}}', $this->articleHtml, $html);
+        $html = str_replace('{{elapsedMsec}}', round((microtime(true) - $this->timeStart) * 1000, 3), $html);
         return $html;
     }
 
-    /*----------------------- move these modifiers to another class --------------------------*/
+    /*----------------------- TODO: move these modifiers to another class --------------------------*/
 
-    private function sanitizeLinkUrl($url)
+    private function processFrontMatter(string $mdRaw): array
+    {
+        $lines = explode("\n", $mdRaw);
+
+        if (trim($lines[0]) != "---")
+            return $lines;
+
+        for ($i = 1; $i < count($lines); $i++) {
+            $line = trim($lines[$i]);
+            if ($line == "---")
+                break;
+
+            $parts = explode(":", $line, 2);
+            if (count($parts) == 2) {
+                $key = strtolower(trim($parts[0]));
+                $value = trim($parts[1]);
+                $this->replacements["{{" . $key . "}}"] = $value;
+            }
+        }
+
+        return array_slice($lines, $i + 1);
+    }
+
+    private function sanitizeLinkUrl($url): string
     {
         $valid = "";
         foreach (str_split(strtolower(trim($url))) as $char)
@@ -147,7 +139,7 @@ class SingleArticlePage
             return "<!--TOC-->";
         }
 
-        // don't know what to do with it, so return the original form
+        // we didn't do anything special, so return the URL so it will be a clickable link
         return $url;
     }
 
