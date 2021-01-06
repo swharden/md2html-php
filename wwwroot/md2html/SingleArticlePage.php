@@ -43,6 +43,7 @@ class SingleArticlePage
         $this->templateHtml = file_get_contents('template.html');
         $mdSource = file_get_contents($markdownFilePath);
         $this->articleSourceHtml = str_replace("\n", "<br>", htmlspecialchars($mdSource));
+        $mdSource = str_replace("\\\n", "<br>\n", $mdSource);
         $mdLines = $this->processFrontMatter($mdSource);
         $mdLines = $this->updateSpecialCodes($mdLines);
 
