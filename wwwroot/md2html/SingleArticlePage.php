@@ -27,7 +27,7 @@ class SingleArticlePage
     private string $articleHtml;
     private string $articleSourceHtml;
     private float $timeStart;
-    private string $resourcesUrl;
+    private string $baseUrl;
     private array $replacements;
 
     function __construct(string $markdownFilePath)
@@ -38,7 +38,8 @@ class SingleArticlePage
 
         $this->timeStart = microtime(true);
         $this->replacements = include('settings.php');
-        $this->resourcesUrl = "http://" . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "", __DIR__) . "/resources" . "/";
+        $http = isset($_SERVER['HTTPS']) ? "https://" : "http://";
+        $this->baseUrl = $http . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "", dirname(__DIR__)) . "/";
         $this->templateHtml = file_get_contents('template.html');
         $mdSource = file_get_contents($markdownFilePath);
         $this->articleSourceHtml = str_replace("\n", "<br>", htmlspecialchars($mdSource));
@@ -60,9 +61,9 @@ class SingleArticlePage
         foreach ($this->replacements as $key => $value)
             $html = str_replace($key, $value, $html);
 
-        $html = str_replace('{{resourcesUrl}}', $this->resourcesUrl, $html);
-        $html = str_replace('{{date}}', gmdate("F jS, Y", date("Z")), $html);
-        $html = str_replace('{{time}}', gmdate("H:i:s", time()), $html);
+        $html = str_replace('{{baseUrl}}', $this->baseUrl, $html);
+        $html = str_replace('{{date}}', gmdate("F jS, Y", date("Z") + time()), $html);
+        $html = str_replace('{{time}}', gmdate("H:i:s", time() + time()), $html);
         $html = str_replace('{{articleSource}}', $this->articleSourceHtml, $html);
         $html = str_replace('{{article}}', $this->articleHtml, $html);
         $html = str_replace('{{elapsedMsec}}', round((microtime(true) - $this->timeStart) * 1000, 3), $html);
