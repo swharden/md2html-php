@@ -1,9 +1,9 @@
 <html>
 
 <head>
-  <link href="{{baseUrl}}/md2html/resources/bootstrap.css" rel="stylesheet" />
-  <link href="{{baseUrl}}/md2html/resources/style.css" rel="stylesheet" />
-  <link rel="shortcut icon" href="{{baseUrl}}/md2html/resources/favicon.ico" />
+  <link href="resources/bootstrap.css" rel="stylesheet" />
+  <link href="resources/style.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="resources/favicon.ico" />
   <script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js'></script>
   <title>{{title}}</title>
   <meta name='description' content='{{description}}' />
@@ -25,63 +25,72 @@
 <body class="bg-light">
   <div class="h-50 w-100" style="position: absolute; background-color: #00523f"></div>
 
-  <div class="container mx-auto text-light" style="position: relative">
-    <nav class="text-end p-2">
-      <a class="btn btn-lg menuButton ms-2 text-light" href="/pyabf" role="button">pyABF</a>
-      <a class="btn btn-lg menuButton ms-2 text-light" href="/ljpcalc" role="button">LJPcalc</a>
-      <a class="btn btn-lg menuButton ms-2 text-light" href="/csdv" role="button">C# Data</a>
+  <div class="container-md mx-auto text-light" style="position: relative">
+    <div class="row">
+      <div class="col mb-5">
 
-      <div class="dropdown d-inline-block">
-        <a class="btn btn-lg menuButton ms-2 text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          More
-        </a>
+        <!-- CUSTOMIZE NAVIGATION -->
+        <nav class="text-end p-2">
+          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/pyabf" role="button">pyABF</a>
+          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/ljpcalc" role="button">LJPcalc</a>
+          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/csdv" role="button">C# Data</a>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item" href="/pyabf">pyABF</a></li>
-          <li><a class="dropdown-item" href="/ljpcalc">LJPcalc</a></li>
-          <li><a class="dropdown-item" href="/csdv">C# Data</a></li>
-        </ul>
-      </div>
-    </nav>
+          <div class="dropdown d-inline-block">
+            <a class="btn btn-lg menuButton ms-2 text-light dropdown-toggle" href="#" role="button"
+              id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              More
+            </a>
 
-    <header class="row my-3">
-      <div class="m-2">
-        <div class="display-3 fw-normal">
-          <a href="/" style="color: inherit;">
-            md2html
-          </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="{{baseUrl}}/pyabf">pyABF</a></li>
+              <li><a class="dropdown-item" href="{{baseUrl}}/ljpcalc">LJPcalc</a></li>
+              <li><a class="dropdown-item" href="{{baseUrl}}/csdv">C# Data</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- CUSTOMIZE PAGE TITLES -->
+        <header class="row mt-3 p-2">
+          <div class="display-3 fw-normal">
+            <a href="{{baseUrl}}" style="color: inherit;">
+              md2html
+            </a>
+          </div>
+          <div class="fs-6" style="opacity: 50%;">
+            Dynamic Markdown to HTML conversion with PHP
+          </div>
+        </header>
+
+        <article class="row border-top border-2">
+          <div class="bg-white text-dark border shadow p-3">
+            {{article}}
+          </div>
+        </article>
+
+        <!-- SOURCE CODE -->
+        <div class="row mt-5 collapse" id="collapseSource">
+          <div class="text-dark display-5">Source Code</div>
+          <div class="text-muted">Last edited on {{modifiedDate}}</div>
+          <section class="text-dark bg-white border shadow p-3" style="background-color: #f6f8fa;">
+            <div class="font-monospace">{{articleSource}}</div>
+          </section>
         </div>
-        <div class="fs-6" style="opacity: 50%;">
-          Dynamic Markdown to HTML conversion with PHP
-        </div>
-      </div>
-    </header>
 
-    <article class="row border-top border-2" style="min-height: 80%;">
-      <div class="bg-white text-dark border shadow p-3">{{article}}</div>
-    </article>
+      </div>
+    </div>
+
   </div>
 
-  <!-- extra space -->
-  <div class="invisible m-5">&nbsp</div>
-
-  <footer class="bg-dark text-muted p-3 text-center">
+  <footer class="bg-dark text-muted p-3 mt-5 text-center">
     <div>Accessed on {{date}} at {{time}} UTC</div>
     <div>
       <a href='https://github.com/swharden/md2html-php'>md2html</a> generated this page from
       <a data-bs-toggle="collapse" href="#collapseSource" role="button" aria-expanded="false"
         aria-controls="collapseSource">markdown source</a> in {{elapsedMsec}} milliseconds.
     </div>
-
-    <div class="collapse m-5" id="collapseSource">
-      <div class="card card-body text-start">
-        <code>{{articleSource}}</code>
-      </div>
-    </div>
   </footer>
 
-  <script src="{{baseUrl}}/md2html/resources/bootstrap.js"></script>
+  <script src="resources/bootstrap.js"></script>
 </body>
 
 </html>

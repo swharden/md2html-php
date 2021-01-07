@@ -29,6 +29,7 @@ class SingleArticlePage
     private float $timeStart;
     private string $baseUrl;
     private array $replacements;
+    private int $modified;
 
     function __construct(string $markdownFilePath)
     {
@@ -41,6 +42,7 @@ class SingleArticlePage
         $http = isset($_SERVER['HTTPS']) ? "https://" : "http://";
         $this->baseUrl = $http . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "", dirname(__DIR__)) . "/";
         $this->templateHtml = file_get_contents('template.html');
+        $this->modified = filemtime($markdownFilePath);
         $mdSource = file_get_contents($markdownFilePath);
         $this->articleSourceHtml = str_replace("\n", "<br>", htmlspecialchars($mdSource));
         $mdSource = str_replace("\\\n", "<br>\n", $mdSource);
@@ -58,13 +60,16 @@ class SingleArticlePage
     public function getHtml(): string
     {
         $html = $this->templateHtml;
-
+        $html = str_replace('href="resources/', 'href="{{baseUrl}}/md2html/resources/', $html);
+        $html = str_replace('src="resources/', 'src="{{baseUrl}}/md2html/resources/', $html);
         foreach ($this->replacements as $key => $value)
             $html = str_replace($key, $value, $html);
 
         $html = str_replace('{{baseUrl}}', $this->baseUrl, $html);
         $html = str_replace('{{date}}', gmdate("F jS, Y", date("Z") + time()), $html);
         $html = str_replace('{{time}}', gmdate("H:i:s", time() + time()), $html);
+        $html = str_replace('{{modifiedDate}}', gmdate("F jS, Y", $this->modified), $html);
+        $html = str_replace('{{modifiedTime}}', gmdate("H:i:s", $this->modified), $html);
         $html = str_replace('{{articleSource}}', $this->articleSourceHtml, $html);
         $html = str_replace('{{article}}', $this->articleHtml, $html);
         $html = str_replace('{{elapsedMsec}}', round((microtime(true) - $this->timeStart) * 1000, 3), $html);
