@@ -72,7 +72,7 @@ plt.show()
 ## Citing pyABF
 If the pyABF module facilitated your research, consider citing this project by name so it can benefit others too:
 
-> "Analysis of electrophysiological recordings was performed with custom software written for this project using Python 3.7 and the pyABF moduleÂ¹."<br><br>[1] Harden, SW (2020). pyABF 2.2.3. [Online]. Available: https://pypi.org/project/pyabf/, Accessed on: Sep. 24, 2019.
+> "Analysis of electrophysiological recordings was performed with custom software written for this project using Python 3.7 and the pyABF module¹."<br><br>[1] Harden, SW (2020). pyABF 2.2.3. [Online]. Available: https://pypi.org/project/pyabf/, Accessed on: Sep. 24, 2019.
 
 ## Author
 pyABF was created by [Scott W Harden](https://www.swharden.com/wp/about-scott/) ([Harden Technologies, LLC](http://tech.swharden.com/)) with many contributions from the open-source community

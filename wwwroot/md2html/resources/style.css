@@ -2,16 +2,6 @@ a {
     text-decoration: none;
 }
 
-footer a {
-    color: inherit;
-    text-decoration: underline;
-}
-
-footer a:hover {
-    color: inherit;
-    color: white;
-}
-
 a:hover {
     text-decoration: underline;
 }
@@ -30,6 +20,40 @@ blockquote p {
     margin-bottom: 0px;
 }
 
+.menuButton {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none !important;
+}
+
+.menuButton:hover {
+    background-color: #00000033;
+    border-color: transparent;
+}
+
+.prettyprint {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: .5em !important;
+    background: #f8f8f8;
+    border-radius: 5px;
+    border: 1px solid #ddd !important;
+    font-size: 14px;
+    line-height: 150%;
+    overflow-x: auto;
+}
+
+.center {
+    /* 
+    TODO: old blog posts use this. 
+    Switch them to use text-center 
+    */
+    margin: auto;
+    text-align: center;
+}
+
+/* GitHub-style tables */
+
 table {
     margin: 2em;
 }
@@ -45,6 +69,8 @@ th {
     font-weight: 600;
     padding: .4em;
 }
+
+/* GitHub-style headings */
 
 h1 {
     font-size: 2em;
@@ -91,36 +117,4 @@ h3 a {
 h3 a:hover {
     color: black;
     text-decoration: underline;
-}
-
-.center {
-    margin: auto;
-    text-align: center;
-}
-
-.menuButton {
-    background-color: transparent;
-    border-color: transparent;
-    box-shadow: none !important;
-}
-
-.menuButton:hover {
-    background-color: #00000033;
-    border-color: transparent;
-}
-
-.markdownImage {
-    max-width: 100%;
-}
-
-.prettyprint {
-    margin-top: 2em;
-    margin-bottom: 2em;
-    padding: .5em !important;
-    background: #f8f8f8;
-    border-radius: 5px;
-    border: 1px solid #ddd !important;
-    font-size: 14px;
-    line-height: 150%;
-    overflow-x: auto;
 }

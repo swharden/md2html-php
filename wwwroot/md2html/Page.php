@@ -129,6 +129,7 @@ class Page
 
         // hard-coded replacements
         $html = str_replace('{{baseUrl}}', $baseUrl, $html);
+        $html = str_replace('{{year}}', gmdate("Y", date("Z") + time()), $html);
         $html = str_replace('{{date}}', gmdate("F jS, Y", date("Z") + time()), $html);
         $html = str_replace('{{time}}', gmdate("H:i:s", time() + time()), $html);
 

@@ -117,7 +117,7 @@ class Article
             endsWith($url, ".png") || endsWith($url, ".jpg") || endsWith($url, ".jpeg") ||
             endsWith($url, ".bmp") || endsWith($url, ".gif")
         ) {
-            return "<a href='$url'><img src='$url' class='markdownImage' /></a>";
+            return "<a href='$url'><img src='$url' class='mw-100' /></a>";
         }
 
         // If this is a table of contents, mark it with HTML so we can come back to it later

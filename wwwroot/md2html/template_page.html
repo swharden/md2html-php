@@ -26,8 +26,11 @@
 </head>
 
 <body class="bg-light">
+
+  <!-- BACKGROUND SPLASH COLOR -->
   <div class="h-50 w-100" style="position: absolute; background-color: #00523f"></div>
 
+  <!-- CENTER CONTAINER -->
   <div class="container-md mx-auto" style="position: relative">
     <div class="row">
       <div class="col mb-5">
@@ -39,8 +42,8 @@
           <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/csdv" role="button">C# Data</a>
 
           <div class="dropdown d-inline-block">
-            <a class="btn btn-lg menuButton ms-2 text-light dropdown-toggle" role="button"
-              id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-lg menuButton ms-2 text-light dropdown-toggle" role="button" id="dropdownMenuLink"
+              data-bs-toggle="dropdown" aria-expanded="false">
               Blog
             </a>
 
@@ -71,21 +74,22 @@
         <!-- PAGINATION -->
         <nav aria-label="Page navigation">
           <ul class="pagination justify-content-center">
-              {{pagination}}
+            {{pagination}}
           </ul>
         </nav>
-        
+
       </div>
     </div>
 
   </div>
 
-  <footer class="bg-dark text-muted p-3 mt-5 text-center">
+  <!-- FOOTER -->
+  <footer class="opacity-50 p-3 mt-5 text-center" style="opacity: 30%;">
+    <div>Copyright &#169; {{year}} Scott W Harden</div>
     <div>Accessed on {{date}} at {{time}} UTC</div>
     <div>
-      <a href='https://github.com/swharden/md2html-php'>md2html</a> generated this page from
-      <a data-bs-toggle="collapse" href="#collapseSource" role="button" aria-expanded="false"
-        aria-controls="collapseSource">markdown source</a> in {{elapsedMsec}} milliseconds.
+      <a href='https://github.com/swharden/md2html-php' style="color: inherit;">md2html</a>
+      generated this page in {{elapsedMsec}} milliseconds
     </div>
   </footer>
 
