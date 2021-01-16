@@ -11,6 +11,7 @@ class ArticleInfo
     public string $description = "";
     public int $dateTime;
     public string $dateString;
+    public string $dateStringShort = "";
     public array $tags = array();
     public int $contentOffset = 0;
 
@@ -75,6 +76,7 @@ class ArticleInfo
                 $dateParts['year']
             );
             $this->dateString = date("F jS, Y", $this->dateTime);
+            $this->dateStringShort = date("Y-m-d", $this->dateTime);
             return;
         }
 
