@@ -63,11 +63,6 @@ function echoBlogPage(int $pageIndex, int $articlesPerPage = 5)
     echo $page->getHtml();
 }
 
-/** Serve the latest N posts in RSS format */
-function echoBlogFeed(string $blogPath, int $count)
-{
-}
-
 /** Return a color unique to the text used as input */
 function colorHash(string $text)
 {
@@ -114,10 +109,9 @@ function hexColorFromHSV(float $hue, float $saturation = .1, float $value = 1)
 /** Serve a page listing all blog posts */
 function echoBlogIndex()
 {
-    $articlePaths = getBlogArticlePaths();
     $html = "<h1>All Blog Posts</h1>";
     $html .= "<ul>";
-    foreach ($articlePaths as $articlePath) {
+    foreach (getBlogArticlePaths() as $articlePath) {
         $html .= "<li class='my-1'>";
         $info = new ArticleInfo($articlePath);
         $html .= "$info->dateStringShort ";
@@ -136,4 +130,33 @@ function echoBlogIndex()
     $page = new Page();
     $page->addHtml($html);
     echo $page->getHtml();
+}
+
+/** Serve the latest N posts in RSS format */
+function echoBlogFeed(int $postCount)
+{
+    $articlePaths = array_slice(getBlogArticlePaths(), 0, $postCount);
+    $rss = "<?xml version=\"1.0\"?>\n<rss version=\"2.0\">\n    <channel>\n";
+    $rss .= "        <title>SWHarden.com</title>\n";
+    $rss .= "        <link>https://swharden.com/blog</link>\n";
+    $rss .= "        <description>The personal website of Scott W Harden</description>\n";
+    foreach ($articlePaths as $articlePath) {
+        $info = new ArticleInfo($articlePath);
+        $url = "https://swharden.com/blog/" . basename(dirname($info->path));
+        $date = date("r", $info->dateTime);
+        $rss .= "\n";
+        $rss .= "        <item>\n";
+        $rss .= "            <title>$info->title</title>\n";
+        $rss .= "            <description>$info->description</description>\n";
+        $rss .= "            <link>$url</link>\n";
+        $rss .= "            <pubDate>$date</pubDate>\n";
+        foreach ($info->tags as $tag) {
+            $rss .= "            <category>$tag</category>\n";
+        }
+        $rss .= "        </item>\n";
+    }
+    $rss .= "    </channel>\n</rss>";
+
+    header('Content-Type: application/rss+xml; charset=utf-8');
+    echo $rss;
 }

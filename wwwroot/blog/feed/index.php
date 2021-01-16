@@ -2,5 +2,5 @@
 
 // this script serves the latest 20 posts as an RSS feed
 
-require('../blogPage.php');
+require('../blogFunctions.php');
 echoBlogFeed(20);

@@ -22,7 +22,7 @@ class ArticleInfo
 
         $this->path = realpath($markdownFilePath);
         $this->modified = filemtime($this->path);
-        $this->date = $this->modified;
+        $this->dateTime = $this->modified;
         $this->processHeaderItems();
     }
 
