@@ -9,14 +9,18 @@ class ArticleList
     private int $articlesPerPage;
     public int $pageCount;
 
-    function __construct(string $folder, int $articlesPerPage = 5)
+    /** blog path is the path to the folder containing sub-folders each with an index.md inside */
+    function __construct(string $blogPath, int $articlesPerPage)
     {
+        if (!is_dir($blogPath))
+            throw new ErrorException("invalid blog folder: $blogPath");
+        $blogPath = realpath($blogPath);
+        
         $this->articlesPerPage = $articlesPerPage;
-
-        $dir = new DirectoryIterator($folder);
+        $dir = new DirectoryIterator($blogPath);
         foreach ($dir as $fileinfo) {
             if ($fileinfo->isDot()) continue;
-            $mdPath =  $folder . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . "index.md";
+            $mdPath =  $blogPath . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . "index.md";
             if (file_exists($mdPath))
                 $this->mdPaths[] = $mdPath;
         }
@@ -24,13 +28,18 @@ class ArticleList
         $this->pageCount = count($this->mdPaths) / $this->articlesPerPage + 1;
     }
 
+    /** returns paths to markdown files for all articles */
     public function getAllArticles(): array
     {
         return $this->mdPaths;
     }
 
+    /** returns paths to markdown files on the Nth page (considering page count defined at the class-level) */
     public function getPageOfArticles(int $pageIndex): array
     {
+        if ($pageIndex < 0)
+            return [];
+
         $firstIndex = $this->articlesPerPage * $pageIndex;
         return array_slice($this->mdPaths, $firstIndex, $this->articlesPerPage);
     }

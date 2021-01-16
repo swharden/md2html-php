@@ -1,3 +1,6 @@
 <?php
+
+// this script serves the first page of blog posts
+
 require('blogPage.php');
-echoBlogPage(1);
+echoBlogPage('./', 0);

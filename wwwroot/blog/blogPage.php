@@ -6,12 +6,15 @@ $pathHere = dirname(__file__);
 require("$pathHere/../md2html/Page.php");
 require("$pathHere/../md2html/ArticleList.php");
 
-function echoBlogPage(int $pageIndex)
+/** Serve the Nth page of blog posts (starting at 0) */
+function echoBlogPage(string $blogPath, int $pageIndex)
 {
-    $articleList = new ArticleList(dirname(__FILE__));
+    $articleList = new ArticleList($blogPath, 5);
+    $articles = $articleList->getPageOfArticles($pageIndex);
+
     $page = new Page();
     $page->enablePermalink(true);
-    $page->addArticles($articleList->getPageOfArticles($pageIndex));
+    $page->addArticles($articles);
 
     for ($i = 0; $i < $articleList->pageCount; $i++) {
         $pageNumber = $i + 1;
@@ -20,4 +23,9 @@ function echoBlogPage(int $pageIndex)
     }
 
     echo $page->getHtml();
+}
+
+/** Serve the latest N posts in RSS format */
+function echoBlogFeed(string $blogPath, int $count)
+{
 }
