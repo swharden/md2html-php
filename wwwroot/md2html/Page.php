@@ -1,12 +1,9 @@
 <?php
 
-declare(strict_types=1);
-error_reporting(E_ALL);
+require_once('Article.php');
 
-require('Article.php');
-
-/** This object assembles and echos a complete HTML page.
- * Instantiate it, customize setting, add article(s), and getHtml()
+/** This object assembles and returns a complete HTML page.
+ * Instantiate it, customize settings, add article(s), then getHtml().
  */
 class Page
 {
@@ -31,6 +28,11 @@ class Page
     {
         foreach ($markdownFilePaths as $mdPath)
             $this->articles[] = new Article($mdPath);
+    }
+
+    public function addHtml(string $html)
+    {
+        $this->articles[] = $html;
     }
 
     public function setTitle(string $title)
@@ -73,10 +75,10 @@ class Page
             return "";
 
         $html = "";
-        $html .= "<div><a href=''><small>$article->title</small></a></div>";
-        $html .= "<div><small>$article->postDate</small></div>";
+        $html .= "<div><a href=''><small>" . $article->info->title . "</small></a></div>";
+        $html .= "<div><small>" . $article->info->dateString . "</small></div>";
         $tagHtml = "";
-        foreach ($article->tags as $tag) {
+        foreach ($article->info->tags as $tag) {
             $tagHtml .= "[<a href=''>$tag</a>] ";
         }
         $html .= "<div><small>$tagHtml</small></div>";
@@ -90,15 +92,28 @@ class Page
         $articleTemplate = file_get_contents($templateFilePath);
         for ($i = 0; $i < count($this->articles); $i++) {
             $article = $this->articles[$i];
-            $articleHtml = $articleTemplate;
-            $articleHtml = str_replace("{{title}}", $article->title, $articleHtml);
-            $articleHtml = str_replace("{{content}}", $article->html, $articleHtml);
-            $articleHtml = str_replace("{{permalink}}", $this->getPermalinkHtml($article), $articleHtml);
-            $articleHtml = str_replace("{{source}}", $article->sourceHtml, $articleHtml);
-            $articleHtml = str_replace("{{id}}", $i, $articleHtml);
-            $articleHtml = str_replace('{{modifiedDate}}', gmdate("F jS, Y", $article->modified), $articleHtml);
-            $articleHtml = str_replace('{{modifiedTime}}', gmdate("H:i:s", $article->modified), $articleHtml);
-            $html .= $articleHtml;
+
+            if (is_a($article, 'Article')) {
+                // this element of the array holds a markdown file article
+                $articleHtml = $articleTemplate;
+                $articleHtml = str_replace("{{title}}", $article->info->title, $articleHtml);
+                $articleHtml = str_replace("{{content}}", $article->html, $articleHtml);
+                $articleHtml = str_replace("{{permalink}}", $this->getPermalinkHtml($article), $articleHtml);
+                $articleHtml = str_replace("{{source}}", $article->sourceHtml, $articleHtml);
+                $articleHtml = str_replace("{{id}}", $i, $articleHtml);
+                $articleHtml = str_replace('{{modifiedDate}}', gmdate("F jS, Y", $article->info->modified), $articleHtml);
+                $articleHtml = str_replace('{{modifiedTime}}', gmdate("H:i:s", $article->info->modified), $articleHtml);
+                $articleHtml = str_replace('{{viewSourceMessage}}', "view page source", $articleHtml);
+                $html .= $articleHtml;
+            } else {
+                // this element of the array holds a string of HTML
+                $articleHtml = $articleTemplate;
+                $articleHtml = str_replace("{{content}}", $article, $articleHtml);
+                $articleHtml = str_replace("{{permalink}}", "", $articleHtml);
+                $articleHtml = str_replace("{{source}}", "", $articleHtml);
+                $articleHtml = str_replace('{{viewSourceMessage}}', "", $articleHtml);
+                $html .= $articleHtml;
+            }
         }
         return $html;
     }

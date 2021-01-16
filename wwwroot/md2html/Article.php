@@ -1,33 +1,31 @@
 <?php
 
-require('Parsedown.php');
-require('misc.php');
+require_once('Parsedown.php');
+require_once('misc.php');
+require_once('ArticleInfo.php');
 
-/** This class represents an article that came from a markdown file (with an optional header containing frontmatter) */
+/** This class represents a markdown file article */
 class Article
 {
     public string $markdown;
     public string $sourceHtml;
     public string $html;
     public int $modified;
+    public ArticleInfo $info;
 
-    // these details come from the front matter
-    public string $title = "";
-    public string $description = "";
-    public string $postDate = "";
-    public array $tags = array();
-
+    /** Create an article from a markdown file */
     function __construct(string $markdownFilePath)
     {
         if (!file_exists($markdownFilePath))
             throw new Exception("Markdown file does not exist: " . $markdownFilePath);
 
-        $this->modified = filemtime($markdownFilePath);
+        $this->info = new ArticleInfo($markdownFilePath);
         $this->markdown = file_get_contents($markdownFilePath);
         $this->sourceHtml = htmlspecialchars($this->markdown);
 
         // custom modifications to the Markdown
-        $mdLines = $this->processFrontMatter($this->markdown);
+        $mdBody = substr($this->markdown, $this->info->contentOffset);
+        $mdLines = explode("\n", $mdBody);
         $mdLines = $this->updateSpecialCodes($mdLines);
 
         // convert array of markdown lines to HTML
@@ -37,55 +35,6 @@ class Article
         // custom modifications to the HTML
         $this->html = $this->addAnchorsToHeadingsAndUpdateTOC($this->html);
         $this->html = $this->prettyPrintCodeBlocks($this->html);
-    }
-
-    private function processFrontMatter(string $mdRaw): array
-    {
-        $lines = explode("\n", $mdRaw);
-
-        if (trim($lines[0]) != "---")
-            return $lines;
-
-        for ($i = 1; $i < count($lines); $i++) {
-            $line = trim($lines[$i]);
-            if ($line == "---")
-                break;
-
-            // populate key/value pairs
-            $parts = explode(":", $line, 2);
-            if (count($parts) == 2) {
-                $key = strtolower(trim($parts[0]));
-                $value = trim($parts[1]);
-
-                switch ($key) {
-                    case "title":
-                        $this->title = $value;
-                        break;
-                    case "description":
-                        $this->description = $value;
-                        break;
-                    case "date":
-                        $dateParts = date_parse($value);
-                        $postDate = mktime(
-                            $dateParts['hour'],
-                            $dateParts['minute'],
-                            $dateParts['second'],
-                            $dateParts['month'],
-                            $dateParts['day'],
-                            $dateParts['year']
-                        );
-                        $this->postDate = date("F jS, Y", $postDate);
-                        break;
-                    case "tags":
-                        foreach (explode(',', $value) as $tag) {
-                            $this->tags[] .= trim($tag);
-                        }
-                        break;
-                }
-            }
-        }
-
-        return array_slice($lines, $i + 1);
     }
 
     private function updateSpecialCodes(array $mdLines): array
