@@ -51,13 +51,6 @@ class Article
             if ($line == "---")
                 break;
 
-            // populate tags
-            $trimmedLine = trim($line);
-            if (startsWith($trimmedLine, "- ")) {
-                $this->tags[] .= str_replace("- ", "", $trimmedLine);
-                continue;
-            }
-
             // populate key/value pairs
             $parts = explode(":", $line, 2);
             if (count($parts) == 2) {
@@ -82,6 +75,11 @@ class Article
                             $dateParts['year']
                         );
                         $this->postDate = date("F jS, Y", $postDate);
+                        break;
+                    case "tags":
+                        foreach (explode(',', $value) as $tag) {
+                            $this->tags[] .= trim($tag);
+                        }
                         break;
                 }
             }
