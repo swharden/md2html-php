@@ -26,6 +26,10 @@ blockquote {
     padding: 1em;
 }
 
+blockquote p {
+    margin-bottom: 0px;
+}
+
 table {
     margin: 2em;
 }
@@ -112,7 +116,7 @@ h3 a:hover {
 .prettyprint {
     margin-top: 2em;
     margin-bottom: 2em;
-    padding: 1em;
+    padding: .5em !important;
     background: #f8f8f8;
     border-radius: 5px;
     border: 1px solid #ddd !important;

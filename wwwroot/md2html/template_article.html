@@ -1,0 +1,38 @@
+
+
+<!-- ARTICLE "{{title}}" -->
+<article class="row border-top border-2 mb-5">
+    <div class="bg-white text-dark border shadow">
+
+        <!-- permalink and article meta -->
+        <div class="text-end d-inline-block float-end lh-1 pe-3 pt-1">
+            {{permalink}}
+        </div>
+
+        <!-- article body -->
+        <div class="p-3">
+            {{content}}
+        </div>
+
+        <!-- article footer -->
+        <div class="px-3 pb-3 text-muted">
+            <small>
+                <a data-bs-toggle="collapse" href="#article-{{id}}" role="button" aria-expanded="false"
+                    aria-controls="article-{{id}}">view page source</a>
+            </small>
+        </div>
+
+        <!-- article source -->
+        <div class="p-3 collapse" id="article-{{id}}">
+            <div class="card">
+                <div class="card-header">
+                    Markdown source code last modified on {{modifiedDate}}
+                </div>
+                <div class="card-body">
+                    <pre class="" style="white-space: pre-wrap;">{{source}}</pre>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</article>

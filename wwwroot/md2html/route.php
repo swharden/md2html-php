@@ -6,9 +6,8 @@ error_reporting(E_ALL);
 $requestedFolder = rtrim($_SERVER['REQUEST_URI'], '/') . '/';
 $markdownFilePath = $_SERVER['DOCUMENT_ROOT'] . $requestedFolder . 'index.md';
 
-// put markdown HTML inside the template
-
-
-require('SingleArticlePage.php');
-$page = new SingleArticlePage($markdownFilePath);
+// build the page from multiple articles
+require('Page.php');
+$page = new Page();
+$page->addArticle($markdownFilePath);
 echo $page->getHtml();

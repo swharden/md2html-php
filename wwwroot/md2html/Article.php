@@ -1,82 +1,43 @@
 <?php
 
-function startsWith($string, $startString)
-{
-    $len = strlen($startString);
-    return (substr($string, 0, $len) === $startString);
-}
+require('Parsedown.php');
+require('misc.php');
 
-function endsWith($string, $endString)
+/** This class represents an article that came from a markdown file (with an optional header containing frontmatter) */
+class Article
 {
-    $len = strlen($endString);
-    if ($len == 0)
-        return true;
-    return (substr($string, -$len) === $endString);
-}
+    public string $markdown;
+    public string $sourceHtml;
+    public string $html;
+    public int $modified;
 
-class SingleArticlePage
-{
-    /* This class returns a ready-to-echo webpage given a Markdown file as input.
-     * New functionality can be achieved by adding extra steps to this class that modify the Markdown or HTML.
-     * 
-     * This is a single class, but if different page types are desired in the future (e.g., multi-article or site map)
-     * it is a good idea to rename this to "Page" and make it abstract, then let other page types inherit from it.
-     */
-
-    private string $templateHtml;
-    private string $articleHtml;
-    private string $articleSourceHtml;
-    private float $timeStart;
-    private string $baseUrl;
-    private array $replacements;
-    private int $modified;
+    // these details come from the front matter
+    public string $title = "";
+    public string $description = "";
+    public string $postDate = "";
+    public array $tags = array();
 
     function __construct(string $markdownFilePath)
     {
-        error_reporting(E_ALL);
         if (!file_exists($markdownFilePath))
             throw new Exception("Markdown file does not exist: " . $markdownFilePath);
 
-        $this->timeStart = microtime(true);
-        $this->replacements = include('settings.php');
-        $http = isset($_SERVER['HTTPS']) ? "https://" : "http://";
-        $this->baseUrl = $http . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "", dirname(__DIR__)) . "/";
-        $this->templateHtml = file_get_contents('template.html');
         $this->modified = filemtime($markdownFilePath);
-        $mdSource = file_get_contents($markdownFilePath);
-        $this->articleSourceHtml = str_replace("\n", "<br>", htmlspecialchars($mdSource));
-        $mdSource = str_replace("\\\n", "<br>\n", $mdSource);
-        $mdLines = $this->processFrontMatter($mdSource);
+        $this->markdown = file_get_contents($markdownFilePath);
+        $this->sourceHtml = htmlspecialchars($this->markdown);
+
+        // custom modifications to the Markdown
+        $mdLines = $this->processFrontMatter($this->markdown);
         $mdLines = $this->updateSpecialCodes($mdLines);
 
-        require('Parsedown.php');
+        // convert array of markdown lines to HTML
         $Parsedown = new Parsedown();
-        $html = $Parsedown->text(implode("\n", $mdLines));
-        $html = $this->addAnchorsToHeadingsAndUpdateTOC($html);
-        $html = $this->prettyPrintCodeBlocks($html);
-        $this->articleHtml = $html;
+        $this->html = $Parsedown->text(implode("\n", $mdLines));
+
+        // custom modifications to the HTML
+        $this->html = $this->addAnchorsToHeadingsAndUpdateTOC($this->html);
+        $this->html = $this->prettyPrintCodeBlocks($this->html);
     }
-
-    public function getHtml(): string
-    {
-        $html = $this->templateHtml;
-        $html = str_replace('href="resources/', 'href="{{baseUrl}}/md2html/resources/', $html);
-        $html = str_replace('src="resources/', 'src="{{baseUrl}}/md2html/resources/', $html);
-        foreach ($this->replacements as $key => $value)
-            $html = str_replace($key, $value, $html);
-
-        $html = str_replace('{{baseUrl}}', $this->baseUrl, $html);
-        $html = str_replace('{{date}}', gmdate("F jS, Y", date("Z") + time()), $html);
-        $html = str_replace('{{time}}', gmdate("H:i:s", time() + time()), $html);
-        $html = str_replace('{{modifiedDate}}', gmdate("F jS, Y", $this->modified), $html);
-        $html = str_replace('{{modifiedTime}}', gmdate("H:i:s", $this->modified), $html);
-        $html = str_replace('{{articleSource}}', $this->articleSourceHtml, $html);
-        $html = str_replace('{{article}}', $this->articleHtml, $html);
-        $html = str_replace('{{elapsedMsec}}', round((microtime(true) - $this->timeStart) * 1000, 3), $html);
-        return $html;
-    }
-
-    /*----------------------- TODO: move these modifiers to another class --------------------------*/
 
     private function processFrontMatter(string $mdRaw): array
     {
@@ -90,25 +51,43 @@ class SingleArticlePage
             if ($line == "---")
                 break;
 
+            // populate tags
+            $trimmedLine = trim($line);
+            if (startsWith($trimmedLine, "- ")) {
+                $this->tags[] .= str_replace("- ", "", $trimmedLine);
+                continue;
+            }
+
+            // populate key/value pairs
             $parts = explode(":", $line, 2);
             if (count($parts) == 2) {
                 $key = strtolower(trim($parts[0]));
                 $value = trim($parts[1]);
-                $this->replacements["{{" . $key . "}}"] = $value;
+
+                switch ($key) {
+                    case "title":
+                        $this->title = $value;
+                        break;
+                    case "description":
+                        $this->description = $value;
+                        break;
+                    case "date":
+                        $dateParts = date_parse($value);
+                        $postDate = mktime(
+                            $dateParts['hour'],
+                            $dateParts['minute'],
+                            $dateParts['second'],
+                            $dateParts['month'],
+                            $dateParts['day'],
+                            $dateParts['year']
+                        );
+                        $this->postDate = date("F jS, Y", $postDate);
+                        break;
+                }
             }
         }
 
         return array_slice($lines, $i + 1);
-    }
-
-    private function sanitizeLinkUrl($url): string
-    {
-        $valid = "";
-        foreach (str_split(strtolower(trim($url))) as $char)
-            $valid .= (ctype_alnum($char)) ? $char : "-";
-        while (strpos($valid, "--"))
-            $valid = str_replace("--", "-", $valid);
-        return trim($valid, '-');
     }
 
     private function updateSpecialCodes(array $mdLines): array
@@ -163,7 +142,7 @@ class SingleArticlePage
 
             $headerLevel = substr($line, 2, 1);
             $headerLabel = substr($line, 4, strlen($line) - 9);
-            $url = $this->sanitizeLinkUrl($headerLabel);
+            $url = sanitizeLinkUrl($headerLabel);
             $lines[$i] = "<h$headerLevel id='$url'><a href='#$url'>$headerLabel</a></h$headerLevel>";
             if ($i > 0) {
                 $lines[$i] = '<hr class="invisible" />' . $lines[$i];
