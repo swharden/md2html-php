@@ -1,8 +1,7 @@
 ---
 title: Exponential Fit with Python
 date: 2020-09-24 17:45:00
-tags:
-  - python
+tags: python
 ---
 
 # Exponential Fit with Python

@@ -1,9 +1,7 @@
 ---
 title: ECG Simulator Circuit
 date: 2020-09-27 17:11:00
-tags:
-  - circuit
-  - diyECG
+tags: circuit, diyECG
 ---
 
 # ECG Simulator Circuit

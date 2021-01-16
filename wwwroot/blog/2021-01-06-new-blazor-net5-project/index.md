@@ -1,9 +1,7 @@
 ---
 title: Create a new .NET 5 Blazor Project
 date: 2021-01-06 19:39:00
-tags:
-  - blazor
-  - csharp
+tags: blazor, csharp
 ---
 
 ## Create a new .NET 5 Blazor App with Visual Studio 2019

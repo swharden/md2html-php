@@ -1,8 +1,7 @@
 ---
 title: Signal Filtering in Python
 date: 2020-09-23 21:46:00
-tags:
-  - python
+tags: python
 ---
 
 # Signal Filtering in Python

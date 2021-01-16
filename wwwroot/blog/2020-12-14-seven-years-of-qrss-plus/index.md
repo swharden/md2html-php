@@ -1,9 +1,7 @@
 ---
 title: Seven Years of QRSS Plus
 date: 2020-12-14 21:16:00
-tags:
-  - qrss
-  - amateur radio
+tags: qrss, amateur radio
 ---
 
 # Seven Years of QRSS Plus

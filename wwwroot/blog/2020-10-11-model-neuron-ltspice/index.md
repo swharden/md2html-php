@@ -1,9 +1,7 @@
 ---
 title: Exploring the Membrane Test with a Voltage-Clamped Neuron Model
 date: 2020-10-11 22:24:00
-tags:
-  - science
-  - circuit
+tags: science, circuit
 ---
 
 # Exploring the Membrane Test with a Voltage-Clamped Neuron Model

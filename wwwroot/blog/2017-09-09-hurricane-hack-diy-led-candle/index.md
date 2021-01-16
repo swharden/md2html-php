@@ -1,8 +1,7 @@
 ---
 title: Hurricane Hack - DIY LED Candle
 date: 2017-09-09 11:27:43
-tags:
-  - circuit
+tags: circuit
 ---
 
 # Hurricane Hack - DIY LED Candle

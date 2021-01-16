@@ -1,9 +1,7 @@
 ---
 title: Upgraded Amplifier
 date: 2019-07-31 21:00:00
-tags:
-  - qrss
-  - circuit
+tags: qrss, circuit
 ---
 
 # Upgraded Amplifier

@@ -1,8 +1,7 @@
 ---
 title: QRSS Spots
 date: 2019-07-13 21:00:00
-tags:
-  - qrss
+tags: qrss
 ---
 
 # QRSS Spots

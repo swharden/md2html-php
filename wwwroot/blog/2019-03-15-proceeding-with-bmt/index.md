@@ -1,8 +1,7 @@
 ---
 title: Proceeding with a Bone Marrow Transplant
 date: 2019-03-15 23:55:00
-tags
-  - med
+tags: med
 ---
 
 # Proceeding with a Bone Marrow Transplant

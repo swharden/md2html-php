@@ -1,8 +1,7 @@
 ---
 title: First Round of Chemotherapy
 date: 2018-08-29 19:50:00
-tags
-  - med
+tags: med
 ---
 
 # First Round of Chemotherapy

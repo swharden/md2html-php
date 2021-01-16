@@ -1,8 +1,7 @@
 ---
 title: USB Frequency Counter
 date: 2019-08-03 21:15:00
-tags:
-  - circuit
+tags: circuit
 ---
 
 # USB Frequency Counter

@@ -1,9 +1,7 @@
 ---
 title: Boids in your Browser with Blazor
 date: 2021-01-08 22:58:00
-tags:
-  - blazor
-  - csharp
+tags: blazor, csharp
 ---
 
 # Boids in your Browser with Blazor

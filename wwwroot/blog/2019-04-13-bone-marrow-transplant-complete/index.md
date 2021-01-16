@@ -1,8 +1,7 @@
 ---
 title: Bone Marrow Transplant Complete!
 date: 2019-04-13 16:32:00
-tags
-  - med
+tags: med
 ---
 
 # Bone Marrow Transplant Complete!

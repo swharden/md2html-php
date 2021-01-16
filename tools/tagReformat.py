@@ -42,8 +42,33 @@ if __name__ == "__main__":
     mdFiles = [os.path.abspath(x) for x in mdFiles]
     for filePath in mdFiles:
         print(filePath)
-        with open(filePath, errors='ignore') as f:
+        with open(filePath, 'rb') as f:
             lines = f.readlines()
-        print(len(lines))
-        with open(filePath, 'w', errors='ignore') as f:
+
+        if (lines[0].startswith(b'---') == False):
+            print("NO HEADER")
+            continue
+
+        tags = []
+        lastHeaderLine = 2
+        for i in range(1, len(lines)):
+            line = lines[i].decode("utf-8")
+            if (line.strip().startswith("- ")):
+                tags.append(line.split("-", 1)[1].strip())
+            if (len(line.strip()) == 0):
+                lines[i] = ""
+            if (line.startswith('---')):
+                lastHeaderLine = i
+                break
+
+        for i in range(1, lastHeaderLine):
+            line = lines[i].decode("utf-8")
+            if line.strip().startswith("tags"):
+                lines[i] = "tags: "+", ".join(tags)+"\r\n"
+            if line.strip().startswith("- "):
+                lines[i] = ""
+            if (type(lines[i]) != bytes):
+                lines[i] = lines[i].encode("utf-8")
+
+        with open(filePath, 'wb') as f:
             f.writelines(lines)

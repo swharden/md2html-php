@@ -1,9 +1,7 @@
 ---
 title: Display Build Details in Client-Size Blazor Apps
 date: 2020-12-29 19:54:00
-tags:
-  - csharp
-  - blazor
+tags: csharp, blazor
 ---
 
 # Show Build Date in Blazor Apps

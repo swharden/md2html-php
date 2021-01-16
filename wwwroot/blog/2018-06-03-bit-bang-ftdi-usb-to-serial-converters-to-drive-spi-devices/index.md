@@ -1,9 +1,7 @@
 ---
 title: Bit-Bang FTDI USB-to-Serial Converters to Drive SPI Devices
 date: 2018-06-03 18:51:30
-tags:
-  - csharp
-  - microcontroller
+tags: csharp, microcontroller
 ---
 
 # Bit-Bang FTDI USB-to-Serial Converters to Drive SPI Devices

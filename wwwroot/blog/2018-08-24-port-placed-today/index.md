@@ -1,8 +1,7 @@
 ---
 title: Port Placed Today
 date: 2018-08-24 11:18:00
-tags
-  - med
+tags: med
 ---
 
 # Port Placed Today

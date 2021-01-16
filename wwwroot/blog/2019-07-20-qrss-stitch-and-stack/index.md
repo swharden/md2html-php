@@ -1,8 +1,7 @@
 ---
 title: QRSS Stitch and Stack
 date: 2019-07-20 21:00:00
-tags:
-  - qrss
+tags: qrss
 ---
 
 # QRSS Stitch and Stack

@@ -1,8 +1,7 @@
 ---
 title: A Change in Symptoms
 date: 2018-08-16 11:45:00
-tags
-  - med
+tags: med
 ---
 
 # A Change in Symptoms

@@ -1,9 +1,7 @@
 ---
 title: IoT Festivus Pole
 date: 2017-12-19 22:11:17
-tags:
-  - circuit
-  - microcontroller
+tags: circuit, microcontroller
 ---
 
 # IoT Festivus Pole

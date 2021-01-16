@@ -1,8 +1,7 @@
 ---
 title: OOK and FSK
 date: 2019-07-18 21:00:00
-tags:
-  - qrss
+tags: qrss
 ---
 
 # OSK and FSK

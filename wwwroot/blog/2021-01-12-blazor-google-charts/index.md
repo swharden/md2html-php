@@ -1,9 +1,7 @@
 ---
 title: Google Charts in Blazor
 date: 2021-01-12 19:15:00
-tags:
-  - blazor
-  - csharp
+tags: blazor, csharp
 ---
 
 # Google Charts in Blazor

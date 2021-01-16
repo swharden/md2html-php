@@ -1,9 +1,7 @@
 ---
 title: The New Age of QRSS
 date: 2020-10-03 22:08:00
-tags: 
-  - qrss
-  - amateur radio
+tags: qrss, amateur radio
 ---
 
 # The New Age of QRSS

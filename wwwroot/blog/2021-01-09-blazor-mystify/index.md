@@ -1,9 +1,7 @@
 ---
 title: Mystify your Browser with Blazor
 date: 2021-01-09 22:16:00
-tags:
-  - blazor
-  - csharp
+tags: blazor, csharp
 ---
 
 # Mystify your Browser with Blazor

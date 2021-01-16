@@ -1,8 +1,7 @@
 ---
 title: Using MOD Files in LTSpice
 date: 2020-09-27 16:21:00
-tags:
-  - circuit
+tags: circuit
 ---
 
 # Using MOD Files in LTSpice

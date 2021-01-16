@@ -1,9 +1,7 @@
 ---
 title: Draw Animated Graphics in the Browser with Blazor WebAssembly
 date: 2021-01-07 21:46:00
-tags:
-  - blazor
-  - csharp
+tags: blazor, csharp
 ---
 
 # Draw Animated Graphics in the Browser with Blazor WebAssembly

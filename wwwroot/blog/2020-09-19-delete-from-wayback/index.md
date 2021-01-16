@@ -1,8 +1,6 @@
 ---
 title: How I Deleted my Site from the Wayback Machine
-tags:
-  - circuit
-  - testing
+tags: circuit, testing
 ---
 
 # Deleted from The Wayback Machine

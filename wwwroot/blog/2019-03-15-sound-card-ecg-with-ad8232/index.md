@@ -1,9 +1,7 @@
 ---
 title: Sound Card ECG with AD8232
 date: 2019-03-15 23:50:34
-tags:
-  - diyECG
-  - csharp
+tags: diyECG, csharp
 ---
 
 # Sound Card ECG with AD8232

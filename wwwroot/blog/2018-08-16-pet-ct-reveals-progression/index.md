@@ -1,8 +1,7 @@
 ---
 title: PET CT Reveals Progression
 date: 2018-08-16 11:45:00
-tags
-  - med
+tags: med
 ---
 
 # PET CT Reveals Progression

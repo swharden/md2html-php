@@ -1,8 +1,7 @@
 ---
 title: SMT QRSS Spots
 date: 2019-07-29 21:00:00
-tags:
-  - qrss
+tags: qrss
 ---
 
 # SMT QRSS Spots

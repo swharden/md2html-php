@@ -1,8 +1,7 @@
 ---
 title: Amplifier Improvements
 date: 2019-07-14 21:00:00
-tags:
-  - qrss
+tags: qrss
 ---
 
 # Amplifier Improvements

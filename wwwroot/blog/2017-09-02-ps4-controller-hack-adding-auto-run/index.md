@@ -1,8 +1,7 @@
 ---
 title: PS4 Controller Hack - Adding Auto-Run
 date: 2017-09-02 15:48:22
-tags:
-  - circuit
+tags: circuit
 ---
 
 # PS4 Controller Hack - Adding Auto-Run

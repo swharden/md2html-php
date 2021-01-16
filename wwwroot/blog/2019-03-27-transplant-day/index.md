@@ -1,8 +1,7 @@
 ---
 title: Transplant Day
 date: 2019-03-27 20:37:00
-tags
-  - med
+tags: med
 ---
 
 # Transplant Day

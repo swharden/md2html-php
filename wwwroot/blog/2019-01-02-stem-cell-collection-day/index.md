@@ -1,8 +1,7 @@
 ---
 title: Stem Cell Collection Day
 date: 2019-01-02 23:22:00
-tags
-  - med
+tags: med
 ---
 
 # Stem Cell Collection Day

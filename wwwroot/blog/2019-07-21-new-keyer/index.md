@@ -1,9 +1,7 @@
 ---
 title: New QRSS Keyer
 date: 2019-07-21 21:00:00
-tags:
-  - qrss
-  - circuit
+tags: qrss, circuit
 ---
 
 # New QRSS Keyer

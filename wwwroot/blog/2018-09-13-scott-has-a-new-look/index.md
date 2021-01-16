@@ -1,8 +1,7 @@
 ---
 title: Scott Has a New Look
 date: 2018-09-13 20:55:00
-tags
-  - med
+tags: med
 ---
 
 # Scott Has a New Look

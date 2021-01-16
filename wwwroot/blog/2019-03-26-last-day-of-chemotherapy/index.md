@@ -1,8 +1,7 @@
 ---
 title: Last Day of Chemotherapy
 date: 2019-03-26 13:55:00
-tags
-  - med
+tags: med
 ---
 
 # Last Day of Chemotherapy
