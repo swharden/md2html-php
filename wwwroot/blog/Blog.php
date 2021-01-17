@@ -23,6 +23,10 @@ class Blog
 
         // add the articles to the page
         $page = new Page();
+        $pageNumber = $pageIndex + 1;
+        $page->setTitle("All Posts - Page $pageNumber");
+        if (isset($_GET['page']))
+            $page->disableIndexing();
         $page->enablePermalink(true);
         $page->addArticles($articlesToShow);
 
@@ -30,7 +34,10 @@ class Blog
         for ($i = 0; $i < $pageCount; $i++) {
             $pageNumber = $i + 1;
             $pageIsActive = ($i == $pageIndex);
-            $page->addPagination("$pageNumber", "?page=$pageNumber", $pageIsActive);
+            if ($i == 0)
+                $page->addPagination("$pageNumber", "./", $pageIsActive);
+            else
+                $page->addPagination("$pageNumber", "?page=$pageNumber", $pageIsActive);
         }
 
         return $page->getHtml();

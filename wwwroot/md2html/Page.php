@@ -51,6 +51,11 @@ class Page
         $this->replacements["{{adsHtml}}"] = "<!-- ads disabled for this page -->";
     }
 
+    public function disableIndexing()
+    {
+        $this->replacements["{{robotsContent}}"] = "noindex";
+    }
+
     public function addPagination(string $label, string $url, bool $active = false)
     {
         $this->pagination[] = [$label, $url, $active];
