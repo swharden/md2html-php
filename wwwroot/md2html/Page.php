@@ -13,6 +13,7 @@ class Page
     private array $pagination = array();
     private array $replacements = array();
     private bool $showPermalink = false;
+    private string $baseUrl = "";
 
     function __construct()
     {
@@ -61,9 +62,10 @@ class Page
         $this->pagination[] = [$label, $url, $active];
     }
 
-    public function enablePermalink(bool $enabled)
+    public function enablePermalink(bool $enabled, string $baseUrl)
     {
         $this->showPermalink = $enabled;
+        $this->baseUrl = $baseUrl;
     }
 
     public function getHtml(): string
@@ -75,13 +77,28 @@ class Page
         return $html;
     }
 
+    /** when serving articles from another folder, local URLs need to be fixed */
+    private function addBaseUrlToLinksAndImages(string $html, string $baseUrl): string
+    {
+        if ($baseUrl == "")
+            return $html;
+        $html = str_replace("<img src='", "<img src='{{baseUrl}}", $html);
+        $html = str_replace("<img src=\"", "<img src=\"{{baseUrl}}", $html);
+        $html = str_replace("<a href='", "<a href='{{baseUrl}}", $html);
+        $html = str_replace("<a href=\"", "<a href=\"{{baseUrl}}", $html);
+        $html = str_replace('{{baseUrl}}http', 'http', $html);
+        $html = str_replace('{{baseUrl}}', $baseUrl . '/', $html);
+        return $html;
+    }
+
     function getPermalinkHtml(Article $article)
     {
         if ($this->showPermalink == false)
             return "";
 
         $html = "";
-        $html .= "<div><a href=''><small>" . $article->info->title . "</small></a></div>";
+        $url = $this->baseUrl . "/" . $article->info->folderName;
+        $html .= "<div><a href='$url'><small>" . $article->info->title . "</small></a></div>";
         $html .= "<div><small>" . $article->info->dateString . "</small></div>";
         $tagParts = [];
         foreach ($article->info->tags as $tag) {
@@ -103,9 +120,14 @@ class Page
 
             if (is_a($article, 'Article')) {
                 // this element of the array holds a markdown file article
+                $contentHtml = $article->html;
+                if ($this->baseUrl != "") {
+                    $baseUrl = $this->baseUrl . "/" . $article->info->folderName;
+                    $contentHtml = $this->addBaseUrlToLinksAndImages($contentHtml, $baseUrl);
+                }
                 $articleHtml = $articleTemplate;
                 $articleHtml = str_replace("{{title}}", $article->info->title, $articleHtml);
-                $articleHtml = str_replace("{{content}}", $article->html, $articleHtml);
+                $articleHtml = str_replace("{{content}}", $contentHtml, $articleHtml);
                 $articleHtml = str_replace("{{permalink}}", $this->getPermalinkHtml($article), $articleHtml);
                 $articleHtml = str_replace("{{source}}", $article->sourceHtml, $articleHtml);
                 $articleHtml = str_replace("{{id}}", $i, $articleHtml);

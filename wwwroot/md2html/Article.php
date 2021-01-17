@@ -12,7 +12,6 @@ class Article
     public string $html;
     public int $modified;
     public ArticleInfo $info;
-    public string $permalink;
 
     /** Create an article from a markdown file. 
      * If a base URL is given, relative URLs will be prefixed by it. */
@@ -24,7 +23,6 @@ class Article
         $this->info = new ArticleInfo($markdownFilePath);
         $this->markdown = file_get_contents($markdownFilePath);
         $this->sourceHtml = htmlspecialchars($this->markdown);
-        $this->permalink = $baseUrl . '/' . $this->info->folderName;
 
         // custom modifications to the Markdown
         $mdBody = substr($this->markdown, $this->info->contentOffset);
@@ -36,7 +34,6 @@ class Article
         $this->html = $Parsedown->text(implode("\n", $mdLines));
 
         // custom modifications to the HTML
-        $this->html = $this->addBaseUrlToLinksAndImages($this->html, $baseUrl);
         $this->html = $this->addAnchorsToHeadingsAndUpdateTOC($this->html);
         $this->html = $this->prettyPrintCodeBlocks($this->html);
     }
@@ -80,20 +77,6 @@ class Article
 
         // we didn't do anything special, so return the URL so it will be a clickable link
         return $url;
-    }
-
-    private function addBaseUrlToLinksAndImages(string $html, string $baseUrl): string
-    {
-        if ($baseUrl == "")
-            return $html;
-
-        $html = str_replace("<img src='", "<img src='{{baseUrl}}", $html);
-        $html = str_replace("<img src=\"", "<img src=\"{{baseUrl}}", $html);
-        $html = str_replace("<a href='", "<a href='{{baseUrl}}", $html);
-        $html = str_replace("<a href=\"", "<a href=\"{{baseUrl}}", $html);
-        $html = str_replace('{{baseUrl}}http', 'http', $html);
-        $html = str_replace('{{baseUrl}}', $baseUrl . '/' . $this->info->folderName . '/', $html);
-        return $html;
     }
 
     private function addAnchorsToHeadingsAndUpdateTOC($html): string

@@ -12,8 +12,7 @@ require_once(dirname(__file__) . "/../md2html/ArticleInfo.php");
 class Blog
 {
     //private $BLOG_URL = 'https://swharden.com/blog';
-	private $BLOG_URL = 'http://localhost:8080/blog';
-	
+	private $BLOG_URL = 'http://localhost:8081/blog';
 
     /** Serve the Nth page of blog posts (starting at 0) */
     public function getPageHTML(int $pageIndex, string $tag = "", int $articlesPerPage = 5): string
@@ -32,13 +31,13 @@ class Blog
         $page = new Page();
         $pageNumber = $pageIndex + 1;
 
-        $tagLabel = $tag == "" ? "Blog" : $tag;
-        $tag = str_replace("-", " ", $tagLabel);
-        $page->setTitle(ucwords($tag) . " - Page $pageNumber");
+        $titlePrimary = $tag == "" ? "Blog" : ucwords(str_replace("-", " ", $tag));
+        $titleSecondary = "Page $pageNumber";
+        $page->setTitle("$titlePrimary - $titleSecondary");
 
         if (isset($_GET['page']))
             $page->disableIndexing();
-        $page->enablePermalink(true);
+        $page->enablePermalink(true, $this->BLOG_URL);
         $page->addArticles($articlesToShow);
 
         // add pagination links for every page in the set
