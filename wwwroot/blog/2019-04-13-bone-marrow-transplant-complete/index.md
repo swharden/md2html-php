@@ -22,7 +22,7 @@ tags: med
 
 </div>
 
-<div class="text-center img-border img-thumbnail">
+<div class="text-center img-border img-img-xs">
 
 ![](scott-harden-bone-marrow-transplant-withdrawing-picc-line.jpg)
 ![](scott-harden-bone-marrow-transplant-finished-lets-go-home.jpg)

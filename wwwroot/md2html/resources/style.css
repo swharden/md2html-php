@@ -58,17 +58,17 @@ article .img-border img {
     margin-bottom: 2em;
 }
 
-article .thumbnail img {
-    height: 9em !important;
+article .img-micro img {
+    max-width: 25% !important;
     margin: .5em !important;
 }
 
-article .small img {
+article .img-small img {
     max-width: 35% !important;
     margin: 1em !important;
 }
 
-article .medium img {
+article .img-medium img {
     max-width: 65% !important;
     margin: 1em !important;
 }
