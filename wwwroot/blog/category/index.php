@@ -3,7 +3,7 @@
 // this script serves the Nth page of blog posts (where N is defined by the URL)
 // restricted to a specific category
 
-require('../blogFunctions.php');
+require('../Blog.php');
 $finalFolderName = basename(strtok($_SERVER["REQUEST_URI"], '?'));
 
 $pageIndex = 0;
@@ -11,9 +11,10 @@ if (isset($_GET['page'])) {
     $pageIndex = intval($_GET['page']) - 1;
 }
 
+$blog = new Blog();
 if ($finalFolderName == "category") {
-    echoTagPage();
+    echo $blog->getCategoryIndexHTML();
 } else {
     $category = $finalFolderName;
-    echoBlogPage($pageIndex, $category);
+    echo $blog->getPageHTML($pageIndex, $category);
 }
