@@ -20,15 +20,15 @@ class Page
         $this->replacements = include('settings.php');
     }
 
-    public function addArticle(string $markdownFilePath)
+    public function addArticle(string $markdownFilePath, string $baseUrl = "")
     {
-        $this->articles[] = new Article($markdownFilePath);
+        $this->articles[] = new Article($markdownFilePath, $baseUrl);
     }
 
-    public function addArticles(array $markdownFilePaths)
+    public function addArticles(array $markdownFilePaths, string $baseUrl = "")
     {
         foreach ($markdownFilePaths as $mdPath)
-            $this->articles[] = new Article($mdPath);
+            $this->articles[] = new Article($mdPath, $baseUrl);
     }
 
     public function addHtml(string $html)

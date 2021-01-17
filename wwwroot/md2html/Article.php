@@ -13,8 +13,9 @@ class Article
     public int $modified;
     public ArticleInfo $info;
 
-    /** Create an article from a markdown file */
-    function __construct(string $markdownFilePath)
+    /** Create an article from a markdown file. 
+     * If a base URL is given, relative URLs will be prefixed by it. */
+    function __construct(string $markdownFilePath, string $baseUrl = "")
     {
         if (!file_exists($markdownFilePath))
             throw new Exception("Markdown file does not exist: " . $markdownFilePath);
@@ -33,6 +34,7 @@ class Article
         $this->html = $Parsedown->text(implode("\n", $mdLines));
 
         // custom modifications to the HTML
+        $this->html = $this->addBaseUrlToLinksAndImages($this->html, $baseUrl);
         $this->html = $this->addAnchorsToHeadingsAndUpdateTOC($this->html);
         $this->html = $this->prettyPrintCodeBlocks($this->html);
     }
@@ -55,8 +57,9 @@ class Article
         // make YouTube links embedded videos
         if (strstr($url, "youtube.com/") || strstr($url, "youtu.be/")) {
             $url = "https://www.youtube.com/embed/" . basename($url);
-            return "<div class='ratio ratio-16x9'><iframe src='$url' frameborder='0' allowfullscreen " .
+            $html = "<div class='ratio ratio-16x9'><iframe src='$url' class='border shadow' frameborder='0' allowfullscreen " .
                 "allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe></div>";
+            return "<div class='container my-5'>$html</div>";
         }
 
         // make images link to themselves
@@ -64,7 +67,8 @@ class Article
             endsWith($url, ".png") || endsWith($url, ".jpg") || endsWith($url, ".jpeg") ||
             endsWith($url, ".bmp") || endsWith($url, ".gif")
         ) {
-            return "<a href='$url'><img src='$url' class='mw-100' /></a>";
+            // this area customizes spacing around the image
+            return "<a href='$url'><img src='$url' class='img-fluid' /></a>";
         }
 
         // If this is a table of contents, mark it with HTML so we can come back to it later
@@ -74,6 +78,20 @@ class Article
 
         // we didn't do anything special, so return the URL so it will be a clickable link
         return $url;
+    }
+
+    private function addBaseUrlToLinksAndImages(string $html, string $baseUrl): string
+    {
+        if ($baseUrl == "")
+            return $html;
+
+        $html = str_replace("<img src='", "<img src='{{baseUrl}}", $html);
+        $html = str_replace("<img src=\"", "<img src=\"{{baseUrl}}", $html);
+        $html = str_replace("<a href='", "<a href='{{baseUrl}}", $html);
+        $html = str_replace("<a href=\"", "<a href=\"{{baseUrl}}", $html);
+        $html = str_replace('{{baseUrl}}http', 'http', $html);
+        $html = str_replace('{{baseUrl}}', $baseUrl . '/' . $this->info->folderName . '/', $html);
+        return $html;
     }
 
     private function addAnchorsToHeadingsAndUpdateTOC($html): string
