@@ -69,16 +69,25 @@ After establishment of whole-cell configuration, ions no longer freely move betw
 there is effectively no LJP but the offset voltage is still offsetting as if LJP were present. By knowing the LJP, the scientist can
 adjust offset voltage to compensate for it, resulting in more accurate measured and clamped voltages.
 
-<p align="center">V<sub>meter</sub> = V<sub>cell</sub> + LJP</p>
+<div class="text-center">
+
+V<sub>meter</sub> = V<sub>cell</sub> + LJP
+
+</div>
 
 **To correct for LJP,** the electrophysiologist must calculate LJP mathematically (using software like LJPcalc) or estimate it experimentally (see the section on this topic below). Once the LJP is known it can be compensated for experimentally to improve accuracy of recorded and clamped voltages.
 
-<p align="center">V<sub>cell</sub> = V<sub>meter</sub> - LJP</p>
+
+<div class="text-center">
+
+V<sub>cell</sub> = V<sub>meter</sub> - LJP
+
+</div>
 
 > âš ï¸ This method assumes that the amplifier voltage was zeroed at the start of the experiment when the pipette was in open-tip configuration 
 with the bath, and that concentration of chloride (if using Ag/AgCl electrodes) in the internal and bath solutions are stable throughout experiments.
 
-<div align="center">
+<div class="text-center">
 
 ![](ljp.png)
 
@@ -87,6 +96,10 @@ with the bath, and that concentration of chloride (if using Ag/AgCl electrodes) 
 ### Example Patch-Clamp LJP Calculation & Correction
 
 This ion set came from in [Figl et al., 2003](https://medicalsciences.med.unsw.edu.au/sites/default/files/soms/page/ElectroPhysSW/AxoBits39New.pdf) Page 8. They have been loaded into LJPcalc such that the pipette solution is c0 and the bath solution is cL. Note that the order of ions has been adjusted to place the most abundant two ions at the bottom. This is ideal for LJPcalc's analytical method.
+
+
+<div class="container text-center">
+<div class="d-inline-block">
 
  Name       | Charge | pipette (mM) | bath (mM)      
 ------------|--------|--------------|---------
@@ -97,6 +110,9 @@ This ion set came from in [Figl et al., 2003](https://medicalsciences.med.unsw.e
  HEPES      | -1     | 5            | 5
  Gluconate  | -1     | 145          | 0           
  Cl         | -1     | 10           | 148.8
+
+</div>
+</div>
 
 Loading this table into LJPcalc produces the following output:
 
@@ -121,11 +137,15 @@ LJP at 20 C (293.15 K) = 16.052319631180264 mV
 
 If we have patch-clamp data that indicates a neuron rests at -48.13 mV, what is its true resting potential? Now that we know the LJP, we can subtract it from our measurement:
 
-<p align="center">V<sub>cell</sub> = V<sub>measured</sub> - LJP</p>
+<div class="text-center">
 
-<p align="center">V<sub>cell</sub> = -48.13 - 16.05 mV</p>
+<p>V<sub>cell</sub> = V<sub>measured</sub> - LJP</p>
 
-<p align="center">V<sub>cell</sub> = -64.18 mV</p>
+<p>V<sub>cell</sub> = -48.13 - 16.05 mV</p>
+
+<p>V<sub>cell</sub> = -64.18 mV</p>
+
+</div>
 
 We now know our cell rests at -64.18 mV.
 

@@ -43,15 +43,6 @@ blockquote p {
     overflow-x: auto;
 }
 
-.center {
-    /* 
-    TODO: old blog posts use this. 
-    Switch them to use text-center 
-    */
-    margin: auto;
-    text-align: center;
-}
-
 /* GitHub-style tables */
 
 table {
