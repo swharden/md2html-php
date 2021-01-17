@@ -1,0 +1,4 @@
+# redirect sitemap requests to sitemap.php
+
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+RewriteRule ^sitemap$ sitemap.php [L]

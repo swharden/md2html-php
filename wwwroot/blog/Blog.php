@@ -125,6 +125,48 @@ class Blog
         return $rss;
     }
 
+    /** Serve a XML sitemap of all blog posts */
+    public function getSitemap()
+    {
+        $baseUrl = "https://swharden.com/blog";
+        $articlePaths = $this->getBlogArticlePaths();
+
+        $xml = "";
+        $xml .= "<?xml version='1.0' encoding='UTF-8'?>";
+        $xml .= "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>";
+
+        $xml .= "   <url>";
+        $xml .= "      <loc>$baseUrl</loc>";
+        $xml .= "      <changefreq>always</changefreq>";
+        $xml .= "      <priority>1.0</priority>";
+        $xml .= "   </url>";
+
+        foreach ($articlePaths as $articlePath) {
+            $info = new ArticleInfo($articlePath);
+
+            // prioritize based on age
+            $ageDays = (time() - $info->dateTime) / (60 * 60 * 24);
+            $priority = 1.0;
+            $changeFreq = "always";
+            if ($ageDays > 30) {
+                $changeFreq = "monthly";
+                $priority = 0.7;
+            }
+            if ($ageDays > 365) {
+                $priority = 0.3;
+                $changeFreq = "yearly";
+            }
+
+            $xml .= "   <url>";
+            $xml .= "      <loc>$baseUrl/$info->folderName</loc>";
+            $xml .= "      <changefreq>$changeFreq</changefreq>";
+            $xml .= "      <priority>$priority</priority>";
+            $xml .= "   </url>";
+        }
+        $xml .= "</urlset>";
+        return $xml;
+    }
+
     /** Return an array of paths to markdown files in reverse lexicographical order */
     private function getBlogArticlePaths(string $tag = ""): array
     {

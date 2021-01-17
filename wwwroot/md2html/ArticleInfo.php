@@ -6,6 +6,7 @@ require_once('misc.php');
 class ArticleInfo
 {
     public string $path;
+    public string $folderName;
     public int $modified;
     public string $title = "";
     public string $description = "";
@@ -22,13 +23,15 @@ class ArticleInfo
             throw new Exception("Markdown file does not exist: " . $markdownFilePath);
 
         $this->path = realpath($markdownFilePath);
+        $this->folderName = basename(dirname($this->path));
         $this->modified = filemtime($this->path);
         $this->dateTime = $this->modified;
         $this->updateDateStrings();
         $this->processHeaderItems();
     }
 
-    private function updateDateStrings(){
+    private function updateDateStrings()
+    {
         $this->dateString = date("F jS, Y", $this->dateTime);
         $this->dateStringShort = date("Y-m-d", $this->dateTime);
     }
@@ -55,7 +58,7 @@ class ArticleInfo
                 $this->processHeaderItem($key, $value);
             }
         }
-        
+
         $this->contentOffset = ftell($file);
         fclose($file);
     }
