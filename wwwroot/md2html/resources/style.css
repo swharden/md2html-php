@@ -43,6 +43,36 @@ blockquote p {
     overflow-x: auto;
 }
 
+/* Custom styles for DIV blocks containing images */
+
+article img {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    max-width: 100% !important;
+}
+
+article .img-border img {
+    border: 1px solid black;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+article .thumbnail img {
+    height: 9em !important;
+    margin: .5em !important;
+}
+
+article .small img {
+    max-width: 35% !important;
+    margin: 1em !important;
+}
+
+article .medium img {
+    max-width: 65% !important;
+    margin: 1em !important;
+}
+
 /* GitHub-style tables */
 
 table {
