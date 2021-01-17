@@ -11,6 +11,9 @@ require_once(dirname(__file__) . "/../md2html/ArticleInfo.php");
  */
 class Blog
 {
+    //private $BLOG_URL = 'https://swharden.com/blog';
+	private $BLOG_URL = 'http://localhost:8080/blog';
+	
 
     /** Serve the Nth page of blog posts (starting at 0) */
     public function getPageHTML(int $pageIndex, string $tag = "", int $articlesPerPage = 5): string
@@ -39,10 +42,11 @@ class Blog
         $page->addArticles($articlesToShow);
 
         // add pagination links for every page in the set
+		$baseUrl = ($tag == "") ? $this->BLOG_URL : $this->BLOG_URL . "/category/$tag";
         for ($i = 0; $i < $pageCount; $i++) {
             $pageNumber = $i + 1;
             $pageIsActive = ($i == $pageIndex);
-            $pageUrl = ($i == 0) ? "./" : "?page=$pageNumber";
+            $pageUrl = ($i == 0) ? $baseUrl : $baseUrl . "/?page=$pageNumber";
             $page->addPagination("$pageNumber", $pageUrl, $pageIsActive);
         }
 
@@ -242,11 +246,11 @@ class Blog
         $html = "";
         $html .= "<li class='my-1'>";
         $html .= "$info->dateStringShort ";
-        $url = "../" . basename(dirname($info->path));
+        $url = $this->BLOG_URL . "/" . basename(dirname($info->path));
         $html .= "<a href='$url'><strong>$info->title</strong></a>";
         foreach ($info->tags as $tag) {
             $bgColor = $this->colorHash($tag);
-            $tagUrl = "../category/" . sanitizeLinkUrl($tag);
+            $tagUrl = $this->BLOG_URL . "/category/" . sanitizeLinkUrl($tag);
             $html .= "<span class='badge rounded-pill border fw-normal ms-1' style='background-color: $bgColor'>" .
                 "<a href='$tagUrl' style='color: #00000066'>$tag</a></span>";
         }
