@@ -4,7 +4,11 @@ require_once(dirname(__file__) . "/../md2html/misc.php");
 require_once(dirname(__file__) . "/../md2html/Page.php");
 require_once(dirname(__file__) . "/../md2html/ArticleInfo.php");
 
-/** Tools for serving a complex multi-page website */
+/** Tools for serving a complex multi-page website.
+ *    - getPageHTML() returns a single page (optionally limited by category/tag)
+ *    - getPostIndexHTML() returns a list of all posts organized by date
+ *    - getCategoryIndexHTML() returns a list of all posts organized by category
+ */
 class Blog
 {
 
@@ -24,20 +28,22 @@ class Blog
         // add the articles to the page
         $page = new Page();
         $pageNumber = $pageIndex + 1;
-        $page->setTitle("All Posts - Page $pageNumber");
+
+        $tagLabel = $tag == "" ? "Blog" : $tag;
+        $tag = str_replace("-", " ", $tagLabel);
+        $page->setTitle(ucwords($tag) . " - Page $pageNumber");
+
         if (isset($_GET['page']))
             $page->disableIndexing();
         $page->enablePermalink(true);
         $page->addArticles($articlesToShow);
 
-        // add pagination links
+        // add pagination links for every page in the set
         for ($i = 0; $i < $pageCount; $i++) {
             $pageNumber = $i + 1;
             $pageIsActive = ($i == $pageIndex);
-            if ($i == 0)
-                $page->addPagination("$pageNumber", "./", $pageIsActive);
-            else
-                $page->addPagination("$pageNumber", "?page=$pageNumber", $pageIsActive);
+            $pageUrl = ($i == 0) ? "./" : "?page=$pageNumber";
+            $page->addPagination("$pageNumber", $pageUrl, $pageIsActive);
         }
 
         return $page->getHtml();
@@ -55,6 +61,7 @@ class Blog
         $html .= "</ul>";
 
         $page = new Page();
+        $page->setTitle("All Blog Posts");
         $page->addHtml($html);
         return $page->getHtml();
     }
@@ -73,7 +80,7 @@ class Blog
         $tags = array_unique($tags);
         sort($tags);
 
-        $html = "<h1>Categories</h1>";
+        $html = "<h1>Blog Post Categories</h1>";
         foreach ($tags as $tag) {
             $html .= "<h2>$tag</h2>";
             $sanTag = sanitizeLinkUrl($tag);
@@ -86,6 +93,7 @@ class Blog
             $html .= "</ul>";
         }
         $page = new Page();
+        $page->setTitle("Blog Post Categories");
         $page->addHtml($html);
         return $page->getHtml();
     }
