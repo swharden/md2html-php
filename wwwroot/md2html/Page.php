@@ -78,11 +78,12 @@ class Page
         $html = "";
         $html .= "<div><a href=''><small>" . $article->info->title . "</small></a></div>";
         $html .= "<div><small>" . $article->info->dateString . "</small></div>";
-        $tagHtml = "";
+        $tagHtmls = [];
         foreach ($article->info->tags as $tag) {
             $tagUrl = "category/" . sanitizeLinkUrl($tag);
-            $tagHtml .= "[<a href='$tagUrl'>$tag</a>] ";
+            $tagHtmls[] = "<a href='$tagUrl'>$tag</a>";
         }
+        $tagHtml = implode(', ', $tagHtmls);
         $html .= "<div><small>$tagHtml</small></div>";
         return $html;
     }

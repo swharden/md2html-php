@@ -12,7 +12,7 @@ if (isset($_GET['page'])) {
 }
 
 if ($finalFolderName == "category") {
-    echo "TODO: category list";
+    echoTagPage();
 } else {
     $category = $finalFolderName;
     echoBlogPage($pageIndex, $category);

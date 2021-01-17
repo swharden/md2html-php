@@ -109,27 +109,66 @@ function hexColorFromHSV(float $hue, float $saturation = .1, float $value = 1)
         return hexColor($v, $p, $q);
 }
 
+/** Return <li>info</li> about the given article */
+function getArticleLi(ArticleInfo $info)
+{
+    $html = "";
+    $html .= "<li class='my-1'>";
+    $html .= "$info->dateStringShort ";
+    $url = "../" . basename(dirname($info->path));
+    $html .= "<a href='$url'><strong>$info->title</strong></a>";
+    foreach ($info->tags as $tag) {
+        $bgColor = colorHash($tag);
+        $tagUrl = "../category/" . sanitizeLinkUrl($tag);
+        $html .= "<span class='badge rounded-pill border fw-normal ms-1' style='background-color: $bgColor'>" .
+            "<a href='$tagUrl' style='color: #00000066'>$tag</a></span>";
+    }
+    $html .= "</li>";
+    return $html;
+}
+
 /** Serve a page listing all blog posts */
 function echoBlogIndex()
 {
     $html = "<h1>All Blog Posts</h1>";
     $html .= "<ul>";
     foreach (getBlogArticlePaths() as $articlePath) {
-        $html .= "<li class='my-1'>";
         $info = new ArticleInfo($articlePath);
-        $html .= "$info->dateStringShort ";
-        $url = "../" . basename(dirname($info->path));
-        $html .= "<a href='$url'><strong>$info->title</strong></a>";
-        foreach ($info->tags as $tag) {
-            $bgColor = colorHash($tag);
-            $tagUrl = "../category/" . sanitizeLinkUrl($tag);
-            $html .= "<span class='badge rounded-pill border fw-normal ms-1' style='background-color: $bgColor'>" .
-                "<a href='$tagUrl' style='color: #00000066'>$tag</a></span>";
-        }
-        $html .= "</li>";
+        $html .= getArticleLi($info);
     }
     $html .= "</ul>";
 
+    $page = new Page();
+    $page->addHtml($html);
+    echo $page->getHtml();
+}
+
+/** Serve a page listing all blog posts grouped by category */
+function echoTagPage()
+{
+    $infos = [];
+    $tags = [];
+    foreach (getBlogArticlePaths() as $articlePath) {
+        $info = new ArticleInfo($articlePath);
+        $infos[] = $info;
+        foreach ($info->tags as $tag)
+            $tags[] = $tag;
+    }
+    $tags = array_unique($tags);
+    sort($tags);
+
+    $html = "<h1>Categories</h1>";
+    foreach ($tags as $tag) {
+        $html .= "<h2>$tag</h2>";
+        $sanTag = sanitizeLinkUrl($tag);
+        $html .= "<ul>";
+        foreach ($infos as $info) {
+            if (in_array($sanTag, $info->tagsSanitized)) {
+                $html .= getArticleLi($info);
+            }
+        }
+        $html .= "</ul>";
+    }
     $page = new Page();
     $page->addHtml($html);
     echo $page->getHtml();
