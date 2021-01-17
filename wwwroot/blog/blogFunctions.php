@@ -15,7 +15,7 @@ require_once(dirname(__file__) . "/../md2html/Page.php");
 require_once(dirname(__file__) . "/../md2html/ArticleInfo.php");
 
 /** Return an array of paths to markdown files in reverse lexicographical order */
-function getBlogArticlePaths(bool $newestFirst = true): array
+function getBlogArticlePaths(string $tag = ""): array
 {
     $blogPath = realpath(dirname(__file__));
     $mdPaths = [];
@@ -24,25 +24,28 @@ function getBlogArticlePaths(bool $newestFirst = true): array
         if ($fileinfo->isDot())
             continue;
         $mdPath =  $blogPath . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . "index.md";
-        if (file_exists($mdPath))
-            $mdPaths[] = $mdPath;
+        if (file_exists($mdPath)) {
+            if ($tag == "") {
+                $mdPaths[] = $mdPath;
+            } else {
+                $info = new ArticleInfo($mdPath);
+                if (in_array($tag, $info->tagsSanitized))
+                    $mdPaths[] = $mdPath;
+            }
+        }
     }
-
-    if ($newestFirst)
-        rsort($mdPaths);
-    else
-        sort($mdPaths);
-
+    rsort($mdPaths);
     return $mdPaths;
 }
 
 /** Serve the Nth page of blog posts (starting at 0) */
-function echoBlogPage(int $pageIndex, int $articlesPerPage = 5)
+function echoBlogPage(int $pageIndex, string $tag = "", int $articlesPerPage = 5)
 {
     // inventory available articles
-    $articlePaths = getBlogArticlePaths();
+    $articlePaths = getBlogArticlePaths($tag);
 
     // determine which articles to show
+    $pageIndex = max(0, $pageIndex);
     $pageCount = count($articlePaths) / $articlesPerPage;
     $firstIndex = $articlesPerPage * $pageIndex;
     $isValidPageIndex = ($pageIndex >= 0);
@@ -57,7 +60,7 @@ function echoBlogPage(int $pageIndex, int $articlesPerPage = 5)
     for ($i = 0; $i < $pageCount; $i++) {
         $pageNumber = $i + 1;
         $pageIsActive = ($i == $pageIndex);
-        $page->addPagination("$pageNumber", "./page/$pageNumber", $pageIsActive);
+        $page->addPagination("$pageNumber", "?page=$pageNumber", $pageIsActive);
     }
 
     echo $page->getHtml();
@@ -119,7 +122,7 @@ function echoBlogIndex()
         $html .= "<a href='$url'><strong>$info->title</strong></a>";
         foreach ($info->tags as $tag) {
             $bgColor = colorHash($tag);
-            $tagUrl = "category/" . sanitizeLinkUrl($tag);
+            $tagUrl = "../category/" . sanitizeLinkUrl($tag);
             $html .= "<span class='badge rounded-pill border fw-normal ms-1' style='background-color: $bgColor'>" .
                 "<a href='$tagUrl' style='color: #00000066'>$tag</a></span>";
         }

@@ -1,6 +1,7 @@
 <?php
 
 require_once('Article.php');
+require_once('misc.php');
 
 /** This object assembles and returns a complete HTML page.
  * Instantiate it, customize settings, add article(s), then getHtml().
@@ -79,7 +80,8 @@ class Page
         $html .= "<div><small>" . $article->info->dateString . "</small></div>";
         $tagHtml = "";
         foreach ($article->info->tags as $tag) {
-            $tagHtml .= "[<a href=''>$tag</a>] ";
+            $tagUrl = "category/" . sanitizeLinkUrl($tag);
+            $tagHtml .= "[<a href='$tagUrl'>$tag</a>] ";
         }
         $html .= "<div><small>$tagHtml</small></div>";
         return $html;

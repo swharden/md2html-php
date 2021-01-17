@@ -11,8 +11,9 @@ class ArticleInfo
     public string $description = "";
     public int $dateTime;
     public string $dateString;
-    public string $dateStringShort = "";
+    public string $dateStringShort;
     public array $tags = array();
+    public array $tagsSanitized = array();
     public int $contentOffset = 0;
 
     function __construct(string $markdownFilePath)
@@ -23,7 +24,13 @@ class ArticleInfo
         $this->path = realpath($markdownFilePath);
         $this->modified = filemtime($this->path);
         $this->dateTime = $this->modified;
+        $this->updateDateStrings();
         $this->processHeaderItems();
+    }
+
+    private function updateDateStrings(){
+        $this->dateString = date("F jS, Y", $this->dateTime);
+        $this->dateStringShort = date("Y-m-d", $this->dateTime);
     }
 
     private function processHeaderItems()
@@ -75,14 +82,14 @@ class ArticleInfo
                 $dateParts['day'],
                 $dateParts['year']
             );
-            $this->dateString = date("F jS, Y", $this->dateTime);
-            $this->dateStringShort = date("Y-m-d", $this->dateTime);
+            $this->updateDateStrings();
             return;
         }
 
         if ($key == "tags") {
             foreach (explode(',', $value) as $tag) {
                 $this->tags[] .= trim($tag);
+                $this->tagsSanitized[] .= sanitizeLinkUrl(trim($tag));
             }
             return;
         }
