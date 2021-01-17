@@ -12,6 +12,7 @@ class Article
     public string $html;
     public int $modified;
     public ArticleInfo $info;
+    public string $permalink;
 
     /** Create an article from a markdown file. 
      * If a base URL is given, relative URLs will be prefixed by it. */
@@ -23,6 +24,7 @@ class Article
         $this->info = new ArticleInfo($markdownFilePath);
         $this->markdown = file_get_contents($markdownFilePath);
         $this->sourceHtml = htmlspecialchars($this->markdown);
+        $this->permalink = $baseUrl . '/' . $this->info->folderName;
 
         // custom modifications to the Markdown
         $mdBody = substr($this->markdown, $this->info->contentOffset);
