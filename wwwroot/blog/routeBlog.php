@@ -12,4 +12,5 @@ require('../md2html/Page.php');
 $page = new Page();
 $page->addArticle($markdownFilePath);
 $page->enablePermalink(true, 'http://localhost:8081/blog');
+$page->pagination->setNextPrevious($markdownFilePath);
 echo $page->getHtml();

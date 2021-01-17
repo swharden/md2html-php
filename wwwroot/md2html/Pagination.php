@@ -18,26 +18,89 @@ class PaginationPage
 
 class Pagination
 {
-    public array $numberedPages = array();
-    public PaginationPage $nextPage;
-    public PaginationPage $previousPage;
+    private array $numberedPages = array();
+    private PaginationPage $newerPage;
+    private PaginationPage $olderPage;
 
     public function addNumberedPage(string $label, string $url, bool $isHighlighted, bool $isEnabled)
     {
         $this->numberedPages[] = new PaginationPage($label, $url, $isHighlighted, $isEnabled);
     }
 
-    public function setNextPage(string $label, string $url)
+    public function getPageFromMarkdownFile(string $mdPath): PaginationPage
     {
-        $this->nextPage = new PaginationPage($label, $url, false, false);
+        $info = new ArticleInfo($mdPath);
+        return new PaginationPage($info->title, "../" . $info->folderName, false, false);
     }
 
-    public function setPreviousPage(string $label, string $url)
+    public function getHtml(): string
     {
-        $this->previousPage = new PaginationPage($label, $url, false, false);
+        if (count($this->numberedPages) > 0)
+            return $this->getHtmlNumberedPages();
+        else
+            return $this->getHtmlNextPrevious();
     }
 
-    public function getHtmlNumbered()
+    public function getHtmlNumberedPages(): string
     {
+        $html = "<!-- numbered pagination -->";
+        $html .= "<nav aria-label='Page navigation'>";
+        $html .= "<ul class='pagination justify-content-center'>";
+        foreach ($this->numberedPages as $page) {
+            $disabled = $page->isEnabled ? "" : "disabled";
+            $active = $page->isHighlighted ? "active" : "";
+            $html .= "<li class='page-item $disabled $active'><a class='page-link' href='$page->url'>$page->label</a></li>";
+        }
+        $html .= "</ul>";
+        $html .= "</nav>";
+        return $html;
+    }
+
+    private function nextPreviousLi(string $category, string $title, string $url): string
+    {
+        $html = "";
+        $html .= "<li class='page-item my-3'>";
+        $html .= "<div class='display-6'>$category</div>";
+        $html .= "<a class='page-link d-inline-block my-2' href='$url'>$title</a>";
+        $html .= "</li>";
+        return $html;
+    }
+
+    public function getHtmlNextPrevious(): string
+    {
+        $html = "<!-- next/previous pagination -->";
+        $html .= "<nav aria-label='Adjacent page navigation'>";
+        $html .= "<ul class='pagination flex-column'>";
+
+        if (isset($this->newerPage)) {
+            $html .= $this->nextPreviousLi("Newer", $this->newerPage->label, $this->newerPage->url);
+        }
+
+        if (isset($this->olderPage)) {
+            $html .= $this->nextPreviousLi("Older", $this->olderPage->label, $this->olderPage->url);
+        }
+
+        $html .= $this->nextPreviousLi("All Posts", "Posts organized by date", "../posts");
+        $html .= $this->nextPreviousLi("Categories", "Posts organized by category", "../category");
+
+        $html .= "</ul>";
+        $html .= "</nav>";
+        return $html;
+    }
+
+    /** Given the path to a single article markdown file, set next/previous by looking at adjacent articles */
+    public function setNextPrevious(string $mdPath)
+    {
+        // list all directories with an index.md
+        $mdPath = realpath($mdPath);
+        $parentFolder = dirname(dirname($mdPath));
+        $adjacentMdPaths = glob("$parentFolder/*/index.md");
+        $thisIndex = array_search($mdPath, $adjacentMdPaths);
+
+        if ($thisIndex + 1 < count($adjacentMdPaths))
+            $this->newerPage = $this->getPageFromMarkdownFile($adjacentMdPaths[$thisIndex + 1]);
+
+        if ($thisIndex - 1 >= 0)
+            $this->olderPage = $this->getPageFromMarkdownFile($adjacentMdPaths[$thisIndex - 1]);
     }
 }

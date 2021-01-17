@@ -1,6 +1,7 @@
 <?php
 
 require_once('Article.php');
+require_once('Pagination.php');
 require_once('misc.php');
 
 /** This object assembles and returns a complete HTML page.
@@ -10,15 +11,17 @@ class Page
 {
     private float $timeStart;
     private array $articles = array();
-    private array $pagination = array();
     private array $replacements = array();
     private bool $showPermalink = false;
     private string $baseUrl = "";
+    
+    public Pagination $pagination;
 
     function __construct()
     {
         $this->timeStart = microtime(true);
         $this->replacements = include('settings.php');
+        $this->pagination = new Pagination();
     }
 
     public function addArticle(string $markdownFilePath, string $baseUrl = "")
@@ -57,11 +60,6 @@ class Page
         $this->replacements["{{robotsContent}}"] = "noindex";
     }
 
-    public function addPagination(string $label, string $url, bool $active = false)
-    {
-        $this->pagination[] = [$label, $url, $active];
-    }
-
     public function enablePermalink(bool $enabled, string $baseUrl)
     {
         $this->showPermalink = $enabled;
@@ -72,7 +70,7 @@ class Page
     {
         $html = $this->getPageHtml();
         $html = str_replace('{{articles}}', $this->getArticleHtml(), $html);
-        $html = str_replace('{{pagination}}', $this->getPaginationHtml(), $html);
+        $html = str_replace('{{pagination}}', $this->pagination->getHtml(), $html);
         $html = str_replace('{{elapsedMsec}}', round((microtime(true) - $this->timeStart) * 1000, 3), $html);
         return $html;
     }
@@ -144,19 +142,6 @@ class Page
                 $articleHtml = str_replace('{{viewSourceMessage}}', "", $articleHtml);
                 $html .= $articleHtml;
             }
-        }
-        return $html;
-    }
-
-    private function getPaginationHtml(): string
-    {
-        $html = "<!-- pagination -->";
-        foreach ($this->pagination as $pageInfo) {
-            $label = $pageInfo[0];
-            $url = $pageInfo[1];
-            $disabled = ($url == "") ? "disabled" : "";
-            $active = $pageInfo[2] ? "active" : "";
-            $html .= "<li class='page-item $disabled $active'><a class='page-link' href='$url'>$label</a></li>";
         }
         return $html;
     }

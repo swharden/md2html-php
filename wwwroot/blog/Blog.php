@@ -46,7 +46,9 @@ class Blog
             $pageNumber = $i + 1;
             $pageIsActive = ($i == $pageIndex);
             $pageUrl = ($i == 0) ? $baseUrl : $baseUrl . "/?page=$pageNumber";
-            $page->addPagination("$pageNumber", $pageUrl, $pageIsActive);
+            $pageLabel = "$pageNumber";
+            $pageIsEnabled = true;
+            $page->pagination->addNumberedPage($pageLabel, $pageUrl, $pageIsActive, $pageIsEnabled);
         }
 
         return $page->getHtml();
@@ -175,6 +177,9 @@ class Blog
     {
         $blogPath = realpath(dirname(__file__));
         $mdPaths = [];
+
+        // TODO: replace with something like this
+        // $adjacentMdPaths = glob("$parentFolder/*/index.md");
         $dir = new DirectoryIterator($blogPath);
         foreach ($dir as $fileinfo) {
             if ($fileinfo->isDot())
