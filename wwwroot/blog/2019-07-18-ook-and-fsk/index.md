@@ -10,7 +10,7 @@ I got OOK and FSK working together (the S shape in the middle). I'm also now usi
 
 ### AJ4VD spotted in Pensacola, FL (W4HBK)
 
-<div class='center border'>
+<div class='text-center img-border'>
 
 ![](W4HBK-OOK.jpg)
 
@@ -18,7 +18,7 @@ I got OOK and FSK working together (the S shape in the middle). I'm also now usi
 
 ### AJ4VD spotted in Greensboro, NC (WD4ELG)
 
-<div class='center border'>
+<div class='text-center img-border'>
 
 ![](WD4ELG-Greensboro-NC-OOK.jpg)
 
@@ -26,7 +26,7 @@ I got OOK and FSK working together (the S shape in the middle). I'm also now usi
 
 I kept thinking my oscillator was drifting frequency because the line wasn't straight. Turns out it was my curved monitors!
 
-<div class='center border'>
+<div class='text-center img-border'>
 
 ![](2019-07-19-curved-monitors.jpg)
 

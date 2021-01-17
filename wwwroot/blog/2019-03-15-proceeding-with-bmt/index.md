@@ -14,7 +14,7 @@ tags: med
 
 **The last few weeks** were a nice vacation from cancer treatment. I enjoyed putting a little bit of time back into some of the activities that I had to put down when I began treatment last year (programming, electronics, and YouTube). I even grew back a little hair! I know the transplant process (which starts next Wednesday) will be rough (with much higher doses of chemotherapy than before), but I’m excited to be moving forward with treatment. My scheduled transplant day (when I’ll actually receive the stem cells which will grow my new immune system) is March 27, 2019. I hope I’ll be able to share a positive update sometime around then!
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](DSC_0401.jpg)
 ![](DSC_0480-1.jpg)

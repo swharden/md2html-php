@@ -10,7 +10,7 @@ This page documents development of a voltage-controlled oscillator suitable for 
 
 **For QRSS it's convenient to have 2 frequency shift adjustments: a coarse one to set frequency (~200 Hz), and a fine one for FSK (5 Hz).** I began with the design below allowing manual adjustment of coarse tuning, then an external input for fine tuning. Eventually I switched to a design where a single voltage controls tuning (coarse and fine). Many QRSS TX designs use a variable capacitor to set the coarse adjustment, but I don't like that design because it means you have to open your enclosure every time you want to shift frequency. If this is going to be ovenized, I'd love to close the box and do all the tuning electronically.
 
-<div class="center">
+<div class="text-center">
 
 ![](varactor-tuning-aj4vd-v1.png)
 
@@ -22,19 +22,19 @@ This page documents development of a voltage-controlled oscillator suitable for 
 
 **Eventually I stopped trying to separate fine and coarse frequency adjustments** and just went with a single voltage for tuning. I can control voltage coarsely and finely using potentiometers, so I was happy to simplify the oscillator design by moving that complexity to the keyer/control system. This is the QRSS oscillator I came up with. It's just a [Colpitts oscillator](https://en.wikipedia.org/wiki/Colpitts_oscillator) with an output buffer. Note that the buffer will self-oscillate if the oscillator stops, so on-off-keying should be achieved downstream of this circuit. These decisions are made with maximal frequency stability in mind.
 
-<div class="center">
+<div class="text-center">
 
 ![](qrss-oscillator.png)
 
 </div>
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](pcb-design.png)
 
 </div>
 
-<div class="center">
+<div class="text-center">
 
 ![](pcb-3d.png)
 
@@ -49,7 +49,7 @@ I'm glad I used a SMA connector, but in hindsight I should have laid it out side
 * For C11 I used 100p
 * For C10 and C12 I used NP0 120p caps
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](2019-07-26-a.jpg)
 ![](2019-07-26-b.jpg)
@@ -87,7 +87,7 @@ Running 12V through a single resistor would burn 2.88W of power as heat. If we w
 ### Circuit
 After the above considerations, this is what I came up with. I made it on a breadboard and it works well.
 
-<div class="center">
+<div class="text-center">
 
 ![](oven-aj4vd-resistor-heater.png)
 
@@ -109,7 +109,7 @@ After the above considerations, this is what I came up with. I made it on a brea
   
 ### Photos
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](2019-07-26-d.jpg)
 ![](2019-07-26-e.jpg)

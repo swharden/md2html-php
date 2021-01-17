@@ -8,7 +8,7 @@ tags: med
 
 **My first realization that something was changing** in the status of my disease came while filming a YouTube video about FTDI microchips. I noticed the cervical lymph nodes on my left side were swollen, took a selfie to assess what they looked like, then kept shooting the video with my body turned in such a way as to minimize the notability of my left neck. 
 
-<div class="center medium border">
+<div class="text-center img-medium img-border">
 
 ![](DSC_0080.jpg)
 

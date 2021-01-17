@@ -15,21 +15,21 @@ tags: csharp, microcontroller
 The main reason I like using FTDI devices is because when you plug them in to a modern computer, they just start working! You don't have to worry about drivers, driver versions, driver signing, third party drivers - most of the time it just does what it's supposed to do with no complexity. If I'm going to build a prototype device for a client, a FT-232 USB to serial converter is the way to go because I can be confident that when they plug in, their device will start working right away. Yeah, there are third party drivers to get extra open-sourcey functionality from FTDI devices ([libFTDI](https://www.intra2net.com/en/developer/libftdi/)), but I don't want to ask a client (with unknown tech-savviness) to install third-party unsigned drivers before plugging my device in (and heaven forbid the product doesn't work in their hands and I have to ask them to verify the device is actually using the third-party drivers and not defaulting back to the official ones). In this project I seek to use only the generic, default, officially-supported FTDI driver and API access will be provided by [libftd2xx](http://www.ftdichip.com/Drivers/D2XX.htm). Don't forget that USB ports supply 5V and GND, so in most cases you can power your project just from the USB port! All-in-all, the FT-232 is a great way to give a small device USB functionality. This post explores how to use it for more than just sending and receiving serial data...
 
 ### FT-232R Breakout Board
-<div class="center border">
+<div class="text-center img-border">
 
 ![](232r.png)
 
 </div>
 
 ### FT-232H Breakout Board
-<div class="center border">
+<div class="text-center img-border">
 
 ![](232h.png)
 
 </div>
 
 ### TTL-FT232R Cable
-<div class="center border">
+<div class="text-center img-border">
 
 ![](ttl-ft232r-cable.png)
 
@@ -79,7 +79,7 @@ while (true)
 
 ```
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](DSC_0023.jpg)
 
@@ -139,7 +139,7 @@ public static void BitBangBytes(byte[] bytesToSend)
 
 ```
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](DSC_0046.jpg)
 
@@ -167,7 +167,7 @@ BitBangBytes(bytesToSend.ToArray());
 
 ```
 
-<div class="center border small">
+<div class="text-center img-border img-small">
 
 ![](ad9850-SPI-DDS.png)
 ![](scope-output.png)
@@ -193,7 +193,7 @@ Rather than hard-coding a frequency into the code, I allowed it to accept this i
 *   `` ftdiDDS -sweep `` _sweep 0-50 MHz over 5 seconds_
 *   `` ftdiDDS -help `` _shows all options including a wiring diagram_
 
-<div class="center">
+<div class="text-center">
 
 ![](console.jpg)
 
@@ -203,7 +203,7 @@ Rather than hard-coding a frequency into the code, I allowed it to accept this i
 
 Although my initial goal for this project was simply to figure out how to bit-bang FTDI pins (the AD9850 was a SPI device I just wanted to test the concept on), now that I have a command-line-controlled RF synthesizer I feel like it's worth keeping! I threw it into an enclosure using my standard methods. I have to admit, the final build looks really nice. I'm still amused how simple it is.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](enclosed.png)
 ![](dds-desk.jpg)
@@ -216,7 +216,7 @@ __There is a serious problem with the FT-232R that affects its bit-bang function
 
 __Consider trying to blink a LED with { 0, 1, 0, 1, 0 }__ sent using `` ftdi.Write() `` to the FT-232R. You would expect to see two pulses with a 50% duty. Bit-banging two pins like this { 0, 1, 2, 1, 2, 0 } one would expect the output to look like two square waves at 50% duty with opposite phase. This just... isn't what we see on the FT-232R. The shifts are technically correct, but the timing is all over the place. The identical code, when run on a FT-232H, presents no timing problems - the output is a beautiful
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](232h-scope.jpg)
 
@@ -224,7 +224,7 @@ __Consider trying to blink a LED with { 0, 1, 0, 1, 0 }__ sent using `` ftdi.Wri
 
 __The best way to demonstrate how "bad" the phase problem is when bit-banging the FT232R is seen when trying to send 50% duty square waves.__ In the photograph of my oscilloscope below, the yellow trace is supposed to be a "square wave with 50% duty" (ha!) and the lower trace is supposed to be a 50% duty square wave with half the frequency of the top (essentially what the output of the top trace would be if it were run through a flip-flop). The variability in pulse width is so crazy that initially I mistook this as 9600 baud serial data! Although the timing looks wacky, the actual shifts are technically correct, and the FT-232R can still be used to bit-bang SPI.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](232r-scope2.jpg)
 
@@ -274,7 +274,7 @@ Bit-banging pin states on FTDI chips is a cool hack, but it isn't necessarily th
 
 **Bit-banging pin states on FTDI devices is relatively simple, even using the standard drivers and API.** The FTD2XX_NET library on NuGet provides a simple way to do this. The output of the FT232H is much more accurate in the time domain than the FT232R. Although there are crazy timing issues with the FT232R, it works fine when driving most SPI devices. Here we used this technique to write a console application to control an AD9850 DDS directly from an FT232R using command line arguments. When given a formal enclosure, this project looks (and works) great!
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](scope-dds.png)
 

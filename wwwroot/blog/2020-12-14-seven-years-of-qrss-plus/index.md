@@ -26,7 +26,7 @@ The back-end of QRSS Plus was redesigned in 2016 when I changed hosting companie
 
 I started logging grabber updates in September 2018, allowing me to reflect on the last few years of grabber activity. It takes a lot of effort to set-up and maintain a quality QRSS grabber, and the enthusiasm and dedication of the QRSS community is impressive and inspiring! 
 
-<div class="center">
+<div class="text-center">
 
 ![](grabbers-per-day.png)
 
@@ -34,7 +34,7 @@ I started logging grabber updates in September 2018, allowing me to reflect on t
 
 In 2020 our community saw ***155 active grabber stations***! On average there were more than 60 active stations running on any given day, and the number of active stations is visibly increasing with time.
 
-<div class="center">
+<div class="text-center">
 
 ![](grabs-per-day.png)
 
@@ -42,7 +42,7 @@ In 2020 our community saw ***155 active grabber stations***! On average there we
 
 In 2020 QRSS Plus analyzed a mean of 6,041 spectrograms per day. In total, QRSS Plus analyzed over ***2.2 million spectrograms*** this year!
 
-<div class="center">
+<div class="text-center">
 
 ![](grabbers-leader.png)
 
@@ -50,7 +50,7 @@ In 2020 QRSS Plus analyzed a mean of 6,041 spectrograms per day. In total, QRSS 
 
 This bar graph depicts the top 50 most active grabber stations ranked according to their total unique spectrogram upload count. Using this metric grabbers that update once every 10 minutes will appear to have twice as many unique grabber images as those which upload a unique image every 20 minutes.
 
-<div class="center">
+<div class="text-center">
 
 ![](qrss-2020-pie.png)
 

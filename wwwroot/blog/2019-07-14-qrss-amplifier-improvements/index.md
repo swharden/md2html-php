@@ -10,7 +10,7 @@ I improved my amplifier (now output 500mW) and am impressed how well my attic di
 
 ### AJ4VD spotted in Northwood, OH (N8NJ)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](N8NJ-Northwood-OH-USA.jpg)
 
@@ -18,7 +18,7 @@ I improved my amplifier (now output 500mW) and am impressed how well my attic di
 
 ### AJ4VD spotted in Las Cruces, NM (WA5DJJ)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](WA5DJJ-LasCruces-NM-USA.jpg)
 
@@ -28,7 +28,7 @@ I improved my amplifier (now output 500mW) and am impressed how well my attic di
 
 This grab shows a nice airplane reflection in the middle
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](WD4AH-FL-USA.jpg)
 
@@ -36,7 +36,7 @@ This grab shows a nice airplane reflection in the middle
 
 ### AJ4VD spotted in Ontario, Canada (VA3ROM)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](VA3ROM-Ontario-Canada.jpg)
 
@@ -46,7 +46,7 @@ This grab shows a nice airplane reflection in the middle
 
 This 8-hour grab reveals when my AC kicks on and off and demonstrates the necessity of ovenizing my setup. It's the signal around 10,139,980 Hz.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](W4HBK-Pensacola-FL-USA-unstable.jpg)
 

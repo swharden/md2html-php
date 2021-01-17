@@ -8,7 +8,7 @@ tags: blazor, csharp
 
 **Google Charts is a free interactive JavaScript charting framework.** The [Google Chart Gallery](https://developers.google.com/chart/interactive/docs/gallery) showcases many of the available chart types and options. This project shows how to create data from C# functions in Blazor, then use JavaScript interop to pass arrays into JavaScript for display with Google Charts.
 
-<div class="center">
+<div class="text-center">
 
 [![](blazor-google-charts.jpg)](app)
 

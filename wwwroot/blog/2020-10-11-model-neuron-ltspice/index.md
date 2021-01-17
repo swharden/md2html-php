@@ -8,7 +8,7 @@ tags: science, circuit
 
 **By modeling a voltage-clamp amplifier, patch pipette, and cell membrane as a circuit** using free circuit simulation software, I was able to create a virtual patch-clamp electrophysiology workstation and challenge model neurons with advanced voltage-clamp protocols. By modeling neurons with known properties and simulating experimental membrane test protocols, I can write membrane test analysis software and confirm its accuracy by comparing my calculated membrane measurements to the values in the original model. A strong advantage of this method (compared to using physical model cells) is that I can easily change values of any individual component to assess how it affects the accuracy of my analytical methods.
 
-<div class="center">
+<div class="text-center">
 
 ![](whole-cell-voltage-clamp-diagram.png)
 
@@ -56,7 +56,7 @@ tags: science, circuit
 
 **[LTSpice](https://en.wikipedia.org/wiki/LTspice) is a free analog circuit simulator by Analog Devices.** I enjoy using this program, but only because I'm used to it. For anyone trying to use it for the first time, I'm sorry. Watch a YouTube tutorial to learn how to get up and running with it. [Models used in this project are on GitHub](https://github.com/swharden/memtest) if you wish to simulate them yourself.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](voltage-clamp-circuit.png)
 
@@ -68,7 +68,7 @@ tags: science, circuit
 
 **The simulated membrane test shows a typical voltage-clamp trace (green)** which is interesting to compare to the command voltage (red) and the actual voltage inside the cell (blue). Note that although the hardware low-pass filter is connected, the green trace is the current passing through the feedback resistor (Rf). A benefit of this simulation is that we can probe anywhere, and being able to see how the cell's actual voltage differs from the target voltage is enlightening.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](voltage-clamp-simulation.png)
 
@@ -82,7 +82,7 @@ tags: science, circuit
 
 **Let's compare the output of the amplifier before and after low-pass filtering.** You can see that the Bessel filter takes the edge off the sharp transient and changes the shape of the curve for several milliseconds. This is an important consideration for analytical procedures which seek to measure the time constant of the decay slope, but I'll leave that discussion for another article.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](voltage-clamp-filter.png)
 
@@ -110,7 +110,7 @@ Notice I use math to get the difference of `Vout` and `Vcmd`, but in practice th
 
 **Let's further explore this circuit by adding pipette capacitance.** I set `Cp` to 100 pF (I know this is a large value) and observed strong oscillation at clamp voltage transitions. This trace shows voltage probed at the output of the Bessel filter.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](voltage-clamp-Cp100-Cf0.png)
 
@@ -118,7 +118,7 @@ Notice I use math to get the difference of `Vout` and `Vcmd`, but in practice th
 
 **A small amount of feedback capacitance reduced this oscillation**. The capacitor `Cf` placed across `Rf` serves as an RC low-pass filter to tame the amplifier's feedback. Applying too much capacitance slows the amplifier's response unacceptably. It was impressive to see how little feedback capacitance was required to change the shape of the curve. In practice parasitic capacitance likely makes design of patch-clamp amplifier headstages very challenging. Experimenting with different values of `Cp` and `Cf` is an interesting experience. Here setting `Cp` to 1 pF largely solves the oscillation issue, but its low-pass property reduces the peaks of the capacitive transients.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](voltage-clamp-Cp100-Cf1.png)
 
@@ -128,7 +128,7 @@ Notice I use math to get the difference of `Vout` and `Vcmd`, but in practice th
 
 **I created another model to simulate a giant squid axon studied with a two-electrode system.** It's not particularly useful other than as a thought exercise. By clamping between two different voltages you can measure the difference in current passing through the stimulation resistor to estimate the neuron's membrane resistance. [This model is on GitHub](https://github.com/swharden/memtest) too if you want to change some of the parameters and see how it affects the trace.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](two-electrode-circuit.png)
 ![](two-electrode-simulation.png)
@@ -167,7 +167,7 @@ Vcommand = l.getData('V(vcmd)') * 1e3  # mV
 Iclamp = l.getData('I(Rf)') * 1e12  # pA
 ```
 
-<div class="center">
+<div class="text-center">
 
 ![](voltage-clamp-simple-fig1.png)
 
@@ -201,7 +201,7 @@ plt.show()
 
 **Let's create an ideal circuit, simulate a membrane test, then analyze the data to see if we can derive original values for access resistance (Ra), cell capacitance (Cm), and membrane resistance (Rm).** I'll eliminate little tweaks like seal resistance, pipette capacitance, and hardware filtering, and proceed with a simple case voltage clamp mode.
 
-<div class="center">
+<div class="text-center">
 
 ![](voltage-clamp-memtest-circuit.png)
 
@@ -211,7 +211,7 @@ plt.show()
 
 Now let's run the simulation and save the output...
 
-<div class="center">
+<div class="text-center">
 
 ![](voltage-clamp-memtest-simulation.png)
 
@@ -219,7 +219,7 @@ Now let's run the simulation and save the output...
 
 I created a diagram to make it easier to refer to components of the membrane test:
 
-<div class="center">
+<div class="text-center">
 
 ![](voltage-clamp-square-membrane-test.png)
 
@@ -227,7 +227,7 @@ I created a diagram to make it easier to refer to components of the membrane tes
 
 **Think conceptually about what's happening here:** When the command voltage abruptly changes, `Vcell` and `Vcommand` are very different, so the voltage-clamp amplifier delivers a large amount of current right after this transition. The peak current (`Ipeak`) occurs at time zero relative to the transition. The current change between the previous steady-state current (`Iprev`) and the peak current (`Ipeak`) is only limited by `Ra` (since `Cm` only comes in to play after time passes). Let's call this maximum current change `Id`. With more time the current charges `Cm`, raising the `Vcell` toward (`Vcommand`) at a rate described by `TauClamp`. As `Vcell` approaches `Vcommand` the amplifier delivers less current. Altogether, amplifier current can be approximated by an exponential decay function:
 
-<div class="center">
+<div class="text-center">
 
 I<sub>t</sub> = I<sub>d</sub> * exp(-t / τ<sub>clamp</sub>) + I<sub>ss</sub>
 
@@ -237,7 +237,7 @@ I<sub>t</sub> = I<sub>d</sub> * exp(-t / τ<sub>clamp</sub>) + I<sub>ss</sub>
 
 **The speed at which `Vcell` changes in response to current delivered through the pipette** is a property of resistance (`Ra`) and capacitance (`Cm`). By studying this curve, we can calculate both. Let's start by isolating one curve. We start by isolating individual capacitive transients:
 
-<div class="center">
+<div class="text-center">
 
 ![](voltage-clamp-simple-fig5.png)
 
@@ -245,7 +245,7 @@ I<sub>t</sub> = I<sub>d</sub> * exp(-t / τ<sub>clamp</sub>) + I<sub>ss</sub>
 
 **Fit each curve to a single exponential function.** I'll gloss over how to do this because it is different for every programming language and analysis software. See my [Exponential Fit with Python](https://swharden.com/blog/2020-09-24-python-exponential-fit/) for details. Basically you'll fit a curve which has 3 parameters: `m`, `tau`, and `b`. You may wish to change the sign of tau depending on the orientation of the curve you are fitting. If your signal is low-pass filtered you may want to fit a portion of the curve avoiding the fastest (most distorted) portion near the peak. If you want to follow along, [code for this project is on GitHub](https://github.com/swharden/memtest).
 
-<div class="center">
+<div class="text-center">
 
 I<sub>t</sub> = m \* exp(-t / tau) + b
 
@@ -346,7 +346,7 @@ Accuracy of this value will be improved when we apply leak current correction de
 
 **Cell capacitance can alternatively be estimated by measuring the area under the capacitive transient.** This method is frequently used historically, and it is simpler and faster than the method described above because it does not require curve fitting. Each method has its pros and cons (e.g., sensitivity to access resistance, hardware filtering, or resilience in the presence of noise or spontaneous synaptic currents). Rather than compare and contrast the two methods, I'll simply describe the theory underlying how to perform this measurement.
 
-<div class="center">
+<div class="text-center">
 
 ![](mt2.png)
 
@@ -381,7 +381,7 @@ Rm = Rm * correction
 Cm = Cm / (correction^2)
 ```
 
-<div class="center">
+<div class="text-center">
 
 Metric | Model | Measured | Corrected | Error
 ---|---|---|---|--
@@ -403,7 +403,7 @@ Ra^2 - Ra * Rt + Rt * (Tau/Cm) = 0
 
 **It's possible to simulate a voltage-clamp _ramp_ and analyze that trace to accurately measure cell capacitance.** A strong advantage of this method is that it does not depend on `Ra`. Let's start by simulating a 10 mV ramp over 100 ms (50 ms down, 50 ms up). When we simulate this with LTSpice and plot it with Python ([screenshots, data, and code is on GitHub](https://github.com/swharden/memtest)) we find that cell voltage lags slightly behind the clamp voltage.
 
-<div class="center">
+<div class="text-center">
 
 ![](mtramp1.png)
 
@@ -411,7 +411,7 @@ Ra^2 - Ra * Rt + Rt * (Tau/Cm) = 0
 
 **During voltage-clamp ramps `Vm` lags behind the command voltage because charging `Cm` is limited by `Ra`.** If we measure the difference in this lag between descending and ascending ramps, we can estimate `Cm` in a way that is insensitive to `Ra`. Stated another way, `Ra` only affects abrupt changes in charging rate. Once the cell is charging at a steady rate, that rate of charge is largely unaffected by `Ra` because the stable charging current is already increased to counteract the previous effect `Ra`. Stated visually, `Ra` only affects the rate of charging at the corners of the V. Therefore, let's proceed ignoring the corners of the V and focus on the middle of each slope where the charging rate is stable (and effect of `Ra` is negligible).
 
-<div class="center">
+<div class="text-center">
 
 ![](mtramp2.png)
 
@@ -419,7 +419,7 @@ Ra^2 - Ra * Rt + Rt * (Tau/Cm) = 0
 
 **Analysis is achieved by comparing the falling current to the rising current.** We start separately isolating the falling and rising traces, then reverse one of them and plot the two on top of each other. The left and right edges of this plot represent edges of ramps where the system is still stabilizing to compensate for `Ra`, so let's ignore that part and focus on the middle where the charging rate is stable. We can measure the current lag as half of the mean difference of the two traces. Together with the rate of charge (the rate of the command voltage change) we have everything we need to calculate `Cm`.
 
-<div class="center">
+<div class="text-center">
 
 ![](mtramp3.png)
 
@@ -439,7 +439,7 @@ Cm = 149.993 pF <-- Our model is 150 pF
 
 **This page described how to model voltage-clamp membrane test sweeps and analyze them to calculate Ra, Cm, and Rm.** We validated our calculations were accurate by matching our calculated values to the ones used to define the simulation. We also explored measuring the area under the curve and using voltage-clamp ramps as alternative methods for determining `Cm`. There are a lot of experiments that could be done to characterize the relationship of noise, hardware filtering, and cell properties on the accuracy of these calculations. For now though, I'm satisfied with what we were able to achieve with free circuit simulation software and basic analysis with Python. [Code for this project is on GitHub](https://github.com/swharden/memtest).
 
-<div class="center">
+<div class="text-center">
 
 Metric | Model | Calculated | Error
 ---|---|---|---

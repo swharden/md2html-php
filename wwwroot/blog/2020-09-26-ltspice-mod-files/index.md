@@ -35,7 +35,7 @@ The last line tells us the name of this model's sub-circuit is `LM741/NS`
 
 Click the ".op" button on the toolbar, then add `.include` followed by the full path to the model file. After clicking OK place the text somewhere on your LTSpice circuit diagram.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](op2.png)
 
@@ -45,7 +45,7 @@ Click the ".op" button on the toolbar, then add `.include` followed by the full 
 
 We know the part we are including is a 5-pin op-amp, so we can start by placing a generic component. Notice the description says _you must give the value a name and include this file_. We will do this in the next step.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](opamp.png)
 
@@ -55,7 +55,7 @@ We know the part we are including is a 5-pin op-amp, so we can start by placing 
 
 Right-click the op-amp and update its `Value` to match the name of the subcircuit we read from the model file earlier.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](name.png)
 
@@ -65,7 +65,7 @@ Right-click the op-amp and update its `Value` to match the name of the subcircui
 
 Your new component will run using the properties of the model you downloaded.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](ltspice-lm741.png)
 

@@ -8,7 +8,7 @@ tags: med
 
 **I started my first round of chemotherapy today!** I expect to feel pretty lousy for the first few days after each infusion (the next one being 3 weeks from now), but I’m very happy that treatment has begun.
 
-<div class="center border small">
+<div class="text-center img-border img-small">
 
 ![](IMG_3030.jpg)
 

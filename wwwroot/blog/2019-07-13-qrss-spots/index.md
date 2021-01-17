@@ -10,7 +10,7 @@ This week I strung-up a 30m dipole in the attic and built an oscillator, keyer, 
 
 ### AJ4VD spotted in Pensacola, FL (W4HBK)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](W4HBK-Pensacola-FL-USA.jpg)
 
@@ -18,7 +18,7 @@ This week I strung-up a 30m dipole in the attic and built an oscillator, keyer, 
 
 ### AJ4VD spotted in Greensboro, NC (WD4ELG)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](WD4ELG-Greensboro-NC-USA.jpg)
 

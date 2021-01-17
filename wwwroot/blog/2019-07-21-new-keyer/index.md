@@ -8,7 +8,7 @@ tags: qrss, circuit
 
 **I'd like to use an interesting pattern** that takes advantage of both FSK and OOK. I want it to be 5 Hz or less in bandwidth, and I want it to be unique and recognizable in cases where only a few seconds are spotted, but I don't want it to be so odd that it's annoying. I came up with something like:
 
-<div class="center">
+<div class="text-center">
 
 ![](pattern.jpg)
 
@@ -16,7 +16,7 @@ tags: qrss, circuit
 
 Here's what it looks like on the air:
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](WD4ELG-30.1907210830.d1c3ee1f06.jpg)
 
@@ -49,13 +49,13 @@ The second potentiometer (RV2) sets the width of the FSK input. I adjust this to
 
 The output is buffered, mixed, and sent to the oscillator module with coax.
 
-<div class="center">
+<div class="text-center">
 
 ![](fsk-circuit.jpg)
 
 </div>
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](2019-07-19-keyer.jpg)
 ![](2019-07-19-modules.jpg)

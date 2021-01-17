@@ -8,7 +8,7 @@ tags: circuit, microcontroller
 
 The <em>Internet of Things</em> now includes Festivus poles! **Festivus is a holiday celebrated on December 23rd, and its [customary practices](https://en.wikipedia.org/wiki/Festivus) include a Festivus pole, Festivus dinner, airing of grievances, feats of strength, and Festivus miracles. The internet contains a few nods to the holiday, including [what happens when you Google for the word Festivus](https://www.google.com/search?q=festivus) (a Festivus pole is displayed at the bottom of the page). In 2015 I had the honor of gifting the world with the first [Festivus pole video game](https://www.swharden.com/wp/2015-12-23-festivus-pole-video-game/), and today I am happy to unveil the world's first internet-enabled Festivus pole. Every time somebody tweets #Festivus or #FestivusMiracle, the light at the top of the pole illuminates! All in the room then excitedly exclaim, "it's a Festivus miracle!"
 
-<div class="center border small">
+<div class="text-center img-border img-small">
 
 ![](723.jpg)
 
@@ -16,7 +16,7 @@ The <em>Internet of Things</em> now includes Festivus poles! **Festivus is a hol
 
 __The IoT Festivus Pole is powered by a Raspberry Pi__ (a Pi 2 Model B, although any Pi would work) running a Python script which occasionally checks for tweets using the [twitter API](https://developer.twitter.com/en/docs) (via [twython](https://github.com/ryanmcgrath/twython), a pure-python twitter API wrapper) and controls the GPIO pin 12 with [RPi.GPIO](https://pypi.python.org/pypi/RPi.GPIO) ([extra docs](https://learn.sparkfun.com/tutorials/raspberry-gpio/python-rpigpio-api)). After writing the Python script (which should work identically in Python 2 or Python 3), I got it to run automatically every time the system boots by adding a line to /etc/rc.local (surrounding it with parentheses and terminating the line with & to allow it to run without blocking the startup sequence). The LED was added to the end of a long wire (with a series 220-ohm resistor) and connected across the [Raspberry Pi header](https://pinout.xyz) pins 12 (PWM) and 14 (GND). I set PWM frequency to 100 Hz, but this is easily configurable in software.
 
-<div class="center small">
+<div class="text-center img-small">
 
 ![](festivus_miracle.gif)
 ![](729.jpeg)
@@ -25,7 +25,7 @@ __The IoT Festivus Pole is powered by a Raspberry Pi__ (a Pi 2 Model B, although
 
 __To build the Festivus pole__ I got a piece of wood and a steel conduit pipe from Lowe's (total <$5). Festivus purists will argue that Festivus poles should be made from aluminum (with its very high strength to weight ratio). I live in an apartment and don't have a garage, so my tool selection is limited. I cut the wood a few times with a jigsaw and glued it together to make an impressive stand similar to those of [traditional Festivus poles](https://en.wikipedia.org/wiki/Festivus). I have a few hole saw drill bits, but none of them perfectly matched the size of the pipe. I traced the outline of the pipe on the wood and cut-out a circular piece with a Dremel drill press in combination with a side-cutting bit. The hole was slightly larger than required for the pipe, so I used a few layers of electrical tape on the bottom of the pipe to "seal" the base of the pipe into the hole, then poured acrylic epoxy into the empty space. Clamping it against a desk allowed the epoxy to set such that the pole was rigidly upright, and the result was a fantastic-looking Festivus pole! It's a bit smaller in size than the famous one featured in Seinfeld, but I think it is appropriately sized for my apartment.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](725.jpg)
 ![](726.jpg)
@@ -34,7 +34,7 @@ __To build the Festivus pole__ I got a piece of wood and a steel conduit pipe fr
 
 __Adding the computer was easy!__ Internet capability was provided via a USB WiFi card. Code is at the bottom of this page. The LED was connected to [Raspberry Pi header](https://pinout.xyz) pins 12 and 14. The wiring was snaked through the conduit.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](728.jpg)
 ![](719.jpg)

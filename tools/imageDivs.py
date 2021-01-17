@@ -24,7 +24,7 @@ if __name__ == "__main__":
             lines = f.readlines()
 
         for i, originalLine in enumerate(lines):
-            line = originalLine.decode('utf-8').rstrip()
+            line = originalLine.decode('utf-8')
             if not line.startswith("<div class"):
                 continue
 
@@ -47,6 +47,7 @@ if __name__ == "__main__":
                 print()
                 print(filePath)
                 print(line)
+                lines[i] = line.encode('utf-8')
 
-        # with open(filePath, 'wb') as f:
-            # f.writelines(lines)
+        with open(filePath, 'wb') as f:
+            f.writelines(lines)

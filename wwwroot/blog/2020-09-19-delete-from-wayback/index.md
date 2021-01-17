@@ -7,7 +7,7 @@ tags: circuit, testing
 
 **This week my website was deleted from the Wayback Machine.** The [Wayback Machine](https://archive.org/web/) is an impressive website that lets you view what a website looked like years ago. As part of [Archive.org](https://archive.org/) Internet Archive, this website is truly impressive and holds entertainingly-old versions of most webpages. Just look at [Amazon.com in the year 2000](https://web.archive.org/web/20000601000000*/amazon.com) for a good laugh.
 
-<div class='center border'>
+<div class='text-center img-border'>
 
 ![](delete-waybackmachine.png)
 

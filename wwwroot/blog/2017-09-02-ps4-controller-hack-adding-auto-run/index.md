@@ -16,7 +16,7 @@ tags: circuit
 
 **I started out by looking online to see what the PS4 controller looked like inside.** Imgur has a [great PS4 dualshock controller teardown photo collection](http://imgur.com/a/ytRW5) which was an excellent starting place. From these photos I realized this hack would be pretty easy since the L3 "click" action is achieved by a [through-hole SPDT tactile switch](https://learn.sparkfun.com/tutorials/switch-basics) placed under the joystick.
 
-<div class="center">
+<div class="text-center">
 
 ![](teardown.jpg)
 
@@ -24,7 +24,7 @@ tags: circuit
 
 **I was surprised to find** my PS4 controller (below) was a little different (green for starters), but the overall layout was the same. I quickly identified the 4 pins of the L3 tactile switch and got to work...
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](069.jpg)
 
@@ -32,7 +32,7 @@ tags: circuit
 
 **After probing around** **with a multimeter and an oscilloscope,** **I was able to determine which pins do what.** Just from looking at the trace it's pretty obvious that two of the pins are the positive voltage rail. In this controller the positive voltage (VCC) is about 3 volts, so keep that in mind and don't hook-up a 5V power supply if you decide to debug this thing.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](095.jpg)
 
@@ -42,7 +42,7 @@ tags: circuit
 
 ## Simulating L3 Presses with a Microcontroller
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](145.jpg)
 
@@ -50,7 +50,7 @@ tags: circuit
 
 **I glued a microcontroller ([ATTiny85](http://www.atmel.com/images/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf)) to the circuit board, then ran some wires to the points of interest.** Visual inspection (and a double check with a multimeter when the battery was in) provided easy points for positive and ground which could power my microcontroller. The "L3 sense" pin (which toggles between two voltages when you press the L3 button) was run to pin 3 (PB4) of the microcontroller. In a production environment current limiting resistors and debounce capacitors would make sense, but in the spirit of the hack I keep things minimalistic.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](158.jpg)
 
@@ -58,7 +58,7 @@ tags: circuit
 
 **The device could be easily reassembled,** and there was plenty of room for the battery pack and its plastic holder to snap in place over the wires. Excellent!
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](161.jpg)
 
@@ -66,7 +66,7 @@ tags: circuit
 
 **While I was in the controller,** I removed the light-pipe that carries light to the diffuser on the back. The PS4 has an embarrassingly poor design (IMO) where the far side of the controller emits light depending on the state of the controller (blue for in use, black for off, orange for charging, etc). This is a terrible design in my opinion because if you have a glossy and reflective TV screen like I do, you see a blue light reflect back in the screen and bobble up and down as you hold the controller. Dumb! Removing the light pipe dramatically reduced the intensity, but still retains the original functionality.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](166.jpg)
 

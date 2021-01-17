@@ -7,7 +7,7 @@ date: 2020-09-22 13:15:00
 
 Azure Pipelines makes it easy to run tests in the cloud, but I found that a new React projects made with [`create-react-app`](https://reactjs.org/docs/create-a-new-react-app.html) fail to properly test in the cloud using the simple `npm test` command. Attempting this would display `No tests found related to files changed since last commit` but hang forever.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](npm-test-azure-pipelines.jpg)
 

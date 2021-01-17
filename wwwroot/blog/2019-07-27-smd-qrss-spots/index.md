@@ -14,7 +14,7 @@ This page documents interesting grabs of the signal from my [SMT QRSS Transmitte
 
 I was really strong on VE1VDM's grabber last night, but I found it interesting to see such a strong signal in the middle of the day (11AM).
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](VE1VDM.1907290830.35415d51dc.jpg)
 
@@ -22,7 +22,7 @@ I was really strong on VE1VDM's grabber last night, but I found it interesting t
 
 ### Stack (average of 13 grabs)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](VE1VDM.1907290940.jpg)
 
@@ -32,7 +32,7 @@ I was really strong on VE1VDM's grabber last night, but I found it interesting t
 
 I spotted my signal across the Atlantic. It's pretty weak, but you can just make out the unique shape on EA8BVP's grabber in the Canary Islands (4,000 miles away).
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](EA8BVP1.1907302050.jpg)
 
@@ -42,13 +42,13 @@ I spotted my signal across the Atlantic. It's pretty weak, but you can just make
 
 I spotted my signal in Sweden. This hint of my transmitter was captured by SA6BSS in Slutarp, Sweden at 12:30AM last night.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](SA6BSS-AJ4VD.jpg)
 
 </div>
 
-<div class="center border medium">
+<div class="text-center img-border img-medium">
 
 ![](globe.png)
 
@@ -60,7 +60,7 @@ I spotted my signal in Switzerland
 
 [Bill (W4HBK)](https://www.qsl.net/w4hbk/) emailed the [QRSS Knights](https://groups.io/g/qrssknights) a grab of my signal from a KIWI SDR captured at HB9EHO in Ittigen, Switzerland.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](HB9EHO.jpg)
 

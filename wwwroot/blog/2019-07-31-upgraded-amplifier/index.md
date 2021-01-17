@@ -10,7 +10,7 @@ The design is similar (CMOS buffer driving an IRF510) but I used perfboard to ma
 
 ### Old Amplifier
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](2019-07-30-old-amp.jpg)
 
@@ -18,13 +18,13 @@ The design is similar (CMOS buffer driving an IRF510) but I used perfboard to ma
 
 ### New Amplifier
 
-<div class="center">
+<div class="text-center">
 
 ![](schematic.png)
 
 </div>
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](2019-07-31-new-amp.jpg)
 
@@ -34,7 +34,7 @@ Right after hooking it up I saw my signal looking nice on the air:
 
 ### AJ4VD Spotted in Ontario, Canada (VA3ROM)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](VA3ROM.1907311950.549006f9e5.jpg)
 
@@ -42,7 +42,7 @@ Right after hooking it up I saw my signal looking nice on the air:
 
 ### AJ4VD Spotted in the Canary Islands (EA8BVP1)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](EA8BVP1.1907311940.821b800321.jpg)
 

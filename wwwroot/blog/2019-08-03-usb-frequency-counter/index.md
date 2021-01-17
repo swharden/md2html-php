@@ -8,7 +8,7 @@ tags: circuit
 
 **I built a frequency counter with a USB interface** based around a [74LV8154](https://www.ti.com/lit/ds/symlink/sn74lv8154.pdf) 32-bit counter, FTDI [FT230XS](https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT230X.pdf) (USB serial adapter), and an [ATMega328](https://www.microchip.com/wwwproducts/en/ATmega328) microcontroller. I've used this same counter IC in some old projects ([1](https://swharden.com/blog/2011-03-14-frequency-counter-finished/), [2](https://swharden.com/blog/2011-02-12-wideband-receiver-works/), [3](https://swharden.com/blog/2011-02-09-minimal-radio-project-continues/), [4](https://swharden.com/blog/2011-02-04-frequency-counter-working/), [5](https://swharden.com/blog/2011-01-28-home-brew-transceiver-taking-shape/)) this time I decided to I design the circuit a little more carefully, make a PCB, and use all surface-mount technology (SMT).
 
-<div class="center medium">
+<div class="text-center img-medium">
 
 ![](curved2.jpg)
 
@@ -16,7 +16,7 @@ tags: circuit
 
 **The micro USB port provides power and PC connectivity,** and when running the device sends frequency to the computer every second. All the parameters can be customized in software, and source code is on the [USB-Counter GitHub page](https://github.com/swharden/USB-Counter). 
 
-<div class="center">
+<div class="text-center">
 
 ![](DSC_0132.jpg)
 
@@ -28,7 +28,7 @@ tags: circuit
 
 **One advantage of this counter is that it is never reset.** Since this circuit uses 32-bit counter IC, and every gate cycle transmits the current count to the computer over USB. Because every input cycle is measured high precision measurements of frequency over long periods of time are possible. For example, 1000 repeated measurements with a 1Hz gate allows frequency measurement to a precision of 0.01 Hz.
 
-<div class="center border medium">
+<div class="text-center img-border img-medium">
 
 ![](2019-08-04-output.png)
 
@@ -50,7 +50,7 @@ tags: circuit
 
 **By populating one of two input paths** with components this device can serve as a sensitive frequency counter (with a small-signal amplifier front-end) or a pulse counter (with a simple 50 ohm load at the front-end).
 
-<div class="center">
+<div class="text-center">
 
 ![](schematic.png)
 
@@ -60,7 +60,7 @@ tags: circuit
 
 **An optional amplifier front-end** has been added to turn weak input into strong square waves suitable for driving the TTL counter IC. It is designed for continuously running input, and will likely self-oscillate if it is not actively driven.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](front-end.jpg)
 
@@ -68,7 +68,7 @@ tags: circuit
 
 **This simulation** shows a small 1 MHz signal fed into a high impedance front-end being amplified to easily satisfy TTL levels. The 1k resistor (R3) could be swapped-out for a 50 Ohm resistor for a more traditional input impedance if desired. LTSpice source files are in the GitHub repository in case you want to refine the simulation.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](front-end-wave.jpg)
 
@@ -89,19 +89,19 @@ tags: circuit
 
 ### PCB
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](pcb-dsn.png)
 
 </div>
 
-<div class="center">
+<div class="text-center">
 
 ![](pcb-rndr.png)
 
 </div>
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](DSC_0128.jpg)
 

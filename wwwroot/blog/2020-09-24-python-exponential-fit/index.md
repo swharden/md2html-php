@@ -22,7 +22,7 @@ plt.plot(xs, ys, '.')
 plt.title("Original Data")
 ```
 
-<div class="center">
+<div class="text-center">
 
 ![](original.png)
 
@@ -55,7 +55,7 @@ print(f"Y = {m} * e^(-{t} * x) + {b}")
 print(f"Tau = {tauSec * 1e6} µs")
 ```
 
-<div class="center">
+<div class="text-center">
 
 ![](fitted.png)
 
@@ -81,7 +81,7 @@ plt.plot(xs2, ys2, '--', label="fitted")
 plt.title("Extrapolated Exponential Curve")
 ```
 
-<div class="center">
+<div class="text-center">
 
 ![](fitted2.png)
 
@@ -118,7 +118,7 @@ Y = 1245.580 * e^(-0.210 * x)
 Tau = 237.711 µs
 ```
 
-<div class="center">
+<div class="text-center">
 
 ![](fits.png)
 
@@ -126,7 +126,7 @@ Tau = 237.711 µs
 
 **The curves produced are very different** at the extremes (especially when time is 0), even though they appear to both fit the data points nicely. Which curve is more accurate? That depends on your application. A hint can be gained by inspecting the time constants of these two curves.
 
-<div class="center">
+<div class="text-center">
 
 Parameter | Fitted B | Fixed B
 ---|---|---

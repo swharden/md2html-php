@@ -8,7 +8,7 @@ tags: med
 
 **Today I received the stem cells which will become my new immune system!** The infusion itself was relatively uneventful (a gravity-fed bag of cells flowed into my PICC line for about an hour) but it represents a big day for me and a shot at one day having a healthy immune system. After the infusion the transplant team came in and sang happy birthday to celebrate!
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](IMG_0045.jpg)
 

@@ -12,7 +12,7 @@ I finished writing the [microcontroller code to read the GPS time](https://githu
 
 First spot occurred while I was actively adjusting the transmission length
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](W4HBK-first-callsign.jpg)
 
@@ -20,7 +20,7 @@ First spot occurred while I was actively adjusting the transmission length
 
 ### AJ4VD spotted in Greensboro, NC (WD4ELG)
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](WD4ELG-first-callsign.jpg)
 
@@ -29,7 +29,7 @@ First spot occurred while I was actively adjusting the transmission length
 5x frame stack (mean frame) from the WD4ELG grabber reveals the AJ4VD signal much better, and confirms the GPS timer is working well.
 
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](WD4ELG-5x-stack.jpg)
 

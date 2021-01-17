@@ -20,7 +20,7 @@ tags: qrss, amateur radio
 
 **QRSS allows miniscule amounts of power to send messages enormous distances.** For example, 200 mW QRSS transmitters are routinely spotted on QRSS grabbers thousands of miles away. The key to this resilience lies in the fact that spectrograms can be designed which average several seconds of audio into each pixel. By averaging audio in this way, the level of the noise (which is random and averages toward zero) falls below the level of the signal, allowing visualization of signals on the spectrogram which are too deep in the noise to be heard by ear.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](lopora-signals2.jpg)
 
@@ -30,7 +30,7 @@ tags: qrss, amateur radio
 
 **[FSKview](https://swharden.com/software/FSKview/) is radio frequency spectrogram software for viewing QRSS and WSPR simultaneously.** I wrote [FSKview](https://swharden.com/software/FSKview/) to be simple and easy to use, but it's worth noting that [Spectrum Lab](https://www.qsl.net/dl4yhf/spectra1.html),  [Argo](https://digilander.libero.it/i2phd/argo/), [LOPORA](https://www.qsl.net/pa2ohh/11lop.htm), and [QRSSpig](https://gitlab.com/hb9fxx/qrsspig) are also popular spectrogram software projects used for QRSS, with the last two supporting Linux and suitable for use on the Raspberry Pi.
 
-<div class="center">
+<div class="text-center">
 
 ![](fskview.png)
 
@@ -40,7 +40,7 @@ tags: qrss, amateur radio
 
 **QRSS transmitters can be extraordinarily simple because they just transmit a single tone which shifts between two frequencies.** The simplicity of QRSS transmitters makes them easy to assemble as a kits, or inexpensively designed and built by those first learning about RF circuit design. The simplest designs use a crystal oscillator (typically a [Colpitts](https://en.wikipedia.org/wiki/Colpitts_oscillator) configuration) followed by a buffer stage and a final amplifier (often [Class C](https://en.wikipedia.org/wiki/Power_amplifier_classes#Class_C) configuration using a 2N7000 N-channel MOSFET or 2N2222 NPN transistor). Manual frequency adjustments are achieved using a variable capacitor, supplemented in this case with twisted wire to act as a simple but effective variable capacitor for fine frequency tuning within the 100 Hz QRSS band. Frequency shift keying to transmit call signs is typically achieved using a microcontroller to adjust voltage on a reverse-biased diode (acting as a [varactor](https://en.wikipedia.org/wiki/Varicap)) to modulate capacitance and shift resonant frequency of the oscillator. Following a low-pass filter (typically a 3-pole [Chebyshev](https://en.wikipedia.org/wiki/Chebyshev_filter) design) the signal is then sent to an antenna.
 
-<div class="center medium">
+<div class="text-center img-medium">
 
 ![](qrp-labs-kit-schematic.jpg)
 
@@ -48,7 +48,7 @@ tags: qrss, amateur radio
 
 **[QRP Labs](https://www.qrp-labs.com/) is a great source for QRSS kits.** The kit pictured above and below is one of their earliest kits (the 30/40/80/160m QRSS Kit), but they have created many impressive new products in the last several years. Some of their more advanced QRSS kits leverage things like direct digital synthesis (DDS), GPS time synchronization, and the ability to transmit additional digital modes like Hellschreiber and WSPR.
 
-<div class="center border medium">
+<div class="text-center img-border img-medium">
 
 ![](qrp-labs-kit-photo.jpg)
 
@@ -58,13 +58,13 @@ tags: qrss, amateur radio
 
 **Atmospheric phenomena and other special conditions can often be spotted in QRSS spectrograms**. One of the most common special cases are radio frequency reflections off of airplanes resulting in the radio waves arriving at the receiver simultaneously via two different paths (a form of [multipath propagation](https://en.wikipedia.org/wiki/Multipath_propagation)). Due to the Doppler shift from the airplane approaching the receiver the signal from the reflected path appears higher frequency than the direct path, and as the airplane flies over and begins heading away the signal from the reflected path decreases in frequency relative to the signal of the direct path. The image below is one of my favorites, captured by [Andy (G0FTD)](https://sites.google.com/view/andy-g0ftd/the-qrss-gallery) in the 10m QRSS band. [QRSS de W4HBK](http://pensacolasnapper.blogspot.com/) is a website that has many blog posts about rare and special grabs, demonstrating effects of meteors and coronal mass ejections on QRSS signals.
 
-<div class="center medium">
+<div class="text-center img-medium">
 
 ![](rf-reflection-airplane.png)
 
 </div>
 
-<div class="center medium border">
+<div class="text-center img-medium img-border">
 
 ![](rf-reflection-airplane.jpg)
 
@@ -81,7 +81,7 @@ Radio beacons send continuous, automated, unattended, one-way transmissions with
 
 **This table shows the QRSS frequency range for every major amateur radio band.** Primary QRSS band windows are 100-200 Hz wide and located just below the [WSPR](http://wsprnet.org/) bands (so WSPR transmissions frequently appear on QRSS grabs). Experimentation is encouraged on the lower portion of the band and the upper portion is typically used for mature and stable transmitters.
 
-<div class="center">
+<div class="text-center">
 
 Band | QRSS Frequency (±100 Hz)     | Dial Frequency (Hz)
 -----|------------------------------|-----------------------
@@ -138,7 +138,7 @@ Band | QRSS Frequency (±100 Hz)     | Dial Frequency (Hz)
 
 * My [QRSS Hardware](https://github.com/swharden/QRSS-hardware) GitHub page collects notes and resources related to QRSS transmitter and receiver design.
 
-<div class="center border">
+<div class="text-center img-border">
 
 ![](smt-qrss.jpg)
 
