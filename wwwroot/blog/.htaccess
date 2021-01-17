@@ -2,3 +2,11 @@
 
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
 RewriteRule ^sitemap$ sitemap.php [L]
+
+# if the request is a folder with a markdown index, serve it
+RewriteCond %{REQUEST_FILENAME} -d 
+RewriteCond %{REQUEST_FILENAME}/index.md -f
+RewriteRule ^(.*)$ ../md2html/route.php [L]
+
+# force Markdown files to be downloaded
+AddType application/octet-stream md
