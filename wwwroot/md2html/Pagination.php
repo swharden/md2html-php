@@ -37,8 +37,9 @@ class Pagination
     {
         if (count($this->numberedPages) > 0)
             return $this->getHtmlNumberedPages();
-        else
+        else if (isset($this->newerPage) || isset($this->olderPage))
             return $this->getHtmlNextPrevious();
+        return "<!-- no pagination -->";
     }
 
     public function getHtmlNumberedPages(): string
@@ -69,6 +70,7 @@ class Pagination
     public function getHtmlNextPrevious(): string
     {
         $html = "<!-- next/previous pagination -->";
+
         $html .= "<nav aria-label='Adjacent page navigation'>";
         $html .= "<ul class='pagination flex-column'>";
 
