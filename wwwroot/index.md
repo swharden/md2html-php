@@ -3,10 +3,26 @@ title: Front Page
 description: This page demonstrates how a markdown file can be served with md2html
 ---
 
-This page is generated using **Markdown** - Congratulations!
+# Hello, World!
 
-* Click the links at the top to see some advanced markdown pages.
+This page was dynamically generated using **Markdown** - Congratulations!
 
-* The blog section demonstrates how to create a complex multi-page website with features like a master index page, a sitemap, and an RSS feed.
+Click _view source_ at the bottom of the article to check the Markdown code
 
-* Click the "view source" below in the footer to see markdown source code.
+### Simple: Folders are Web Pages
+
+* Folders containing `index.md` are served as a web page.
+* Examples are in the _Sample Sites_ section.
+
+### Advanced: Blog with pagination
+
+* 100s of blog post articles are in `blog`.
+* `blog/Blog.php` has code that extends md2html to support pagination, tags, rss feed, and more.
+* All this complexity is not required. Just delete the `Blog` folder and it's gone!
+
+### Special Markdown
+
+  * `![](TOC)` adds a table of contents
+  * `![](https://youtu.be/9bZkp7q19f0)` embeds a YouTube video
+
+![](https://youtu.be/9bZkp7q19f0)

@@ -38,17 +38,25 @@
 
         <!-- CUSTOMIZE NAVIGATION -->
         <nav class="text-end p-2">
-          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/images" role="button">images</a>
-          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/pyabf" role="button">pyABF</a>
-          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/ljpcalc" role="button">LJPcalc</a>
-          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/csdv" role="button">C# Data</a>
+          <a class="btn btn-lg menuButton ms-2 text-light" href="{{baseUrl}}/images" role="button">Image Notes</a>
 
           <div class="dropdown d-inline-block">
             <a class="btn btn-lg menuButton ms-2 text-light dropdown-toggle" role="button" id="dropdownMenuLink"
               data-bs-toggle="dropdown" aria-expanded="false">
-              Blog
+              Sample Sites
             </a>
-
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="{{baseUrl}}/pyabf/">pyABF</a></li>
+              <li><a class="dropdown-item" href="{{baseUrl}}/ljpcalc/">LJPcalc</a></li>
+              <li><a class="dropdown-item" href="{{baseUrl}}/csdv/">C# Data</a></li>
+            </ul>
+          </div>
+          
+          <div class="dropdown d-inline-block">
+            <a class="btn btn-lg menuButton ms-2 text-light dropdown-toggle" role="button" id="dropdownMenuLink"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Sample Blog
+            </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <li><a class="dropdown-item" href="{{baseUrl}}/blog/">Latest Posts</a></li>
               <li><a class="dropdown-item" href="{{baseUrl}}/blog/page/2">Page 2</a></li>
@@ -58,6 +66,7 @@
               <li><a class="dropdown-item" href="{{baseUrl}}/blog/feed/">RSS Feed</a></li>
             </ul>
           </div>
+
         </nav>
 
         <!-- CUSTOMIZE PAGE TITLES -->
