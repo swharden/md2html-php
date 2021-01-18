@@ -60,6 +60,7 @@ article .img-border img {
 
 article .img-micro img {
     max-width: 25% !important;
+    max-height: 12em !important;
     margin: .5em !important;
 }
 
