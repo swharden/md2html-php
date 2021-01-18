@@ -10,12 +10,11 @@ class Article
     public string $markdown;
     public string $sourceHtml;
     public string $html;
-    public int $modified;
     public ArticleInfo $info;
 
     /** Create an article from a markdown file. 
      * If a base URL is given, relative URLs will be prefixed by it. */
-    function __construct(string $markdownFilePath, string $baseUrl = "")
+    function __construct(string $markdownFilePath)
     {
         if (!file_exists($markdownFilePath))
             throw new Exception("Markdown file does not exist: " . $markdownFilePath);
@@ -67,7 +66,7 @@ class Article
             endsWith($url, ".bmp") || endsWith($url, ".gif")
         ) {
             // this area customizes spacing around the image
-            return "<a href='$url'><img src='$url' class='img-fluid' /></a>";
+            return "<a href='$url'><img src='$url' /></a>";
         }
 
         // If this is a table of contents, mark it with HTML so we can come back to it later
