@@ -14,7 +14,7 @@ class Page
     private array $replacements = array();
     private bool $showPermalink = false;
     private string $baseUrl = "";
-    
+
     public Pagination $pagination;
 
     function __construct()
@@ -100,7 +100,7 @@ class Page
         $html .= "<div><small>" . $article->info->dateString . "</small></div>";
         $tagParts = [];
         foreach ($article->info->tags as $tag) {
-            $tagUrl = "category/" . sanitizeLinkUrl($tag);
+            $tagUrl = $this->baseUrl . "/category/" . sanitizeLinkUrl($tag);
             $tagParts[] = "<a href='$tagUrl'>$tag</a>";
         }
         $tagHtml = implode(', ', $tagParts);
