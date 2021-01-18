@@ -26,7 +26,10 @@ class Page
 
     public function addArticle(string $markdownFilePath, string $baseUrl = "")
     {
-        $this->articles[] = new Article($markdownFilePath, $baseUrl);
+        $article = new Article($markdownFilePath, $baseUrl);
+        $this->articles[] = $article;
+        $this->setTitle($article->info->title);
+        $this->setDescription($article->info->description);
     }
 
     public function addArticles(array $markdownFilePaths, string $baseUrl = "")
