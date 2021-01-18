@@ -35,7 +35,7 @@ class Pagination
 
     public function getHtml(): string
     {
-        if (count($this->numberedPages) > 0)
+        if (count($this->numberedPages) > 1)
             return $this->getHtmlNumberedPages();
         else if (isset($this->newerPage) || isset($this->olderPage))
             return $this->getHtmlNextPrevious();
@@ -45,12 +45,13 @@ class Pagination
     public function getHtmlNumberedPages(): string
     {
         $html = "<!-- numbered pagination -->";
+        $html .= "<div class='display-6 m-3 text-center'>Pages</div>";
         $html .= "<nav aria-label='Page navigation'>";
-        $html .= "<ul class='pagination justify-content-center'>";
+        $html .= "<ul class='pagination justify-content-center flex-wrap'>";
         foreach ($this->numberedPages as $page) {
             $disabled = $page->isEnabled ? "" : "disabled";
             $active = $page->isHighlighted ? "active" : "";
-            $html .= "<li class='page-item $disabled $active'><a class='page-link' href='$page->url'>$page->label</a></li>";
+            $html .= "<li class='page-item my-1 text-center $disabled $active' style='width: 3em;'><a class='page-link' href='$page->url'>$page->label</a></li>";
         }
         $html .= "</ul>";
         $html .= "</nav>";
