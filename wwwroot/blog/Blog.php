@@ -12,7 +12,7 @@ require_once(dirname(__file__) . "/../md2html/ArticleInfo.php");
 class Blog
 {
     //private $BLOG_URL = 'https://swharden.com/blog';
-	private $BLOG_URL = 'http://localhost:8081/blog';
+    private $BLOG_URL = 'http://localhost:8081/blog';
 
     /** Serve the Nth page of blog posts (starting at 0) */
     public function getPageHTML(int $pageIndex, string $tag = "", int $articlesPerPage = 5): string
@@ -41,7 +41,7 @@ class Blog
         $page->addArticles($articlesToShow);
 
         // add pagination links for every page in the set
-		$baseUrl = ($tag == "") ? $this->BLOG_URL : $this->BLOG_URL . "/category/$tag";
+        $baseUrl = ($tag == "") ? $this->BLOG_URL : $this->BLOG_URL . "/category/$tag";
         for ($i = 0; $i < $pageCount; $i++) {
             $pageNumber = $i + 1;
             $pageIsActive = ($i == $pageIndex);
@@ -175,24 +175,14 @@ class Blog
     /** Return an array of paths to markdown files in reverse lexicographical order */
     private function getBlogArticlePaths(string $tag = ""): array
     {
-        $blogPath = realpath(dirname(__file__));
-        $mdPaths = [];
-
-        // TODO: replace with something like this
-        // $adjacentMdPaths = glob("$parentFolder/*/index.md");
-        $dir = new DirectoryIterator($blogPath);
-        foreach ($dir as $fileinfo) {
-            if ($fileinfo->isDot())
-                continue;
-            $mdPath =  $blogPath . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . "index.md";
-            if (file_exists($mdPath)) {
-                if ($tag == "") {
+        $parentFolder = realpath(dirname(__file__));
+        foreach (glob("$parentFolder/*/index.md") as $mdPath) {
+            if ($tag == "") {
+                $mdPaths[] = $mdPath;
+            } else {
+                $info = new ArticleInfo($mdPath);
+                if (in_array($tag, $info->tagsSanitized))
                     $mdPaths[] = $mdPath;
-                } else {
-                    $info = new ArticleInfo($mdPath);
-                    if (in_array($tag, $info->tagsSanitized))
-                        $mdPaths[] = $mdPath;
-                }
             }
         }
         rsort($mdPaths);
