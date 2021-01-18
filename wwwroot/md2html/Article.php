@@ -39,8 +39,14 @@ class Article
 
     private function updateSpecialCodes(array $mdLines): array
     {
+        $isInCodeBlock = false;
         for ($i = 0; $i < count($mdLines); $i++) {
             $trimmedLine = trim($mdLines[$i]);
+            if (startsWith($trimmedLine, "```")) {
+                $isInCodeBlock = !$isInCodeBlock;
+            }
+            if ($isInCodeBlock)
+                continue;
             $isSpecialLink = startsWith($trimmedLine, "![](") && endsWith($trimmedLine, ")");
             if ($isSpecialLink) {
                 $url = substr($trimmedLine, 4, strlen($trimmedLine) - 5);
