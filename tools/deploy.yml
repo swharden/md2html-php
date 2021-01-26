@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make Request
+        id: req
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: "http://yoursite.com/deploy.php"
+          method: "POST"
+          bearerToken: ${{ secrets.API_KEY }}
+      - name: Show Response
+        run: echo ${{ steps.req.outputs.response }}

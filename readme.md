@@ -58,3 +58,13 @@ The rest of the ***Markdown*** text goes here...
 ### Routing Requests
 
 This repository uses `.htaccess` to tell Apache (with mod_rewrite) to route requests to a folder containing an `index.md` to `route.php`. If you don't use Apache or mod_rewrite, use whatever system you do have to route directory index requests similarly.
+
+### Continuous Deployment with GitHub Actions
+
+A flat-file website can be cloned onto a webserver using `git`, then PHP can execute `git pull` to update the content. By configuring GitHub Actions to make a HTTP request that executes the PHP update script every time new commits are pushed to the repository, it is possible to keep a website continuously and automatically in sync with a GitHub repository.
+
+* Clone this repo in a folder outside the web root
+* Symbolically link `wwwroot` to a web-accessible path
+* Create a secret `API_KEY` in the GitHub project
+* Store the key in `api.key` in the root folder (chmod `400`)
+* Configure GitHub Actions to HTTP request [`deploy.php`](tools/deploy.php) when new commits are pushed, using the `API_KEY` as a bearer token (see [deploy.yml](tools/deploy.yml))
