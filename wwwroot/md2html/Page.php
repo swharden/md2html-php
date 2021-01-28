@@ -156,7 +156,7 @@ class Page
 
         // fix relative file paths in header
         $http = isset($_SERVER['HTTPS']) ? "https://" : "http://";
-        $baseUrl = $http . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], "", dirname(__DIR__));
+        $baseUrl = $http . $_SERVER['HTTP_HOST'] . str_replace(realpath($_SERVER['DOCUMENT_ROOT']), "", dirname(__DIR__));
         $html = str_replace('href="resources/', 'href="{{baseUrl}}/md2html/resources/', $html);
         $html = str_replace('src="resources/', 'src="{{baseUrl}}/md2html/resources/', $html);
 
