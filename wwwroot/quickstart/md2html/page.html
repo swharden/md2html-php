@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <title>{{title}}</title>
+    <meta name='description' content='{{description}}' />
+    <link href="/md2html-resources/bootstrap/5.0.0-beta1/bootstrap.min.css" rel="stylesheet" />
+    <link href="/md2html-resources/bootstrap/5.0.0-beta1/tweaks.css" rel="stylesheet" />
+    <link href="/md2html-resources/md2html.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container mx-auto">
+
+        <head>
+            <div class="display-1 my-3 fw-normal">{{title}}</div>
+            <div class="fs-4">{{description}}</div>
+        </head>
+
+        <!-- articles go here -->
+        {{content}}
+
+    </div>
+</body>
+
+</html>

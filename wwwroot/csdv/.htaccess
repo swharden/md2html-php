@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# if the request is a folder with index.md serve it with md2html
+RewriteCond %{REQUEST_FILENAME} -d 
+RewriteCond %{REQUEST_FILENAME}/index.md -f
+RewriteRule ^(.*)$ md2html/serveIndex.php [L]

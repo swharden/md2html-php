@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/md2html-resources/bootstrap/5.0.0-beta1/bootstrap.min.css" rel="stylesheet" />
+    <link href="/md2html-resources/bootstrap/5.0.0-beta1/tweaks.css" rel="stylesheet" />
+    <link href="/md2html-resources/md2html.css" rel="stylesheet" />
+    <link href="/md2html-resources/favicon.ico" rel="shortcut icon" />
+    <title>md2html</title>
+</head>
+
+<body class="bg-light">
+
+    <div class="container bg-white border shadow m-5 p-4 mx-auto">
+
+        <h1 class="display-1">md2html</h1>
+
+        <ul class="lh-lg">
+            <li>md2html is a flat-file PHP framework that dynamically serves GitHub-flavored Markdown pages</li>
+            <li>This repo is running md2html on an Apache server inside Docker</li>
+            <ul>
+                <li>
+                    The md2html back-end lives in <code>/var/www/md2html</code>
+                    (outside the web folder) and is designed to be updated using git
+                </li>
+                <li>
+                    <code>md2html/resources</code> is symbolically linked to
+                    <code>www/resources</code>, and web-accessible files (CSS/JS) are placed here
+                </li>
+                <li>
+                    Markdown content lives in sub-folders of <code>/var/www/html</code>
+                    and could be sync'd with separate git repos (one per project)
+                </li>
+            </ul>
+            <li>
+                To create a new site make a new folder and into it copy:
+                <ul>
+                    <li><code>md2html/page.html</code> - page template</li>
+                    <li><code>md2html/article.html</code> - article template</li>
+                    <li><code>md2html/serveIndex.php</code> - php script that renders the pages</li>
+                    <li><code>.htaccess</code> - rule to point requests to the php script</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h1 class="display-5">Documentation</h1>
+
+        <ul class="lh-lg">
+            <li><a href='quickstart'>Quickstart</a> - single page website</li>
+            <li><a href='features'>Markdown Features</a> -
+                multi-page site demonstrating advanced features (images, YouTube videos, menus, and more)
+            </li>
+
+        </ul>
+
+        <h1 class="display-5">Sample Sites</h1>
+        <li><a href='pyabf'>pyABF</a> - single page site</li>
+        <li><a href='csdv'>Visualization</a> - single page site</li>
+        <li><a href='ljpcalc'>LJPcalc</a> - lots of text and tables</li>
+        <li>
+            <s>
+                <a href='blog'>Blog</a> - multi-page website with categories and pagination
+            </s>
+        </li>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,5 +1,0 @@
-RewriteEngine On
-
-# if the directory doesnt exist route it
-RewriteCond %{REQUEST_FILENAME} !-d 
-RewriteRule ^(.*)$ index.php [L]

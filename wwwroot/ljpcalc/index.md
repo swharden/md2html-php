@@ -1,3 +1,7 @@
+---
+title: LJPcalc Demo
+---
+
 # Liquid Junction Potential (LJP) Theory and Correction
 
 This page contains notes about the analytical methods LJPcalc uses to calculate LJP from ion tables

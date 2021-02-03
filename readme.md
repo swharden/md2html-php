@@ -3,8 +3,8 @@
 **This project is a flat-file website that dynamically serves Markdown files using PHP.** There are many options for managing website content, but I prefer this method for my personal websites because:
 * **No build step:** unlike static site generators, HTML is generated dynamically from markdown files when pages are requested, so there is no need for a build step.
 * **No database:** This is a flat-file site, so no database is required to store content.
-* **Easy Installation:** Copy `wwwroot` to your website
-* **Easy Backup:** Just zip the md2html folder
+* **Easy Installation:** Use git to clone this repo
+* **Easy Backup:** Just zip the web folder
 * **Easy Authoring:** Just create a folder with `index.md`
 * **Clean URLs:** Page URLs are folder paths
 
@@ -14,10 +14,9 @@
 * Add a table of contents using `![](TOC)`
 * Embed YouTube videos using `![](YouTubeURL)`
 * Template files are HTML and easy to customize
-* Bootstrap manages layout so it looks good everywhere
 * Markdown headings and tables are styled to resemble GitHub
-* Dynamic generation of sitemap
-* Dynamic generation of RSS feed
+* ~~Dynamic generation of sitemap~~
+* ~~Dynamic generation of RSS feed~~
 * Custom functionality is easy to add
 
 ### Example Websites
@@ -30,9 +29,17 @@
 
 ### Installation
 
-**Step 1:** Copy the `wwwroot` folder to your website 
+**Step 1:** Use `git` to clone this repo _outside_ your web folder. I suggest `/var/www/md2html`
 
-(that's it)
+**Step 2:** Link the resources folder to a web-accessible URL
+
+```
+ln -ls /var/www/md2html/resources /var/www/html/md2html-resources
+```
+
+**Step 3:** Copy the quickstart demo folder to your web folder and your site will be live!
+
+**Step 4:** To create new pages, create sub-folders with an `index.md`
 
 ### Develop in Docker
 
@@ -57,7 +64,7 @@ The rest of the ***Markdown*** text goes here...
 
 ### Routing Requests
 
-This repository uses `.htaccess` to tell Apache (with mod_rewrite) to route requests to a folder containing an `index.md` to `route.php`. If you don't use Apache or mod_rewrite, use whatever system you do have to route directory index requests similarly.
+This repository uses `.htaccess` to tell Apache (with mod_rewrite) to route requests to a folder containing an `index.md` to a local PHP script to handle them. If you don't use Apache or mod_rewrite, use whatever system you do have to route directory index requests similarly.
 
 ### Continuous Deployment with GitHub Actions
 
