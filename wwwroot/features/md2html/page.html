@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <title>{{title}}</title>
+    <meta name='description' content='{{description}}' />
+    <link href="/md2html-resources/bootstrap/5.0.0-beta1/bootstrap.min.css" rel="stylesheet" />
+    <link href="/md2html-resources/bootstrap/5.0.0-beta1/tweaks.css" rel="stylesheet" />
+    <link href="/md2html-resources/md2html.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container mx-auto">
+
+        <nav class="text-end p-2">
+            <a class="btn btn-lg menuButton ms-2" href="/" role="button">Home</a>
+
+            <div class="dropdown d-inline-block">
+                <a class="btn btn-lg menuButton ms-2 dropdown-toggle" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Feature Pages
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="/features/images">Images</a></li>
+                    <li><a class="dropdown-item" href="/features/youtube">YouTube Videos</a></li>
+                    <li><a class="dropdown-item" href="/features/toc">Table of Contents</a></li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <head>
+            <div class="display-1 mb-5">md2html Features</div>
+        </head>
+
+        <!-- articles go here -->
+        {{content}}
+
+        <div class="mt-5 text-muted text-center">
+            <div>Copyright © {{year}} Scott W Harden</div>
+            <div>
+                <a href='https://github.com/swharden/md2html-php'>m2html</a>
+                generated this page in {{benchmark}} milliseconds
+            </div>
+        </div>
+
+    </div>
+    <script src="/md2html-resources/bootstrap/5.0.0-beta1/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

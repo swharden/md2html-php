@@ -1,3 +1,7 @@
+---
+title: LJPcalc Demo
+---
+
 # Liquid Junction Potential (LJP) Theory and Correction
 
 This page contains notes about the analytical methods LJPcalc uses to calculate LJP from ion tables
@@ -20,10 +24,6 @@ LJPcalc uses an extensive [ion mobility library](../iontable)
 The ion mobility table is stored in Markdown format. Not only does Markdown make it easy to display the table nicely in a browser, 
 but it also makes the table easy to edit in any text editor. Users desiring to use their own ion mobilities or add new ions to the table
 can do so by editing the `IonTable.md` file adjacent to `LJPcalc.exe` as needed.
-
-### Random YouTube Video
-
-![](https://youtu.be/sP_-f5nsOEo)
 
 ### Influence of Ion Sequence on Calculated LJP
 
@@ -84,7 +84,7 @@ V<sub>cell</sub> = V<sub>meter</sub> - LJP
 
 </div>
 
-> âš ï¸ This method assumes that the amplifier voltage was zeroed at the start of the experiment when the pipette was in open-tip configuration 
+> ⚠️ This method assumes that the amplifier voltage was zeroed at the start of the experiment when the pipette was in open-tip configuration 
 with the bath, and that concentration of chloride (if using Ag/AgCl electrodes) in the internal and bath solutions are stable throughout experiments.
 
 <div class="text-center">

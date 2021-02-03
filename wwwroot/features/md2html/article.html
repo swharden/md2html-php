@@ -1,0 +1,21 @@
+<article>
+
+    <!-- article HTML -->
+    {{content}}
+
+    <!-- article source code -->
+    <a class="btn btn-primary btn-lg mt-5" data-bs-toggle="collapse" href="#collapse-{{articleGUID}}" role="button"
+        aria-expanded="false" aria-controls="collapse-{{articleGUID}}">
+        Article Source
+    </a>
+
+    <div class="collapse" id="collapse-{{articleGUID}}">
+        <div class="mt-5 display-5">Article Source</div>
+        <div>Source code was last modified on {{modified}}</div>
+        <pre class="p-3 border rounded bg-light">{{source}}</pre>
+    </div>
+
+</article>
+
+<!-- a space here prevents content from touching the bottom of the screen -->
+<div>&nbsp;</div>

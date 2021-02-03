@@ -1,10 +1,12 @@
 version: "2"
 services:
-  md2html:
+  md2html2:
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
       - "8081:80"
     volumes:
-      - ./wwwroot:/var/www/html
+      - ./wwwroot:/var/www/html # root web folder
+      - ./md2html:/var/www/md2html # not web accessible
+      - ./md2html/resources/:/var/www/html/md2html-resources/ # web accessible
