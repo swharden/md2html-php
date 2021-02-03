@@ -7,6 +7,8 @@ class SingleMarkdownFilePage extends Page
 {
     public function __construct(string $mdFilePath)
     {
+        parent::__construct();
+
         // add a single article
         $article = new Article();
         $article->loadMarkdownFile($mdFilePath);
@@ -15,5 +17,6 @@ class SingleMarkdownFilePage extends Page
         // title and description of the page are that of the single article
         $this->title = $article->title ?? "";
         $this->description = $article->description ?? "";
+        $this->date = $article->date;
     }
 }

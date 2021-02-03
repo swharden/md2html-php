@@ -1,9 +1,12 @@
 ---
-title: md2html Quickstart
-description: simple example to demonstrate markdown and frontmatter header
-date: 2021-02-02 9:12PM
+title: Features Home
 ---
 
-# Markdown is Great
+# Features Home
 
-This is ***Markdown*** and it [works](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program)!
+Multiple pages were created by making folders containing `index.md`
+  * [./images/](./images)
+  * [./youtube/](./youtube)
+  * [./toc/](./toc)
+
+You could also use the menu at the top to open these pages

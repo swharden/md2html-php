@@ -8,8 +8,8 @@ class Article
     public string $title;
     public string $description;
     public array $tags = [];
-    public string $date;
-    public string $modified;
+    public int $date;
+    public int $modified;
 
     // content
     private string $html;
@@ -23,6 +23,7 @@ class Article
     {
         $mdRaw = file_get_contents($mdFilePath);
         $this->sourceHtml = htmlspecialchars($mdRaw);
+        $this->modified = filemtime($mdFilePath);
 
         $md = new ParsedMarkdown($mdRaw);
         $this->html = $md->html;
@@ -32,8 +33,7 @@ class Article
             $this->title = $md->title;
         if (isset($md->description))
             $this->description = $md->description;
-        if (isset($md->date))
-            $this->date = $md->date;
+        $this->date = $md->date ?? $this->modified;
         $this->tags[] = $md->tags;
     }
 
@@ -48,6 +48,8 @@ class Article
         $html = $template;
         $html = str_replace("{{content}}", $this->html, $html);
         $html = str_replace("{{source}}", $this->sourceHtml, $html);
+        $html = str_replace("{{articleGUID}}", uniqid(), $html);
+        $html = str_replace("{{modified}}", date("F jS, Y", $this->modified), $html);
         return $html;
     }
 }
