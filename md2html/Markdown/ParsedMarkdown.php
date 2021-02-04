@@ -168,6 +168,9 @@ class ParsedMarkdown
         for ($i = 0; $i < count($lines); $i++) {
             $line = $lines[$i];
 
+            if (trim($line)=='<!--TOC-->')
+                $toc = "";
+
             $isHeaderLine = (substr($line, 0, 2) == "<h" && substr($line, 3, 1) == ">");
             if ($isHeaderLine == false)
                 continue;
