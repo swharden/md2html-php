@@ -11,7 +11,7 @@ function ServeSingleMarkdownFile(
     string $mdFilePath,
     string  $pageTemplate,
     string $articleTemplate,
-    bool $ads = true,
+    bool $ads = false,
     bool $analytics = true,
     bool $robotsIndex = true
 ) {
