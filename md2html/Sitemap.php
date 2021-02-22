@@ -30,7 +30,7 @@ class Sitemap
 
     private function getIndexUrls(string $basePath, string $baseUrl, int $maxDepth)
     {
-        $directoryIterator = new RecursiveDirectoryIterator($basePath);
+        $directoryIterator = new RecursiveDirectoryIterator($basePath, FilesystemIterator::FOLLOW_SYMLINKS);
         $fileIterator = new RecursiveIteratorIterator($directoryIterator);
         $fileIterator->setMaxDepth($maxDepth);
         $urls = [$baseUrl];
