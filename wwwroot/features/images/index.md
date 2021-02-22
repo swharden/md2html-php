@@ -91,3 +91,11 @@ Size of large images can be constrained with the following classes:
 ![](large.jpg)
 
 </div>
+
+### Remote Image
+
+<div class="text-center img-border">
+
+![](https://mods.org/wp-content/uploads/2017/02/test-image.png)
+
+</div>

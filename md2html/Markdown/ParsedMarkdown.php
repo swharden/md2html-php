@@ -4,10 +4,11 @@ require_once(__DIR__ . '/Parsedown.php');
 
 /* This class is a Parsedown wrapper with extra custom functions:
  *   - frontmatter (header) defines title, description, tags, and date
- *   - images automatically link to themselves
+ *   - ![](image.jpg) adds an image tag with width, height, alt, and links to itself
  *   - headings are automatically anchored
  *   - ![](TOC) inserts table of contents for all headings
  *   - ![](youTubeUrl) embeds YouTube video
+ *   - local images will be measured so width and height tags can be defined
  */
 class ParsedMarkdown
 {
@@ -20,11 +21,17 @@ class ParsedMarkdown
     // content
     public string $html;
 
-    public function __construct($markdownText)
+    /**
+     * Populate information about a webpage from raw markdown text.
+     *  - Markdown will be converted to HTML (with special replacements for things like YouTube videos)
+     *  - If frontmatter is present, it will be read to populate metadata information.
+     *  - If a folder path is given, ![](images) will be measured to populate width and height tags.
+     */
+    public function __construct(string $markdownText, string $mdFolderPath = null)
     {
         // custom modifications to the markdown
         $mdLines = $this->processHeaderAndReturnBodyLines($markdownText);
-        $mdLines = $this->updateSpecialCodes($mdLines);
+        $mdLines = $this->updateSpecialCodes($mdLines, $mdFolderPath);
 
         // convert markdown to html
         $Parsedown = new Parsedown();
@@ -114,7 +121,7 @@ class ParsedMarkdown
         return trim($valid, '-');
     }
 
-    function updateSpecialCodes(array $mdLines): array
+    function updateSpecialCodes(array $mdLines, string $mdFolderPath): array
     {
         $isInCodeBlock = false;
         for ($i = 0; $i < count($mdLines); $i++) {
@@ -127,38 +134,70 @@ class ParsedMarkdown
             $isSpecialLink = $this->startsWith($trimmedLine, "![](") && $this->endsWith($trimmedLine, ")");
             if ($isSpecialLink) {
                 $url = substr($trimmedLine, 4, strlen($trimmedLine) - 5);
-                $mdLines[$i] = $this->getSpecialCode($url);
+                $mdLines[$i] = $this->getSpecialCode($url, $mdFolderPath);
             }
         }
         return $mdLines;
     }
 
-    function getSpecialCode($url): string
+    // Special codes are markdown lines formatted like ![](this) where "this" is a URL
+    function getSpecialCode(string $url, string $mdFolderPath): string
     {
-        // make YouTube links embedded videos
-        if (strstr($url, "youtube.com/") || strstr($url, "youtu.be/")) {
-            $url = "https://www.youtube.com/embed/" . basename($url);
-            $html = "<div class='ratio ratio-16x9'><iframe src='$url' class='border shadow' frameborder='0' allowfullscreen " .
-                "allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe></div>";
-            return "<div class='container my-5'>$html</div>";
-        }
+        // Embedded YouTube video
+        $isYouTubeUrl =
+            strstr($url, "youtube.com/") ||
+            strstr($url, "youtu.be/");
+        if ($isYouTubeUrl)
+            return $this->getYouTubeHtml($url);
 
-        // make images link to themselves
-        if (
-            $this->endsWith($url, ".png") || $this->endsWith($url, ".jpg") || $this->endsWith($url, ".jpeg") ||
-            $this->endsWith($url, ".bmp") || $this->endsWith($url, ".gif")
-        ) {
-            // this area customizes spacing around the image
-            return "<a href='$url'><img src='$url' /></a>";
-        }
+        // Embedded image
+        $isImageTag =
+            $this->endsWith($url, ".png") ||
+            $this->endsWith($url, ".gif") ||
+            $this->endsWith($url, ".bmp") ||
+            $this->endsWith($url, ".jpg") ||
+            $this->endsWith($url, ".jpeg");
+        if ($isImageTag)
+            return $this->getImageHtml($url, $mdFolderPath);
 
-        // If this is a table of contents, mark it with HTML so we can come back to it later
+        // Table of contents
         if ($url == "TOC") {
             return "<!--TOC-->";
         }
 
-        // we didn't do anything special, so return the URL so it will be a clickable link
-        return $url;
+        // No matching special case, so show an old fashioned link
+        return "<a href='$url'>$url</a>";
+    }
+
+    function getYouTubeHtml(string $url): string
+    {
+        $url = "https://www.youtube.com/embed/" . basename($url);
+        $html = "<div class='ratio ratio-16x9'><iframe src='$url' class='border shadow' frameborder='0' allowfullscreen " .
+            "allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe></div>";
+        return "<div class='container my-5'>$html</div>";
+    }
+
+    function getImageHtml(string $url, string $markdownFolderPath): string
+    {
+        $alt = basename($url);
+        $alt = substr($url, 0, (strrpos($url, ".")));
+        $imageHtmlWithoutSize = "<a href='$url'><img src='$url' alt='$alt' /></a>";
+
+        $isRemoteFile = strpos($url, "://");
+        if ($isRemoteFile)
+            return $imageHtmlWithoutSize;
+
+        $unknownLocalPath = is_null($markdownFolderPath);
+        if ($unknownLocalPath)
+            return $imageHtmlWithoutSize;
+
+        $imagePath = $markdownFolderPath . DIRECTORY_SEPARATOR . $url;
+        $pathIsValid = file_exists($imagePath);
+        if (!$pathIsValid)
+            return $imageHtmlWithoutSize;
+
+        list($width, $height) = getimagesize($imagePath);
+        return "<a href='$url'><img src='$url' alt='$alt' width='$width' height='$height' /></a>";
     }
 
     function addAnchorsToHeadingsAndUpdateTOC($html): string
@@ -168,7 +207,7 @@ class ParsedMarkdown
         for ($i = 0; $i < count($lines); $i++) {
             $line = $lines[$i];
 
-            if (trim($line)=='<!--TOC-->')
+            if (trim($line) == '<!--TOC-->')
                 $toc = "";
 
             $isHeaderLine = (substr($line, 0, 2) == "<h" && substr($line, 3, 1) == ">");

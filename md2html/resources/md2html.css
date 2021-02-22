@@ -49,6 +49,8 @@ article img {
     margin-top: 1em;
     margin-bottom: 1em;
     max-width: 100% !important;
+    width: auto;
+    height: auto;
 }
 
 article .img-border img {

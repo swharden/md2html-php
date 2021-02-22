@@ -25,7 +25,7 @@ class Article
         $this->sourceHtml = htmlspecialchars($mdRaw);
         $this->modified = filemtime($mdFilePath);
 
-        $md = new ParsedMarkdown($mdRaw);
+        $md = new ParsedMarkdown($mdRaw, dirname($mdFilePath));
         $this->html = $md->html;
 
         // update fields that may have been defined in frontmatter
