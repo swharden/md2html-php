@@ -11,7 +11,7 @@ class Sitemap
     public function __construct(string $baseUrl, int $maxDepth = 2)
     {
         $benchmarkStart = microtime(true);
-
+        $baseUrl = str_replace("http://", "https://", $baseUrl);
         $basePath = "./";
         $urls = $this->getIndexUrls($basePath, $baseUrl, $maxDepth);
         $this->xml = $this->getSitemapXml($urls);
