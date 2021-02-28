@@ -1,5 +1,9 @@
 <?php
 
+// disable dynamic PHP caching so the markdown file is forced to parse every time
+//header("Cache-Control: max-age=6000");
+header("Cache-Control: no-cache");
+
 require_once(__DIR__ . '/Page.php');
 require_once(__DIR__ . '/../Article/Article.php');
 
