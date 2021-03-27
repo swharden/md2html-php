@@ -172,9 +172,10 @@ class ParsedMarkdown
     function getYouTubeHtml(string $url): string
     {
         $url = "https://www.youtube.com/embed/" . basename($url);
-        $html = "<div class='ratio ratio-16x9'><iframe src='$url' class='border shadow' frameborder='0' allowfullscreen " .
-            "allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe></div>";
-        return "<div class='container my-5'>$html</div>";
+        return
+            "<div class='ratio ratio-16x9 my-5'>" .
+            "<object class='border border-dark shadow' data='$url'></object>" .
+            "</div>";
     }
 
     function getImageHtml(string $url, string $markdownFolderPath): string
