@@ -75,3 +75,9 @@ A flat-file website can be cloned onto a webserver using `git`, then PHP can exe
 * Create a secret `API_KEY` in the GitHub project
 * Store the key in `api.key` in the root folder (chmod `400`)
 * Configure GitHub Actions to HTTP request [`deploy.php`](tools/deploy.php) when new commits are pushed, using the `API_KEY` as a bearer token (see [deploy.yml](tools/deploy.yml))
+
+## Alternative Pure-Python Static Site Generator
+
+After using this PHP-based system for several months I grew to enjoy it for large sites with 100s of pages, but for very small sites with just a few pages it felt cumbersome to fire-up a Docker instance just to do a little page editing.
+
+I created [Palila](https://github.com/swharden/Palila) to meet this need - a small Python script to convert index.md to index.html that can be run locally (when editing) or remotely (when deploying).
