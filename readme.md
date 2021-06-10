@@ -15,8 +15,8 @@
 * Embed YouTube videos using `![](YouTubeURL)`
 * Template files are HTML and easy to customize
 * Markdown headings and tables are styled to resemble GitHub
-* ~~Dynamic generation of sitemap~~
-* ~~Dynamic generation of RSS feed~~
+* Dynamic generation of sitemap
+* Dynamic generation of RSS feed
 * Custom functionality is easy to add
 
 ### Example Websites
